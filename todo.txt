@@ -1,0 +1,10 @@
+Add psx style shaders
+Add my interaction system
+Pickup items:
+	weilding items like guns
+	holding items and dropping or throwing them like halflife physics
+	reading notes
+Interacting with objects:
+	pressing buttons
+	contorl panels like key pads or locks
+	physics interaction like pulling a lever with mouse of opening a door
