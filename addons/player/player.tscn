@@ -1,6 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvm1x6igaprq3"]
+[gd_scene load_steps=14 format=3 uid="uid://cvm1x6igaprq3"]
 
 [ext_resource type="Script" uid="uid://ba1l1kqe7yxt6" path="res://addons/player/Player.gd" id="1_cyojo"]
+[ext_resource type="Script" uid="uid://dqdodfuuahflt" path="res://addons/interaction_system/interaction_controllers/ray_cast_3d_interaction_controller.gd" id="2_x3c2o"]
+[ext_resource type="Script" uid="uid://cluhc11vixkf1" path="res://addons/guide/guide_action.gd" id="3_7ek8b"]
+[ext_resource type="Resource" uid="uid://bncmn5k1te4ge" path="res://resources/input/crouch.tres" id="4_7ek8b"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
@@ -173,6 +176,16 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 cull_mask = 524287
 current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="RayCast3DInteractionController" type="Node" parent="Head/Neck/Camera3D/RayCast3D"]
+script = ExtResource("2_x3c2o")
+actions = Array[ExtResource("3_7ek8b")]([ExtResource("4_7ek8b")])
+metadata/_custom_type_script = "uid://dqdodfuuahflt"
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head"]
 unique_name_in_owner = true

@@ -1,5 +1,5 @@
 @tool
-class_name InputMapPlayerControl extends PlayerControl
+class_name InputMapGameControl extends GameControl
 
 enum Type {Default, MultiDimensional}
 

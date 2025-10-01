@@ -1,5 +1,5 @@
 @abstract
-class_name PlayerControl extends Node
+class_name GameControl extends Node
 
 @abstract func value() -> float
 @abstract func value_axis_2d() -> Vector2

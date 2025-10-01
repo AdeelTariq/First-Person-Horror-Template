@@ -1,4 +1,4 @@
-class_name MousePlayerControl extends PlayerControl
+class_name MouseGameControl extends GameControl
 
 # The mouse movement since the last frame. 
 var _mouse_movement: Vector2 = Vector2.ZERO

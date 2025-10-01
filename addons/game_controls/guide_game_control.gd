@@ -1,4 +1,4 @@
-class_name GuidePlayerControl extends PlayerControl
+class_name GuideGameControl extends GameControl
 
 @export var action: GUIDEAction
 

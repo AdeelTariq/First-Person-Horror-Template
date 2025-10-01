@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=54 format=3 uid="uid://xl87lpokidjq"]
+[gd_resource type="Resource" script_class="GUIDEMappingContext" load_steps=58 format=3 uid="uid://xl87lpokidjq"]
 
 [ext_resource type="Script" uid="uid://cpplm41b5bt6m" path="res://addons/guide/guide_action_mapping.gd" id="1_07kcm"]
 [ext_resource type="Script" uid="uid://dsa1dnifd6w32" path="res://addons/guide/guide_mapping_context.gd" id="2_s6im2"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://bncmn5k1te4ge" path="res://resources/input/crouch.tres" id="14_jxsw1"]
 [ext_resource type="Resource" uid="uid://b3kwcgwj0j3fh" path="res://resources/input/lean.tres" id="15_5c58n"]
 [ext_resource type="Resource" uid="uid://hs30p6qmf2n5" path="res://resources/input/zoom.tres" id="16_ca50b"]
+[ext_resource type="Resource" uid="uid://ddiuhvmirmfvc" path="res://resources/input/interact.tres" id="17_s0sou"]
 
 [sub_resource type="Resource" id="Resource_5vxf1"]
 script = ExtResource("4_claai")
@@ -168,8 +169,21 @@ script = ExtResource("1_07kcm")
 action = ExtResource("16_ca50b")
 input_mappings = Array[ExtResource("3_hh2cw")]([SubResource("Resource_a2mr4")])
 
+[sub_resource type="Resource" id="Resource_34yap"]
+script = ExtResource("10_p8dcp")
+key = 70
+
+[sub_resource type="Resource" id="Resource_js7mp"]
+script = ExtResource("3_hh2cw")
+input = SubResource("Resource_34yap")
+
+[sub_resource type="Resource" id="Resource_mcbw8"]
+script = ExtResource("1_07kcm")
+action = ExtResource("17_s0sou")
+input_mappings = Array[ExtResource("3_hh2cw")]([SubResource("Resource_js7mp")])
+
 [resource]
 script = ExtResource("2_s6im2")
 display_name = "First Person"
-mappings = Array[ExtResource("1_07kcm")]([SubResource("Resource_07p8i"), SubResource("Resource_qgv8d"), SubResource("Resource_8ioox"), SubResource("Resource_q1iuv"), SubResource("Resource_5myov"), SubResource("Resource_btirf"), SubResource("Resource_japwx")])
+mappings = Array[ExtResource("1_07kcm")]([SubResource("Resource_07p8i"), SubResource("Resource_qgv8d"), SubResource("Resource_8ioox"), SubResource("Resource_q1iuv"), SubResource("Resource_5myov"), SubResource("Resource_btirf"), SubResource("Resource_japwx"), SubResource("Resource_mcbw8")])
 metadata/_custom_type_script = "uid://dsa1dnifd6w32"

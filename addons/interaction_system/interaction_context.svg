@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="16"
+   height="16"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="interaction_context.svg"
+   inkscape:version="1.4 (e7c3feb, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="35.708892"
+     inkscape:cx="8.9893576"
+     inkscape:cy="9.157383"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <circle
+     cx="8"
+     cy="8"
+     r="7.3106561"
+     fill="none"
+     stroke="#e0e0e0"
+     stroke-width="2.65343"
+     id="circle1"
+     style="stroke-width:1.10207;stroke-dasharray:none;paint-order:normal" />
+  <path
+     style="font-size:7.89885px;line-height:1.8;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;text-anchor:middle;fill:#e0e0e0;stroke:#e0e0e0;stroke-width:0.526543;paint-order:markers stroke fill"
+     d="M 10.748557,12.378734 Q 10.533727,11.810069 10.344171,11.266675 10.154615,10.710646 9.9524228,10.141979 H 5.9843918 L 5.1882581,12.378734 H 3.9119169 Q 4.4173987,10.988661 4.8596951,9.813416 5.3019916,8.6255342 5.7190138,7.5640227 6.1486733,6.5025112 6.5656956,5.542096 6.9827179,4.5690441 7.4376515,3.6212658 h 1.1246973 q 0.454933,0.9477783 0.871955,1.9208302 0.417023,0.9604152 0.8340452,2.0219267 0.429659,1.0615115 0.871957,2.2493933 0.442294,1.175245 0.947777,2.565318 z M 9.5985858,9.1310159 Q 9.1941998,8.0315931 8.7898148,7.007993 8.3980668,5.9717556 7.9684072,5.0239774 7.5261108,5.9717556 7.1217256,7.007993 6.7299771,8.0315931 6.3382289,9.1310159 Z"
+     id="text2"
+     aria-label="A" />
+</svg>

@@ -1,21 +1,26 @@
-[gd_scene load_steps=22 format=3 uid="uid://djkpcj848dq8r"]
+[gd_scene load_steps=30 format=3 uid="uid://djkpcj848dq8r"]
 
 [ext_resource type="Script" uid="uid://djbep3fx80av6" path="res://scenes/playground.gd" id="1_q8s1k"]
 [ext_resource type="Resource" uid="uid://xl87lpokidjq" path="res://resources/input/first_person.tres" id="2_emj6c"]
 [ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/player/player.tscn" id="2_qchbg"]
-[ext_resource type="Script" uid="uid://dbeox2vva4qi5" path="res://addons/player/player_controls/guide_player_control.gd" id="3_kddj0"]
+[ext_resource type="Script" uid="uid://dbeox2vva4qi5" path="res://addons/game_controls/guide_game_control.gd" id="3_kddj0"]
 [ext_resource type="Resource" uid="uid://c7k5lpg5de8o" path="res://resources/input/look.tres" id="5_o6wi6"]
 [ext_resource type="Resource" uid="uid://dimhlehdifyjq" path="res://resources/input/move.tres" id="6_emj6c"]
 [ext_resource type="AudioStream" uid="uid://b5w7kope1qekn" path="res://assets/sounds/step2.ogg" id="6_k63md"]
 [ext_resource type="AudioStream" uid="uid://1y2wgje8ommq" path="res://assets/sounds/step3.ogg" id="6_q6c7b"]
 [ext_resource type="Resource" uid="uid://brnqqmuh1dx5c" path="res://resources/input/jump.tres" id="8_2bfhc"]
-[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/player/player_controls/input_map_player_control.gd" id="8_mrac1"]
-[ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/player/player_controls/mouse_player_control.gd" id="9_2q4k0"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/input_map_game_control.gd" id="8_mrac1"]
+[ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/game_controls/mouse_game_control.gd" id="9_2q4k0"]
 [ext_resource type="AudioStream" uid="uid://cohl5wjeir637" path="res://assets/sounds/step6.ogg" id="9_ocmmj"]
 [ext_resource type="Resource" uid="uid://bb78ofk7i5gqf" path="res://resources/input/sprint.tres" id="9_osidk"]
 [ext_resource type="Resource" uid="uid://bncmn5k1te4ge" path="res://resources/input/crouch.tres" id="11_k63md"]
 [ext_resource type="Resource" uid="uid://b3kwcgwj0j3fh" path="res://resources/input/lean.tres" id="13_fn4oh"]
 [ext_resource type="Resource" uid="uid://hs30p6qmf2n5" path="res://resources/input/zoom.tres" id="14_j30dx"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="17_d3jfy"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="18_q6c7b"]
+[ext_resource type="PackedScene" uid="uid://bimo0ijo3l1di" path="res://scenes/door/door.tscn" id="18_wm6m6"]
+[ext_resource type="Resource" uid="uid://ddiuhvmirmfvc" path="res://resources/input/interact.tres" id="19_q6c7b"]
+[ext_resource type="Script" uid="uid://dbv6ey8p6fq33" path="res://scenes/hud.gd" id="21_wm6m6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6wi6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -39,6 +44,19 @@ stream_2/stream = ExtResource("9_ocmmj")
 [sub_resource type="PrismMesh" id="PrismMesh_k63md"]
 left_to_right = 0.4
 size = Vector3(10, 5, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2tju"]
+albedo_color = Color(0.27755955, 0.4254524, 0.08938744, 1)
+
+[sub_resource type="Gradient" id="Gradient_x2tju"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.13125)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wm6m6"]
+gradient = SubResource("Gradient_x2tju")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Playground" type="Node3D"]
 script = ExtResource("1_q8s1k")
@@ -161,3 +179,103 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 calculate_tangents = false
 use_collision = true
 size = Vector3(100, 100, 100)
+material = SubResource("StandardMaterial3D_x2tju")
+
+[node name="Door" parent="." instance=ExtResource("18_wm6m6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="StaticBody3D" parent="Door/wall_doorway/wall_doorway_door" index="0"]
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("19_q6c7b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
+script = ExtResource("17_d3jfy")
+display_name = "Door"
+override_disabled_display_name = true
+disabled_display_name = "Locked Door"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Interact" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
+script = ExtResource("18_q6c7b")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="Control" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact"]
+script = ExtResource("3_kddj0")
+action = ExtResource("19_q6c7b")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="SimpleLockedDoor" parent="." instance=ExtResource("18_wm6m6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="StaticBody3D" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door" index="0"]
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":4,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("19_q6c7b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
+script = ExtResource("17_d3jfy")
+display_name = "Door"
+override_disabled_display_name = true
+disabled_display_name = "Locked Door"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Interact" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
+process_mode = 4
+script = ExtResource("18_q6c7b")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact"]
+script = ExtResource("3_kddj0")
+action = ExtResource("19_q6c7b")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("21_wm6m6")
+
+[node name="CrossHair" type="TextureRect" parent="HUD"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_wm6m6")
+
+[node name="InteractPrompt" type="RichTextLabel" parent="HUD"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -79.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[connection signal="on_complete" from="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact" to="Door" method="interact"]
+[connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact" to="SimpleLockedDoor" method="interact"]
+
+[editable path="Door"]
+[editable path="SimpleLockedDoor"]

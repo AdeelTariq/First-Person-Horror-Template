@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="16"
+   height="16"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="interaction.svg"
+   inkscape:version="1.4 (e7c3feb, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="35.708892"
+     inkscape:cx="8.9893576"
+     inkscape:cy="9.157383"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     id="circle1-5"
+     style="fill:#e0e0e0;fill-opacity:1;stroke-width:1.1865;stroke-dasharray:none;paint-order:normal"
+     d="M 7.9999995,0.129368 A 7.870749,7.870749 0 0 0 0.129368,8 7.870749,7.870749 0 0 0 7.9999995,15.870632 7.870749,7.870749 0 0 0 15.870632,8 7.870749,7.870749 0 0 0 7.9999995,0.129368 Z M 7.39861,2.804079 h 1.2090872 c 0.3265249,0.6802604 0.6406195,1.3707157 0.9399338,2.069116 0.2993145,0.6893305 0.598564,1.4144654 0.897879,2.1763569 0.308385,0.7618911 0.620374,1.5676841 0.93783,2.4202771 0.317454,0.843523 0.659135,1.765313 1.021942,2.763027 H 10.962789 C 10.808595,11.824702 10.66357,11.426402 10.527517,11.036384 10.391465,10.637301 10.249985,10.233352 10.104862,9.825195 H 5.8320537 L 4.9762303,12.232856 H 3.6010251 C 3.9638308,11.235142 4.3055119,10.313352 4.6229665,9.469829 4.9404215,8.617236 5.2488666,7.811443 5.548181,7.0495519 5.8565658,6.2876604 6.1593618,5.5625255 6.4586763,4.873195 6.7579907,4.1747947 7.0720851,3.4843394 7.39861,2.804079 Z M 7.9684581,4.3138609 C 7.6510034,4.9941212 7.3482072,5.7065139 7.0579629,6.4502652 6.7767885,7.184946 6.4959302,7.946864 6.2147561,8.735966 H 9.7242629 C 9.4340185,7.946864 9.1439646,7.184946 8.8537202,6.4502652 8.5725459,5.7065139 8.2768427,4.9941212 7.9684581,4.3138609 Z" />
+</svg>

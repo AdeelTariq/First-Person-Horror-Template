@@ -42,21 +42,21 @@ const LEAN_SPEED: float = 0.1
 
 @export_category("Info")
 @export_custom(PROPERTY_HINT_MULTILINE_TEXT, "", PROPERTY_USAGE_READ_ONLY | PROPERTY_USAGE_EDITOR)
-var _1: String = "Player node requires uniquely named children inheriting from PlayerControl.
+var _1: String = "Player node requires uniquely named children inheriting from GameControl.
 Required: %look, %move.
-Optional: %jump, %sprint, %crouch, %lean
+Optional: %jump, %sprint, %crouch, %lean, %zoom
 "
 
 ## Control where x and z values will control the movement direction of the player
 ## The value_3d must have a value of (0, 0, -1) for moving forward
 ## and a value of (1, 0, 0) for moving/strafing right
 ## only x and z are used. y is discarded.
-@onready var move_control: PlayerControl = %move
+@onready var move_control: GameControl = %move
 ## Control where x and y values will control the look direction of the player
 ## x and y values must represent the delta mouse position as window-relative units between 0 and 1
 ## E.g. if a mouse cursor moves half a screen to the right and down, then 
 ## this modifier will return (0.5, 0.5).
-@onready var look_control: PlayerControl = %look
+@onready var look_control: GameControl = %look
 
 @onready var head: Node3D = %Head
 @onready var neck: Node3D = %Neck
@@ -210,7 +210,7 @@ func handle_zoom(delta: float) -> void:
 
 func handle_lean(delta: float) -> void:
 	if get_node_or_null("%lean") == null: return
-	var lean_control: PlayerControl = %lean
+	var lean_control: GameControl = %lean
 	var lean_value = lean_control.value()
 	
 	var lean_target_position = Vector3(

@@ -5,3 +5,8 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GUIDE.enable_mapping_context(mapping_context)
+	
+	InteractionController.current.display_action_prompts.connect(
+		func(object_name: String, actions: Array[Interaction], _center: bool) -> void:
+		print(object_name, str(actions))
+	)
