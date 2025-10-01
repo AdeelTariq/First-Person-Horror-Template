@@ -162,6 +162,7 @@ func set_movement_speed() -> void:
 	
 	if crouching:
 		speed = crouch_speed
+	footsteps.volume_linear = speed / walk_speed
 
 
 func look_around() -> void:

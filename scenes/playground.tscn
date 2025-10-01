@@ -1,17 +1,17 @@
 [gd_scene load_steps=22 format=3 uid="uid://djkpcj848dq8r"]
 
-[ext_resource type="PackedScene" uid="uid://bp6r0j1kcxhsa" path="res://assets/models/house.blend" id="1_hddm4"]
 [ext_resource type="Script" uid="uid://djbep3fx80av6" path="res://scenes/playground.gd" id="1_q8s1k"]
 [ext_resource type="Resource" uid="uid://xl87lpokidjq" path="res://resources/input/first_person.tres" id="2_emj6c"]
-[ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/Player/player.tscn" id="2_qchbg"]
-[ext_resource type="Script" uid="uid://dbeox2vva4qi5" path="res://addons/Player/player_controls/guide_player_control.gd" id="3_kddj0"]
+[ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/player/player.tscn" id="2_qchbg"]
+[ext_resource type="Script" uid="uid://dbeox2vva4qi5" path="res://addons/player/player_controls/guide_player_control.gd" id="3_kddj0"]
 [ext_resource type="Resource" uid="uid://c7k5lpg5de8o" path="res://resources/input/look.tres" id="5_o6wi6"]
-[ext_resource type="AudioStream" uid="uid://ds1yrfcg112re" path="res://assets/sounds/step1.ogg" id="5_rlvb3"]
 [ext_resource type="Resource" uid="uid://dimhlehdifyjq" path="res://resources/input/move.tres" id="6_emj6c"]
 [ext_resource type="AudioStream" uid="uid://b5w7kope1qekn" path="res://assets/sounds/step2.ogg" id="6_k63md"]
+[ext_resource type="AudioStream" uid="uid://1y2wgje8ommq" path="res://assets/sounds/step3.ogg" id="6_q6c7b"]
 [ext_resource type="Resource" uid="uid://brnqqmuh1dx5c" path="res://resources/input/jump.tres" id="8_2bfhc"]
-[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/Player/player_controls/input_map_player_control.gd" id="8_mrac1"]
-[ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/Player/player_controls/mouse_player_control.gd" id="9_2q4k0"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/player/player_controls/input_map_player_control.gd" id="8_mrac1"]
+[ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/player/player_controls/mouse_player_control.gd" id="9_2q4k0"]
+[ext_resource type="AudioStream" uid="uid://cohl5wjeir637" path="res://assets/sounds/step6.ogg" id="9_ocmmj"]
 [ext_resource type="Resource" uid="uid://bb78ofk7i5gqf" path="res://resources/input/sprint.tres" id="9_osidk"]
 [ext_resource type="Resource" uid="uid://bncmn5k1te4ge" path="res://resources/input/crouch.tres" id="11_k63md"]
 [ext_resource type="Resource" uid="uid://b3kwcgwj0j3fh" path="res://resources/input/lean.tres" id="13_fn4oh"]
@@ -31,13 +31,14 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2bfhc"]
-streams_count = 2
-stream_0/stream = ExtResource("5_rlvb3")
-stream_1/stream = ExtResource("6_k63md")
+streams_count = 3
+stream_0/stream = ExtResource("6_k63md")
+stream_1/stream = ExtResource("6_q6c7b")
+stream_2/stream = ExtResource("9_ocmmj")
 
 [sub_resource type="PrismMesh" id="PrismMesh_k63md"]
 left_to_right = 0.4
-size = Vector3(10, 5, 2)
+size = Vector3(10, 5, 10)
 
 [node name="Playground" type="Node3D"]
 script = ExtResource("1_q8s1k")
@@ -50,9 +51,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mrac1")
 
-[node name="house" parent="." instance=ExtResource("1_hddm4")]
-
 [node name="Player" parent="." instance=ExtResource("2_qchbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
 velocity = Vector3(0, -733.02686, 0)
 footsteps_sound = SubResource("AudioStreamRandomizer_2bfhc")
 
@@ -143,15 +143,21 @@ unique_name_in_owner = true
 script = ExtResource("9_2q4k0")
 metadata/_custom_type_script = "uid://byf0ij6s7416m"
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+[node name="Slide" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.507557, 0)
+calculate_tangents = false
 use_collision = true
 mesh = SubResource("PrismMesh_k63md")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGMesh3D"]
+[node name="Tunnel" type="CSGCylinder3D" parent="Slide"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -1.8048909, 0)
 operation = 2
+calculate_tangents = false
 radius = 1.0
-height = 2.3
+height = 11.0
 
-[editable path="house"]
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+calculate_tangents = false
+use_collision = true
+size = Vector3(100, 100, 100)

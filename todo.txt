@@ -1,5 +1,5 @@
+Add a door and my interaction system and handle the door problem
 Add psx style shaders
-Add my interaction system
 Pickup items:
 	weilding items like guns
 	holding items and dropping or throwing them like halflife physics
