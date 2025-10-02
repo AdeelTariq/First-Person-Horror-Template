@@ -12,15 +12,19 @@ An InteractionContainer can have a mix of multiple Interactions or InteractionCo
 InteractionContexts can be turned on or off depending on the context.
 
 For example a door may have the following setup:
-	InteractionContainer:
-		Inspect (Interaction)
-		Closed (InteractionContext):
-			Open (Interaction)
-			Lock (Interaction)
-		Open (InteractionContext):
-			Close (Interaction)
-		Locked (InteractionContext):
-			Unlock (Interaction)
+```mermaid
+graph TD
+  IC[InteractionContainer]
+  IC --> Inspect[Inspect (Interaction)]
+  IC --> Closed[Closed (InteractionContext)]
+  IC --> OpenCtx[Open (InteractionContext)]
+  IC --> Locked[Locked (InteractionContext)]
+  
+  Closed --> OpenInt[Open (Interaction)]
+  Closed --> Lock[Lock (Interaction)]
+  OpenCtx --> Close[Close (Interaction)]
+  Locked --> Unlock[Unlock (Interaction)]
+```
 
 As you can see each context will have different interactions. While the Inspect interaction will always be present.
 Multiple contexts can be turned on at the same time too, by giving them the same context ID.
