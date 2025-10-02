@@ -1,4 +1,5 @@
 Add a door and my interaction system and handle the door problem
+Don't allow to stand up or jump until there is space to standup
 Add psx style shaders
 Pickup items:
 	weilding items like guns
@@ -8,3 +9,4 @@ Interacting with objects:
 	pressing buttons
 	contorl panels like key pads or locks
 	physics interaction like pulling a lever with mouse of opening a door
+Make a dependency map

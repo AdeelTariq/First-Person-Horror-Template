@@ -54,3 +54,7 @@ func _prepare_prompts_for_display(interaction_container: InteractionContainer, p
 	_focused_object_name = object_name
 	_is_focused_object_picked = picked_object
 	display_action_prompts.emit(_focused_object_name, _focused_interactions, _is_focused_object_picked)
+
+
+func refresh_prompts(interaction_container: InteractionContainer, picked_object: bool = false) -> void:
+	_prepare_prompts_for_display(interaction_container, picked_object)

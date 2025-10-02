@@ -1,6 +1,7 @@
-extends Node3D
+class_name Door extends Node3D
 
 @onready var wall_doorway_door: MeshInstance3D = $wall_doorway/wall_doorway_door
+@onready var door_body: StaticBody3D = $wall_doorway/wall_doorway_door/StaticBody3D
 @onready var collider: CollisionShape3D = $wall_doorway/wall_doorway_door/StaticBody3D/CollisionShape3D
 
 var swing_angle : float = 90.0
@@ -10,6 +11,9 @@ var open_time : float = 2.0
 var min_swing_time : float = 0.15
 
 var swing_tween: Tween
+var is_closed: bool:
+	get():
+		return target_rot == starting_rot
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +23,7 @@ func _ready() -> void:
 func interact(controller: InteractionController) -> void:
 	var node3D: Node3D = controller.get_parent()
 	var interact_pos: Vector3 = node3D.global_position
-	if target_rot == starting_rot:
+	if is_closed:
 		return open(interact_pos)
 	else:
 		return close()
