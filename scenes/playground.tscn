@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://djbep3fx80av6" path="res://scenes/playground.gd" id="1_q8s1k"]
 [ext_resource type="Resource" uid="uid://xl87lpokidjq" path="res://resources/input/first_person.tres" id="2_emj6c"]
 [ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/player/player.tscn" id="2_qchbg"]
-[ext_resource type="Script" uid="uid://dbeox2vva4qi5" path="res://addons/game_controls/guide_game_control.gd" id="3_kddj0"]
+[ext_resource type="Script" uid="uid://dbeox2vva4qi5" path="res://addons/game_controls/guide/guide_game_control.gd" id="3_kddj0"]
 [ext_resource type="Resource" uid="uid://c7k5lpg5de8o" path="res://resources/input/look.tres" id="5_o6wi6"]
 [ext_resource type="Resource" uid="uid://dimhlehdifyjq" path="res://resources/input/move.tres" id="6_emj6c"]
 [ext_resource type="AudioStream" uid="uid://b5w7kope1qekn" path="res://assets/sounds/step2.ogg" id="6_k63md"]
 [ext_resource type="AudioStream" uid="uid://1y2wgje8ommq" path="res://assets/sounds/step3.ogg" id="6_q6c7b"]
-[ext_resource type="Script" uid="uid://dqdodfuuahflt" path="res://addons/interaction_system/interaction_controllers/ray_cast_3d_interaction_controller.gd" id="7_rdeg0"]
+[ext_resource type="Script" uid="uid://dqdodfuuahflt" path="res://addons/interaction_system/interaction_controllers/3d/ray_cast_3d_interaction_controller.gd" id="7_rdeg0"]
 [ext_resource type="Resource" uid="uid://brnqqmuh1dx5c" path="res://resources/input/jump.tres" id="8_2bfhc"]
-[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/input_map_game_control.gd" id="8_mrac1"]
-[ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/game_controls/mouse_game_control.gd" id="9_2q4k0"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_mrac1"]
+[ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/game_controls/vanilla/mouse_game_control.gd" id="9_2q4k0"]
 [ext_resource type="AudioStream" uid="uid://cohl5wjeir637" path="res://assets/sounds/step6.ogg" id="9_ocmmj"]
 [ext_resource type="Resource" uid="uid://bb78ofk7i5gqf" path="res://resources/input/sprint.tres" id="9_osidk"]
 [ext_resource type="Resource" uid="uid://bncmn5k1te4ge" path="res://resources/input/crouch.tres" id="11_k63md"]
@@ -191,12 +191,6 @@ material = SubResource("StandardMaterial3D_x2tju")
 [node name="Door" parent="." instance=ExtResource("18_wm6m6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
-[node name="StaticBody3D" parent="Door/wall_doorway/wall_doorway_door" index="0"]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("19_q6c7b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
 [node name="InteractionContainer" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
 script = ExtResource("17_d3jfy")
 display_name = "Door"
@@ -216,14 +210,6 @@ metadata/_custom_type_script = "uid://dbeox2vva4qi5"
 [node name="SimpleLockedDoor" parent="." instance=ExtResource("18_wm6m6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
 script = ExtResource("21_62tve")
-
-[node name="StaticBody3D" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door" index="0"]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("19_q6c7b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("22_vwj6b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
 
 [node name="InteractionContainer" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
 script = ExtResource("17_d3jfy")

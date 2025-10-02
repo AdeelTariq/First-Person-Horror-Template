@@ -1,0 +1,45 @@
+	
+
+	KayKit : Dungeon Remastered Pack (1.1)
+
+	Created/distributed by Kay Lousberg (www.kaylousberg.com)
+	Creation date: 09/05/2024 09:00
+
+			------------------------------
+
+	License: (Creative Commons Zero, CC0)
+	http://creativecommons.org/publicdomain/zero/1.0/
+
+	This content is free to use in personal, educational and commercial projects.
+
+	Support me by crediting Kay Lousberg, www.kaylousberg.com (this is not mandatory)
+
+			------------------------------
+
+	This asset pack is here thanks to all the wonderful people who support KayKit on Patreon and those who buy EXTRA or SOURCE packs on itch.io.
+
+	And a big, special thank you to my Super Supporters on Patreon:
+
+	- Brian McBarron
+	- Silva
+	- Eric Allamby
+	- Joseph Preston
+	- Alexander Würfl
+	- Danielle Smith
+	- 7dg2s
+	- Leon Burkhardt
+	- PSYLESS
+	- NickyBHobbying
+	- Emilia
+	- Rudolf Bouzek
+
+
+
+			------------------------------
+
+
+	Patreon:  http://patreon.com/kaylousberg
+
+	Follow here for updates:
+	http://twitter.com/KayLousberg
+	https://mastodon.gamedev.place/@Kay
