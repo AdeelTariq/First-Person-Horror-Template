@@ -30,3 +30,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		# Emit the mouse moved signal with the distance moved
 		_mouse_movement += event.relative
+
+
+func display_text_async() -> String:
+	return "Mouse"

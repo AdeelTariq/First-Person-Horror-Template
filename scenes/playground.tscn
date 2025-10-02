@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://djkpcj848dq8r"]
+[gd_scene load_steps=32 format=3 uid="uid://djkpcj848dq8r"]
 
 [ext_resource type="Script" uid="uid://djbep3fx80av6" path="res://scenes/playground.gd" id="1_q8s1k"]
 [ext_resource type="Resource" uid="uid://xl87lpokidjq" path="res://resources/input/first_person.tres" id="2_emj6c"]
@@ -20,7 +20,9 @@
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="18_q6c7b"]
 [ext_resource type="PackedScene" uid="uid://bimo0ijo3l1di" path="res://scenes/door/door.tscn" id="18_wm6m6"]
 [ext_resource type="Resource" uid="uid://ddiuhvmirmfvc" path="res://resources/input/interact.tres" id="19_q6c7b"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="21_ocmmj"]
 [ext_resource type="Script" uid="uid://dbv6ey8p6fq33" path="res://scenes/hud.gd" id="21_wm6m6"]
+[ext_resource type="Resource" uid="uid://b1b0x2qegnn8b" path="res://resources/input/use.tres" id="22_vwj6b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6wi6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -185,7 +187,7 @@ material = SubResource("StandardMaterial3D_x2tju")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
 [node name="StaticBody3D" parent="Door/wall_doorway/wall_doorway_door" index="0"]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("19_q6c7b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"override_display_name":null,"display_name":null,"control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("19_q6c7b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
@@ -199,6 +201,8 @@ metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
 [node name="Interact" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
 script = ExtResource("18_q6c7b")
+override_display_name = null
+display_name = null
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
 [node name="Control" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact"]
@@ -210,24 +214,72 @@ metadata/_custom_type_script = "uid://dbeox2vva4qi5"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
 
 [node name="StaticBody3D" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door" index="0"]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":4,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("19_q6c7b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("19_q6c7b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
+, Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_kddj0"),"action":ExtResource("19_q6c7b"),"metadata/_custom_type_script":"uid://dbeox2vva4qi5")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
 [node name="InteractionContainer" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
 script = ExtResource("17_d3jfy")
 display_name = "Door"
-override_disabled_display_name = true
-disabled_display_name = "Locked Door"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
-[node name="Interact" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
-process_mode = 4
+[node name="Closed" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
+script = ExtResource("21_ocmmj")
+override_display_name = true
+display_name = "Closed Door"
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Open" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed"]
 script = ExtResource("18_q6c7b")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact"]
+[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Open"]
+script = ExtResource("3_kddj0")
+action = ExtResource("19_q6c7b")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="Lock" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed"]
+script = ExtResource("18_q6c7b")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Lock"]
+script = ExtResource("3_kddj0")
+action = ExtResource("22_vwj6b")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="Open" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
+script = ExtResource("21_ocmmj")
+context_id = 1
+override_display_name = true
+display_name = "Open Door"
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Close" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open"]
+script = ExtResource("18_q6c7b")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open/Close"]
+script = ExtResource("3_kddj0")
+action = ExtResource("19_q6c7b")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="Locked" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
+script = ExtResource("21_ocmmj")
+context_id = 2
+override_display_name = true
+display_name = "Locked Door"
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Unlock" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked"]
+script = ExtResource("18_q6c7b")
+override_display_name = null
+display_name = null
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked/Unlock"]
 script = ExtResource("3_kddj0")
 action = ExtResource("19_q6c7b")
 metadata/_custom_type_script = "uid://dbeox2vva4qi5"
@@ -275,7 +327,10 @@ autowrap_mode = 2
 horizontal_alignment = 1
 
 [connection signal="on_complete" from="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact" to="Door" method="interact"]
-[connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact" to="SimpleLockedDoor" method="interact"]
+[connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Open" to="SimpleLockedDoor" method="interact"]
+[connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Lock" to="SimpleLockedDoor" method="interact"]
+[connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open/Close" to="SimpleLockedDoor" method="interact"]
+[connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked/Unlock" to="SimpleLockedDoor" method="interact"]
 
 [editable path="Door"]
 [editable path="SimpleLockedDoor"]

@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_11vvg")
-name = &"sprint"
+name = &"interact"
 metadata/_custom_type_script = "uid://cluhc11vixkf1"

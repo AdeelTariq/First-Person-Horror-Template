@@ -5,6 +5,13 @@ extends Node
 
 @export var is_hold: bool = false
 
+@export var override_display_name: bool = false:
+	set(value):
+		override_display_name = value
+		notify_property_list_changed()
+
+@export var display_name: String = ""
+
 signal on_trigger(controller: InteractionController)
 signal on_complete(controller: InteractionController)
 
@@ -32,6 +39,10 @@ func complete(controller: InteractionController) -> void:
 	on_complete.emit(controller)
 
 
+func prompt_async() -> String:
+	return "%s to %s" % [await control.display_text_async(), display_name if override_display_name else name]
+
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings:PackedStringArray = []
 	if get_parent() is not InteractionContainer and get_parent() is not InteractionContext:
@@ -39,3 +50,9 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if get_child_count() != 1 or get_child(0) is not GameControl:
 		warnings.append("A Interaction have exactly one GameControl child.")
 	return warnings
+
+
+func _validate_property(property: Dictionary) -> void:
+	if not Engine.is_editor_hint(): return
+	if property.name == &"display_name":
+		property.usage = PROPERTY_USAGE_DEFAULT if override_display_name else PROPERTY_USAGE_NO_EDITOR

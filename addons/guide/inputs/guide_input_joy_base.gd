@@ -10,4 +10,3 @@ extends GUIDEInput
 			return
 		joy_index = value
 		emit_changed()	
-

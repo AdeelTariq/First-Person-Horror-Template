@@ -19,5 +19,5 @@ func _something_interactable(object_name: String, actions: Array[Interaction], _
 	cross_hair.show()
 	interact_prompt.text = "[b]%s[/b]: %s" % [
 		object_name,
-		", ".join(actions.map(func(a: Interaction) -> String: return a.name))
+		", ".join(actions.map(func(a: Interaction) -> String: return await a.prompt_async()))
 	]
