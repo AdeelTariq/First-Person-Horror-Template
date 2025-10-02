@@ -1,5 +1,7 @@
 class_name MouseGameControl extends GameControl
 
+@onready var _formatter: GUIDEInputFormatter = GUIDEInputFormatter.for_active_contexts()
+
 # The mouse movement since the last frame. 
 var _mouse_movement: Vector2 = Vector2.ZERO
 
@@ -30,7 +32,3 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		# Emit the mouse moved signal with the distance moved
 		_mouse_movement += event.relative
-
-
-func display_text_async() -> String:
-	return "Mouse"

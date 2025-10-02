@@ -29,17 +29,6 @@ func value_axis_3d() -> Vector3:
 	var dir: Vector2 = Input.get_vector(negative_x, positive_x, negative_y, positive_y)
 	return Vector3(dir.x, 0.0, dir.y)
 
-func display_text_async() -> String:
-	if type == Type.Default:
-		return await _formatter.input_as_richtext_async(InputMapToGuideInput.convert(action))
-	
-	return ", ".join(
-		[negative_x, positive_x, negative_y, positive_y]\
-		.filter(func(a: StringName) -> bool: return a != null and not a.is_empty())\
-		.map(func(a: StringName) -> String: return await _formatter.input_as_richtext_async(InputMapToGuideInput.convert(a)))
-	)
-
-
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "action":
 		property.usage = PROPERTY_USAGE_DEFAULT if type == Type.Default else PROPERTY_USAGE_NO_EDITOR

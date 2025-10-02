@@ -39,8 +39,8 @@ func complete(controller: InteractionController) -> void:
 	on_complete.emit(controller)
 
 
-func prompt_async() -> String:
-	return "%s to %s" % [await control.display_text_async(), display_name if override_display_name else name]
+func get_display_name() -> String:
+	return display_name if override_display_name else name
 
 
 func _get_configuration_warnings() -> PackedStringArray:

@@ -2,6 +2,7 @@ extends Control
 
 @onready var cross_hair: TextureRect = %CrossHair
 @onready var interact_prompt: RichTextLabel = %InteractPrompt
+@onready var _formatter: PromptFormatter = PromptIconFormatter.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,5 +20,8 @@ func _something_interactable(object_name: String, actions: Array[Interaction], _
 	cross_hair.show()
 	interact_prompt.text = "[b]%s[/b]: %s" % [
 		object_name,
-		", ".join(actions.map(func(a: Interaction) -> String: return await a.prompt_async()))
+		", ".join(actions.map(func(a: Interaction) -> String:
+		@warning_ignore("redundant_await")
+		return "%s to %s" % [await _formatter.format_async(a.control), a.get_display_name()]
+		))
 	]

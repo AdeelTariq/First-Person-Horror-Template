@@ -1,3 +1,4 @@
+## Used by PromptIconFormatter
 class_name InputMapToGuideInput
 
 
