@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://djkpcj848dq8r"]
+[gd_scene load_steps=34 format=3 uid="uid://djkpcj848dq8r"]
 
 [ext_resource type="Script" uid="uid://djbep3fx80av6" path="res://scenes/playground.gd" id="1_q8s1k"]
 [ext_resource type="Resource" uid="uid://xl87lpokidjq" path="res://resources/input/first_person.tres" id="2_emj6c"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://dimhlehdifyjq" path="res://resources/input/move.tres" id="6_emj6c"]
 [ext_resource type="AudioStream" uid="uid://b5w7kope1qekn" path="res://assets/sounds/step2.ogg" id="6_k63md"]
 [ext_resource type="AudioStream" uid="uid://1y2wgje8ommq" path="res://assets/sounds/step3.ogg" id="6_q6c7b"]
+[ext_resource type="Script" uid="uid://dqdodfuuahflt" path="res://addons/interaction_system/interaction_controllers/ray_cast_3d_interaction_controller.gd" id="7_rdeg0"]
 [ext_resource type="Resource" uid="uid://brnqqmuh1dx5c" path="res://resources/input/jump.tres" id="8_2bfhc"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/input_map_game_control.gd" id="8_mrac1"]
 [ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/game_controls/mouse_game_control.gd" id="9_2q4k0"]
@@ -75,6 +76,10 @@ environment = SubResource("Environment_mrac1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
 velocity = Vector3(0, -733.02686, 0)
 footsteps_sound = SubResource("AudioStreamRandomizer_2bfhc")
+
+[node name="RayCast3DInteractionController" type="Node" parent="Player/Head/Neck/Camera3D/RayCast3D" index="0"]
+script = ExtResource("7_rdeg0")
+metadata/_custom_type_script = "uid://dqdodfuuahflt"
 
 [node name="Controls" type="Node" parent="Player"]
 
@@ -329,5 +334,6 @@ horizontal_alignment = 1
 [connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open/Close" to="SimpleLockedDoor" method="interact"]
 [connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked/Unlock" to="SimpleLockedDoor" method="unlock_door"]
 
+[editable path="Player"]
 [editable path="Door"]
 [editable path="SimpleLockedDoor"]
