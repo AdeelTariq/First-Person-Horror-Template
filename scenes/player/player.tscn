@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bia32vkq1a5i"]
+[gd_scene load_steps=11 format=3 uid="uid://bia32vkq1a5i"]
 
 [ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/player/player.tscn" id="1_lvxji"]
 [ext_resource type="Script" uid="uid://dqdodfuuahflt" path="res://addons/interaction_system/interaction_controllers/3d/ray_cast_3d_interaction_controller.gd" id="2_p47bc"]
-[ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/game_controls/vanilla/mouse_game_control.gd" id="3_75vfm"]
-[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_0owmy"]
+[ext_resource type="Script" uid="uid://dbeox2vva4qi5" path="res://addons/game_controls/guide/guide_game_control.gd" id="3_h17s1"]
+[ext_resource type="Resource" uid="uid://c7k5lpg5de8o" path="res://resources/input/look.tres" id="4_je7p5"]
+[ext_resource type="Resource" uid="uid://dimhlehdifyjq" path="res://resources/input/move.tres" id="5_fm80t"]
+[ext_resource type="Resource" uid="uid://brnqqmuh1dx5c" path="res://resources/input/jump.tres" id="6_gx1jg"]
+[ext_resource type="Resource" uid="uid://bncmn5k1te4ge" path="res://resources/input/crouch.tres" id="7_ugbui"]
+[ext_resource type="Resource" uid="uid://bb78ofk7i5gqf" path="res://resources/input/sprint.tres" id="8_fcs02"]
+[ext_resource type="Resource" uid="uid://b3kwcgwj0j3fh" path="res://resources/input/lean.tres" id="9_myrg7"]
+[ext_resource type="Resource" uid="uid://hs30p6qmf2n5" path="res://resources/input/zoom.tres" id="10_kvlxm"]
 
 [node name="Player" instance=ExtResource("1_lvxji")]
 
@@ -11,69 +17,46 @@
 script = ExtResource("2_p47bc")
 metadata/_custom_type_script = "uid://dqdodfuuahflt"
 
-[node name="InputMapControls" type="Node" parent="." index="5"]
+[node name="GuideControls" type="Node" parent="." index="5"]
 
-[node name="look" type="Node" parent="InputMapControls" index="0"]
+[node name="look" type="Node" parent="GuideControls" index="0"]
 unique_name_in_owner = true
-script = ExtResource("3_75vfm")
-metadata/_custom_type_script = "uid://byf0ij6s7416m"
+script = ExtResource("3_h17s1")
+action = ExtResource("4_je7p5")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
 
-[node name="move" type="Node" parent="InputMapControls" index="1"]
+[node name="move" type="Node" parent="GuideControls" index="1"]
 unique_name_in_owner = true
-script = ExtResource("4_0owmy")
-type = 1
-action = &"move"
-negative_x = &"move_left"
-positive_x = &"move_right"
-negative_y = &"move_forward"
-positive_y = &"move_back"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+script = ExtResource("3_h17s1")
+action = ExtResource("5_fm80t")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
 
-[node name="lean" type="Node" parent="InputMapControls" index="2"]
+[node name="jump" type="Node" parent="GuideControls" index="2"]
 unique_name_in_owner = true
-script = ExtResource("4_0owmy")
-type = 1
-action = &"lean"
-negative_x = &"lean_left"
-positive_x = &"lean_right"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+script = ExtResource("3_h17s1")
+action = ExtResource("6_gx1jg")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
 
-[node name="jump" type="Node" parent="InputMapControls" index="3"]
+[node name="crouch" type="Node" parent="GuideControls" index="3"]
 unique_name_in_owner = true
-script = ExtResource("4_0owmy")
-action = &"jump"
-negative_x = &"ui_left"
-positive_x = &"ui_right"
-negative_y = &"ui_up"
-positive_y = &"ui_down"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+script = ExtResource("3_h17s1")
+action = ExtResource("7_ugbui")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
 
-[node name="sprint" type="Node" parent="InputMapControls" index="4"]
+[node name="sprint" type="Node" parent="GuideControls" index="4"]
 unique_name_in_owner = true
-script = ExtResource("4_0owmy")
-action = &"sprint"
-negative_x = &"ui_left"
-positive_x = &"ui_right"
-negative_y = &"ui_up"
-positive_y = &"ui_down"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+script = ExtResource("3_h17s1")
+action = ExtResource("8_fcs02")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
 
-[node name="crouch" type="Node" parent="InputMapControls" index="5"]
+[node name="lean" type="Node" parent="GuideControls" index="5"]
 unique_name_in_owner = true
-script = ExtResource("4_0owmy")
-action = &"crouch"
-negative_x = &"ui_left"
-positive_x = &"ui_right"
-negative_y = &"ui_up"
-positive_y = &"ui_down"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+script = ExtResource("3_h17s1")
+action = ExtResource("9_myrg7")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
 
-[node name="zoom" type="Node" parent="InputMapControls" index="6"]
+[node name="zoom" type="Node" parent="GuideControls" index="6"]
 unique_name_in_owner = true
-script = ExtResource("4_0owmy")
-action = &"zoom"
-negative_x = &"ui_left"
-positive_x = &"ui_right"
-negative_y = &"ui_up"
-positive_y = &"ui_down"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+script = ExtResource("3_h17s1")
+action = ExtResource("10_kvlxm")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"

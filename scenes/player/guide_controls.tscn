@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://c66jhg6p7kw7g"]
+
+[ext_resource type="Script" uid="uid://dbeox2vva4qi5" path="res://addons/game_controls/guide/guide_game_control.gd" id="1_wml18"]
+[ext_resource type="Resource" uid="uid://c7k5lpg5de8o" path="res://resources/input/look.tres" id="2_2wvxc"]
+[ext_resource type="Resource" uid="uid://dimhlehdifyjq" path="res://resources/input/move.tres" id="3_ty4yr"]
+[ext_resource type="Resource" uid="uid://brnqqmuh1dx5c" path="res://resources/input/jump.tres" id="4_73544"]
+[ext_resource type="Resource" uid="uid://bncmn5k1te4ge" path="res://resources/input/crouch.tres" id="5_ofmop"]
+[ext_resource type="Resource" uid="uid://bb78ofk7i5gqf" path="res://resources/input/sprint.tres" id="6_7n2wx"]
+[ext_resource type="Resource" uid="uid://b3kwcgwj0j3fh" path="res://resources/input/lean.tres" id="7_w0e6g"]
+[ext_resource type="Resource" uid="uid://hs30p6qmf2n5" path="res://resources/input/zoom.tres" id="8_8qwx4"]
+
+[node name="GuideControls" type="Node"]
+
+[node name="look" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_wml18")
+action = ExtResource("2_2wvxc")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="move" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_wml18")
+action = ExtResource("3_ty4yr")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="jump" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_wml18")
+action = ExtResource("4_73544")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="crouch" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_wml18")
+action = ExtResource("5_ofmop")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="sprint" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_wml18")
+action = ExtResource("6_7n2wx")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="lean" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_wml18")
+action = ExtResource("7_w0e6g")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+
+[node name="zoom" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_wml18")
+action = ExtResource("8_8qwx4")
+metadata/_custom_type_script = "uid://dbeox2vva4qi5"

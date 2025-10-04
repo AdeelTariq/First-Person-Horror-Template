@@ -1,5 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://djkpcj848dq8r"]
+[gd_scene load_steps=20 format=3 uid="uid://djkpcj848dq8r"]
 
+[ext_resource type="Script" uid="uid://djbep3fx80av6" path="res://scenes/playground.gd" id="1_osidk"]
+[ext_resource type="Resource" uid="uid://xl87lpokidjq" path="res://resources/input/first_person.tres" id="2_rlvb3"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="3_k63md"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_mrac1"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="17_d3jfy"]
@@ -41,6 +43,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Playground" type="Node3D"]
+script = ExtResource("1_osidk")
+mapping_context = ExtResource("2_rlvb3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)

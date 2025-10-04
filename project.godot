@@ -22,6 +22,7 @@ SceneLoader="*res://addons/maaacks_menus_template/base/scenes/autoloads/scene_lo
 ProjectMusicController="*res://addons/maaacks_menus_template/base/scenes/autoloads/project_music_controller.tscn"
 ProjectUISoundController="*res://addons/maaacks_menus_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
 InputIconMapperGlobal="*res://addons/prompt_formatters/kenneys/input_icon_mapper.tscn"
+GUIDE="*res://addons/guide/guide.gd"
 
 [debug]
 
@@ -38,7 +39,7 @@ window/vsync/vsync_mode=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/maaacks_menus_template/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg")
+enabled=PackedStringArray("res://addons/guide/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg")
 
 [input]
 
