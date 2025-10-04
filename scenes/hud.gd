@@ -16,7 +16,10 @@ func _nothing_interactable() -> void:
 	interact_prompt.text = ""
 
 
-func _something_interactable(object_name: String, actions: Array[Interaction], _alt_display: bool) -> void:
+func _something_interactable(object_name: String, actions: Array[Interaction], alt_display: bool) -> void:
+	if alt_display:
+		_nothing_interactable()
+		return
 	cross_hair.show()
 	interact_prompt.text = "[b]%s[/b]: %s" % [
 		object_name,

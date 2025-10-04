@@ -58,3 +58,13 @@ func _prepare_prompts_for_display(interaction_container: InteractionContainer, p
 
 func refresh_prompts(interaction_container: InteractionContainer, picked_object: bool = false) -> void:
 	_prepare_prompts_for_display(interaction_container, picked_object)
+
+
+func grab_object(object: Node) -> void:
+	_picked_object = object
+	on_new_object_available(object)
+
+
+func release_grabbed() -> void:
+	_picked_object = null
+	_clear_prompts()

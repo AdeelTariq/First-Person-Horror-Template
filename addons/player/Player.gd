@@ -2,6 +2,8 @@
 ## Stuff here?
 class_name Player extends CharacterBody3D
 
+static var current: Player
+
 @export var footsteps_sound: AudioStream
 
 ## The constant value that footsteps and head bob are calculated against
@@ -25,7 +27,7 @@ const LEAN_SPEED: float = 0.1
 @export var walk_speed = 3.0
 @export var sprint_speed: float = 6.0
 @export var crouch_speed = 1.5
-@export var jump_power: float = 3
+@export var jump_power: float = 4
 ## How much fov changes from base value based on current velocity
 @export var fov_change: float = 1
 ## To disable sprint for when player runs out of stamina for example
@@ -38,7 +40,8 @@ const LEAN_SPEED: float = 0.1
 @export_group("Leaning")
 @export var camera_base_position: Vector3 = Vector3.ZERO
 @export var camera_lean_position: Vector3 = Vector3(1., -0.1, 0.)
-
+@export_group("Other")
+@export var lock_camera: bool = false
 
 @export_category("Info")
 @export_custom(PROPERTY_HINT_MULTILINE_TEXT, "", PROPERTY_USAGE_READ_ONLY | PROPERTY_USAGE_EDITOR)
@@ -76,6 +79,11 @@ var crouching: bool:
 	get():
 		return not is_equal_approx(scale.y, full_height)
 var _crouch_tween: Tween
+
+
+func _init() -> void:
+	current = self
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
@@ -166,9 +174,10 @@ func set_movement_speed() -> void:
 
 
 func look_around() -> void:
+	if lock_camera: return
 	head.rotate_y(look_control.value_axis_2d().x * mouse_sensitivity)
 	neck.rotate_x(look_control.value_axis_2d().y * mouse_sensitivity)
-	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 
 func handle_movement(delta: float) -> void:

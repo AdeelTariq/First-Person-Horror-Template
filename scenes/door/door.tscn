@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bimo0ijo3l1di"]
 
-[ext_resource type="PackedScene" uid="uid://bhjr5v2x0rwhv" path="res://assets/models/door/wall_doorway.gltf" id="1_bu3y2"]
+[ext_resource type="PackedScene" uid="uid://bhjr5v2x0rwhv" path="res://assets/models/kaykit/wall_doorway.gltf" id="1_bu3y2"]
 [ext_resource type="Script" uid="uid://c4pm11yrvd53" path="res://scenes/door/door.gd" id="2_odsy8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_odsy8"]

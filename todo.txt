@@ -1,17 +1,27 @@
-Setup menus template
-	Adopt and fix to needs
-	Add automatic credits generation
-Ability to pickup items
+Add additional options and settings
+Add automatic credits generation
+
 Open an interface upon interacting with a thing (hacking, lockpicking, reading a note)
 Can npcs do the same things as player?
 Don't allow to stand up or jump until there is space to standup
 Add psx style shaders
-Pickup items:
+Ability to pickup items. Pickup items:
 	weilding items like guns
-	holding items and dropping or throwing them like halflife physics
+	halflife/amnesia like:
+		holding items
+		dropping
+		throwing
+		rotating by holding a key
+		bringing closer or moving farther by scrollwheel etc
+		
 	reading notes
+	picking and adding items to the inventory
 Interacting with objects:
 	pressing buttons
 	contorl panels like key pads or locks
-	physics interaction like pulling a lever with mouse of opening a door
+	physics interaction like
+		pulling a lever with mouse
+		opening a door
+		or a drawer ✔
 Make a dependency map
+Create demo games

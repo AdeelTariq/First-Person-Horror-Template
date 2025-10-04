@@ -17,8 +17,12 @@ func _physics_process(_delta: float) -> void:
 	if _collider != raycast.get_collider():
 		_collider = raycast.get_collider()
 		collider_changed()
-	if _collider == null and not _focused_interactions.is_empty():
+	if _collider == null and not _focused_interactions.is_empty() and _picked_object == null:
 		_clear_prompts()
+	# guarantees attempting a refresh each frame while an object is grabbed
+	# refresh however will only succeed on the frame grabbed object is released.
+	if _picked_object != null: 
+		_collider = null
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -31,7 +35,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 func collider_changed() -> void:
 	if _is_interactable_available():
 		on_new_object_available(_collider)
-	else:
+	elif _picked_object == null:
 		_clear_prompts()
 
 
