@@ -4,7 +4,8 @@ You can write your own InteractionControllers which control how you detect an in
 An InteractionController will usually be attached to the player but can also be attached to NPCs to let them do stuff.
 I have included examples of two InteractionControllers, one for 2D and other for 3D.
 
-Each interactable must have exacly one InteractionContainer.
+Each interactable must have exacly one InteractionContainer, as a child of the Node detectable by the InteractionController.
+For example, a collidable 3D node for a RayCast3D.
 From here the editor will show you what to do via warnings in the node tree.
 
 An InteractionContainer can have a mix of multiple Interactions or InteractionContexts.

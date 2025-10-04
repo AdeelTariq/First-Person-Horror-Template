@@ -2,7 +2,7 @@ extends Control
 
 @onready var cross_hair: TextureRect = %CrossHair
 @onready var interact_prompt: RichTextLabel = %InteractPrompt
-@onready var _formatter: PromptFormatter = PromptIconFormatter.new()
+@onready var _formatter: PromptFormatter = PromptKenneysFormatter.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

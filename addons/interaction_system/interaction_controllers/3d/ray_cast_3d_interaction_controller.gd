@@ -17,6 +17,8 @@ func _physics_process(_delta: float) -> void:
 	if _collider != raycast.get_collider():
 		_collider = raycast.get_collider()
 		collider_changed()
+	if _collider == null and not _focused_interactions.is_empty():
+		_clear_prompts()
 
 
 func _get_configuration_warnings() -> PackedStringArray:

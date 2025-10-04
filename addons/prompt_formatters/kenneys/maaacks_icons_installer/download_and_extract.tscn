@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://degv0g3w4oi51"]
+
+[ext_resource type="Script" uid="uid://duwjeiymk1hqq" path="res://addons/prompt_formatters/kenneys/maaacks_icons_installer/download_and_extract.gd" id="1_g2p0k"]
+
+[node name="DownloadAndExtract" type="Node"]
+script = ExtResource("1_g2p0k")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="TimeoutTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="timeout" from="TimeoutTimer" to="." method="_on_timeout_timer_timeout"]

@@ -6,7 +6,6 @@ Right now the template includes:
 - A feature rich first person controller
 - My interaction system (also WIP)
 - An abstraction layer between your input system and your game, named: Game Controls
-- GUIDE by Godotneer as a loose dependency. Can be removed entirely and very easily at the loss of some minor features.
 - A bare bones test scene.
 
 **Core principle and goal of this template is to be modular.**

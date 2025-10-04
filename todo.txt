@@ -1,6 +1,8 @@
-Add a door and my interaction system and handle the door problem
-	Ability to pickup items
-	Open an interface upon interacting with a thing (hacking, lockpicking, reading a note)
+Setup menus template
+	Adopt and fix to needs
+	Add automatic credits generation
+Ability to pickup items
+Open an interface upon interacting with a thing (hacking, lockpicking, reading a note)
 Can npcs do the same things as player?
 Don't allow to stand up or jump until there is space to standup
 Add psx style shaders

@@ -1,30 +1,15 @@
-[gd_scene load_steps=34 format=3 uid="uid://djkpcj848dq8r"]
+[gd_scene load_steps=18 format=3 uid="uid://djkpcj848dq8r"]
 
-[ext_resource type="Script" uid="uid://djbep3fx80av6" path="res://scenes/playground.gd" id="1_q8s1k"]
-[ext_resource type="Resource" uid="uid://xl87lpokidjq" path="res://resources/input/first_person.tres" id="2_emj6c"]
-[ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/player/player.tscn" id="2_qchbg"]
-[ext_resource type="Script" uid="uid://dbeox2vva4qi5" path="res://addons/game_controls/guide/guide_game_control.gd" id="3_kddj0"]
-[ext_resource type="Resource" uid="uid://c7k5lpg5de8o" path="res://resources/input/look.tres" id="5_o6wi6"]
-[ext_resource type="Resource" uid="uid://dimhlehdifyjq" path="res://resources/input/move.tres" id="6_emj6c"]
-[ext_resource type="AudioStream" uid="uid://b5w7kope1qekn" path="res://assets/sounds/step2.ogg" id="6_k63md"]
-[ext_resource type="AudioStream" uid="uid://1y2wgje8ommq" path="res://assets/sounds/step3.ogg" id="6_q6c7b"]
-[ext_resource type="Script" uid="uid://dqdodfuuahflt" path="res://addons/interaction_system/interaction_controllers/3d/ray_cast_3d_interaction_controller.gd" id="7_rdeg0"]
-[ext_resource type="Resource" uid="uid://brnqqmuh1dx5c" path="res://resources/input/jump.tres" id="8_2bfhc"]
+[ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="3_k63md"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_mrac1"]
-[ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/game_controls/vanilla/mouse_game_control.gd" id="9_2q4k0"]
-[ext_resource type="AudioStream" uid="uid://cohl5wjeir637" path="res://assets/sounds/step6.ogg" id="9_ocmmj"]
-[ext_resource type="Resource" uid="uid://bb78ofk7i5gqf" path="res://resources/input/sprint.tres" id="9_osidk"]
-[ext_resource type="Resource" uid="uid://bncmn5k1te4ge" path="res://resources/input/crouch.tres" id="11_k63md"]
-[ext_resource type="Resource" uid="uid://b3kwcgwj0j3fh" path="res://resources/input/lean.tres" id="13_fn4oh"]
-[ext_resource type="Resource" uid="uid://hs30p6qmf2n5" path="res://resources/input/zoom.tres" id="14_j30dx"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="17_d3jfy"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="18_q6c7b"]
 [ext_resource type="PackedScene" uid="uid://bimo0ijo3l1di" path="res://scenes/door/door.tscn" id="18_wm6m6"]
-[ext_resource type="Resource" uid="uid://ddiuhvmirmfvc" path="res://resources/input/interact.tres" id="19_q6c7b"]
 [ext_resource type="Script" uid="uid://c684mkssofm3a" path="res://scenes/door/lockable_door.gd" id="21_62tve"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="21_ocmmj"]
 [ext_resource type="Script" uid="uid://dbv6ey8p6fq33" path="res://scenes/hud.gd" id="21_wm6m6"]
-[ext_resource type="Resource" uid="uid://b1b0x2qegnn8b" path="res://resources/input/use.tres" id="22_vwj6b"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="26_reluu"]
+[ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="27_csshy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6wi6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -38,12 +23,6 @@ background_mode = 2
 sky = SubResource("Sky_emj6c")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2bfhc"]
-streams_count = 3
-stream_0/stream = ExtResource("6_k63md")
-stream_1/stream = ExtResource("6_q6c7b")
-stream_2/stream = ExtResource("9_ocmmj")
 
 [sub_resource type="PrismMesh" id="PrismMesh_k63md"]
 left_to_right = 0.4
@@ -62,8 +41,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Playground" type="Node3D"]
-script = ExtResource("1_q8s1k")
-mapping_context = ExtResource("2_emj6c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -72,101 +49,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mrac1")
 
-[node name="Player" parent="." instance=ExtResource("2_qchbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
-velocity = Vector3(0, -733.02686, 0)
-footsteps_sound = SubResource("AudioStreamRandomizer_2bfhc")
-
-[node name="RayCast3DInteractionController" type="Node" parent="Player/Head/Neck/Camera3D/RayCast3D" index="0"]
-script = ExtResource("7_rdeg0")
-metadata/_custom_type_script = "uid://dqdodfuuahflt"
-
-[node name="Controls" type="Node" parent="Player"]
-
-[node name="look" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("3_kddj0")
-action = ExtResource("5_o6wi6")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
-
-[node name="move" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("3_kddj0")
-action = ExtResource("6_emj6c")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
-
-[node name="jump" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("3_kddj0")
-action = ExtResource("8_2bfhc")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
-
-[node name="crouch" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("3_kddj0")
-action = ExtResource("11_k63md")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
-
-[node name="sprint" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("3_kddj0")
-action = ExtResource("9_osidk")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
-
-[node name="lean" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("3_kddj0")
-action = ExtResource("13_fn4oh")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
-
-[node name="zoom" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("3_kddj0")
-action = ExtResource("14_j30dx")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
-
-[node name="keyboard_look_example" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("8_mrac1")
-type = 1
-negative_x = &"ui_right"
-positive_x = &"ui_left"
-negative_y = &"ui_down"
-positive_y = &"ui_up"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
-[node name="keyboard_move_example" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("8_mrac1")
-type = 1
-negative_x = &"ui_left"
-positive_x = &"ui_right"
-negative_y = &"ui_up"
-positive_y = &"ui_down"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
-[node name="keyboard_lean_example" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("8_mrac1")
-type = 1
-negative_x = &"lean_left"
-positive_x = &"lean_right"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
-[node name="keyboard_jump_example" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("8_mrac1")
-action = &"ui_accept"
-negative_x = &"ui_left"
-positive_x = &"ui_right"
-negative_y = &"ui_up"
-positive_y = &"ui_down"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
-[node name="mouse_look_example" type="Node" parent="Player/Controls"]
-unique_name_in_owner = true
-script = ExtResource("9_2q4k0")
-metadata/_custom_type_script = "uid://byf0ij6s7416m"
+[node name="Player" parent="." instance=ExtResource("3_k63md")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Slide" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.507557, 0)
@@ -191,6 +75,12 @@ material = SubResource("StandardMaterial3D_x2tju")
 [node name="Door" parent="." instance=ExtResource("18_wm6m6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
+[node name="StaticBody3D" parent="Door/wall_doorway/wall_doorway_door" index="0"]
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
 [node name="InteractionContainer" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
 script = ExtResource("17_d3jfy")
 display_name = "Door"
@@ -202,14 +92,22 @@ metadata/_custom_type_script = "uid://ck3cei0hvspym"
 script = ExtResource("18_q6c7b")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Control" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact"]
-script = ExtResource("3_kddj0")
-action = ExtResource("19_q6c7b")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+[node name="interact" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact"]
+script = ExtResource("8_mrac1")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
 [node name="SimpleLockedDoor" parent="." instance=ExtResource("18_wm6m6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
 script = ExtResource("21_62tve")
+
+[node name="StaticBody3D" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door" index="0"]
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"is_hold":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"use","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="InteractionContainer" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
 script = ExtResource("17_d3jfy")
@@ -226,19 +124,19 @@ metadata/_custom_type_script = "uid://doc0okecalxnp"
 script = ExtResource("18_q6c7b")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Open"]
-script = ExtResource("3_kddj0")
-action = ExtResource("19_q6c7b")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+[node name="interact" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Open"]
+script = ExtResource("8_mrac1")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
 [node name="Lock" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed"]
 script = ExtResource("18_q6c7b")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Lock"]
-script = ExtResource("3_kddj0")
-action = ExtResource("22_vwj6b")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+[node name="use" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Lock"]
+script = ExtResource("8_mrac1")
+action = &"use"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
 [node name="Open" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
 script = ExtResource("21_ocmmj")
@@ -251,10 +149,10 @@ metadata/_custom_type_script = "uid://doc0okecalxnp"
 script = ExtResource("18_q6c7b")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open/Close"]
-script = ExtResource("3_kddj0")
-action = ExtResource("19_q6c7b")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+[node name="interact" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open/Close"]
+script = ExtResource("8_mrac1")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
 [node name="Locked" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
 script = ExtResource("21_ocmmj")
@@ -267,10 +165,10 @@ metadata/_custom_type_script = "uid://doc0okecalxnp"
 script = ExtResource("18_q6c7b")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Control" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked/Unlock"]
-script = ExtResource("3_kddj0")
-action = ExtResource("19_q6c7b")
-metadata/_custom_type_script = "uid://dbeox2vva4qi5"
+[node name="interact" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked/Unlock"]
+script = ExtResource("8_mrac1")
+action = &"interact"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -314,12 +212,15 @@ fit_content = true
 autowrap_mode = 2
 horizontal_alignment = 1
 
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("26_reluu")
+pause_menu_packed = ExtResource("27_csshy")
+
 [connection signal="on_complete" from="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact" to="Door" method="interact"]
 [connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Open" to="SimpleLockedDoor" method="interact"]
 [connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Lock" to="SimpleLockedDoor" method="lock_door"]
 [connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open/Close" to="SimpleLockedDoor" method="interact"]
 [connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked/Unlock" to="SimpleLockedDoor" method="unlock_door"]
 
-[editable path="Player"]
 [editable path="Door"]
 [editable path="SimpleLockedDoor"]

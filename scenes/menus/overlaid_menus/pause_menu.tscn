@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cndau4qyl56kx"]
+
+[ext_resource type="PackedScene" uid="uid://b5cd6sa8qq4vc" path="res://addons/maaacks_menus_template/base/scenes/overlaid_menu/menus/pause_menu.tscn" id="1_busrh"]
+[ext_resource type="Script" uid="uid://co4l402efau6g" path="res://scenes/menus/overlaid_menus/pause_menu.gd" id="2_1mu4t"]
+[ext_resource type="PackedScene" uid="uid://dm216huy7h8di" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_xklnq"]
+
+[node name="PauseMenu" instance=ExtResource("1_busrh")]
+script = ExtResource("2_1mu4t")
+options_packed_scene = ExtResource("3_xklnq")
+main_menu_scene = "res://scenes/menus/main_menu/main_menu_with_animations.tscn"
+
+[node name="OptionsContainer" type="MarginContainer" parent="." index="5"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FlowControlContainer" type="MarginContainer" parent="." index="6"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="FlowControl" type="Control" parent="FlowControlContainer" index="0"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="FlowControlContainer/FlowControl" index="0"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 45.0
+grow_vertical = 0
+text = "Back"

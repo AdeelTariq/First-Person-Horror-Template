@@ -7,14 +7,23 @@ enum Type {Default, MultiDimensional}
 	set(value):
 		type = value
 		notify_property_list_changed()
-@export var action: StringName
+
+## When GameControl node name is different than the action name
+@export var override_action_name: bool = false:
+	set(value):
+		override_action_name = value
+		notify_property_list_changed()
+
+@export var _action: StringName = ""
+
+var action: StringName:
+	get():
+		return _action if override_action_name else name
 
 @export var negative_x: StringName
 @export var positive_x: StringName
 @export var negative_y: StringName
 @export var positive_y: StringName
-
-@onready var _formatter: GUIDEInputFormatter = GUIDEInputFormatter.for_active_contexts()
 
 func value() -> float:
 	if type == Type.Default:
@@ -31,6 +40,8 @@ func value_axis_3d() -> Vector3:
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "action":
-		property.usage = PROPERTY_USAGE_DEFAULT if type == Type.Default else PROPERTY_USAGE_NO_EDITOR
+		property.usage = PROPERTY_USAGE_NO_EDITOR
+	if property.name == "_action":
+		property.usage = PROPERTY_USAGE_DEFAULT if type == Type.Default and override_action_name else PROPERTY_USAGE_NO_EDITOR
 	elif property.name in ["negative_x", "positive_x", "negative_y", "positive_y"]:
 		property.usage = PROPERTY_USAGE_NO_EDITOR if type == Type.Default else PROPERTY_USAGE_DEFAULT

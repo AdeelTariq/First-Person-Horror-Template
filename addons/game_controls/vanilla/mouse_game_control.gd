@@ -1,7 +1,5 @@
 class_name MouseGameControl extends GameControl
 
-@onready var _formatter: GUIDEInputFormatter = GUIDEInputFormatter.for_active_contexts()
-
 # The mouse movement since the last frame. 
 var _mouse_movement: Vector2 = Vector2.ZERO
 

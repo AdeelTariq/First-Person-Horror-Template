@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://evr0833nvqcb"]
+
+[ext_resource type="PackedScene" uid="uid://sikc02ddepyt" path="res://addons/maaacks_menus_template/base/scenes/opening/opening.tscn" id="1_t5pvy"]
+[ext_resource type="Script" uid="uid://cwh4ccdhhfhmw" path="res://scenes/menus/opening/opening.gd" id="2_rocop"]
+[ext_resource type="Texture2D" uid="uid://bj7fwlwrx6b5r" path="res://assets/logos/godot_engine_logo/logo_vertical_color_dark.png" id="3_n48pj"]
+[ext_resource type="AudioStream" uid="uid://xi34lcov82j0" path="res://assets/sounds/haunting.ogg" id="4_wd06p"]
+
+[node name="Opening" instance=ExtResource("1_t5pvy")]
+script = ExtResource("2_rocop")
+next_scene = "uid://crmlnhcgs2n4i"
+images = Array[Texture2D]([ExtResource("3_n48pj")])
+
+[node name="BackgroundMusicPlayer" parent="." index="0"]
+stream = ExtResource("4_wd06p")
+
+[node name="ImagesContainer" parent="." index="1"]
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32

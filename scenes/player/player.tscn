@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://bia32vkq1a5i"]
+
+[ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/player/player.tscn" id="1_lvxji"]
+[ext_resource type="Script" uid="uid://dqdodfuuahflt" path="res://addons/interaction_system/interaction_controllers/3d/ray_cast_3d_interaction_controller.gd" id="2_p47bc"]
+[ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/game_controls/vanilla/mouse_game_control.gd" id="3_75vfm"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_0owmy"]
+
+[node name="Player" instance=ExtResource("1_lvxji")]
+
+[node name="RayCast3DInteractionController" type="Node" parent="Head/Neck/Camera3D/RayCast3D" index="0"]
+script = ExtResource("2_p47bc")
+metadata/_custom_type_script = "uid://dqdodfuuahflt"
+
+[node name="InputMapControls" type="Node" parent="." index="5"]
+
+[node name="look" type="Node" parent="InputMapControls" index="0"]
+unique_name_in_owner = true
+script = ExtResource("3_75vfm")
+metadata/_custom_type_script = "uid://byf0ij6s7416m"
+
+[node name="move" type="Node" parent="InputMapControls" index="1"]
+unique_name_in_owner = true
+script = ExtResource("4_0owmy")
+type = 1
+action = &"move"
+negative_x = &"move_left"
+positive_x = &"move_right"
+negative_y = &"move_forward"
+positive_y = &"move_back"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="lean" type="Node" parent="InputMapControls" index="2"]
+unique_name_in_owner = true
+script = ExtResource("4_0owmy")
+type = 1
+action = &"lean"
+negative_x = &"lean_left"
+positive_x = &"lean_right"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="jump" type="Node" parent="InputMapControls" index="3"]
+unique_name_in_owner = true
+script = ExtResource("4_0owmy")
+action = &"jump"
+negative_x = &"ui_left"
+positive_x = &"ui_right"
+negative_y = &"ui_up"
+positive_y = &"ui_down"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="sprint" type="Node" parent="InputMapControls" index="4"]
+unique_name_in_owner = true
+script = ExtResource("4_0owmy")
+action = &"sprint"
+negative_x = &"ui_left"
+positive_x = &"ui_right"
+negative_y = &"ui_up"
+positive_y = &"ui_down"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="crouch" type="Node" parent="InputMapControls" index="5"]
+unique_name_in_owner = true
+script = ExtResource("4_0owmy")
+action = &"crouch"
+negative_x = &"ui_left"
+positive_x = &"ui_right"
+negative_y = &"ui_up"
+positive_y = &"ui_down"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="zoom" type="Node" parent="InputMapControls" index="6"]
+unique_name_in_owner = true
+script = ExtResource("4_0owmy")
+action = &"zoom"
+negative_x = &"ui_left"
+positive_x = &"ui_right"
+negative_y = &"ui_up"
+positive_y = &"ui_down"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
