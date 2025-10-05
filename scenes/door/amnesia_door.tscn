@@ -85,6 +85,8 @@ shadow_mesh = SubResource("ArrayMesh_u4bni")
 
 [node name="AmnesiaDoor" type="Node3D"]
 script = ExtResource("1_cilu6")
+speed = null
+release_distance = null
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
@@ -143,5 +145,5 @@ angular_limit/enable = true
 angular_limit/upper = 1.3089969
 angular_limit/lower = 0.0
 
-[connection signal="on_complete" from="RigidBody3D/InteractionContainer/Grab" to="." method="_drawer_released"]
-[connection signal="on_trigger" from="RigidBody3D/InteractionContainer/Grab" to="." method="_while_drawer_grabbed"]
+[connection signal="on_complete" from="RigidBody3D/InteractionContainer/Grab" to="." method="_door_released"]
+[connection signal="on_trigger" from="RigidBody3D/InteractionContainer/Grab" to="." method="_while_door_grabbed"]

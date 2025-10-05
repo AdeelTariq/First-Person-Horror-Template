@@ -36,6 +36,10 @@ gdscript/warnings/unsafe_call_argument=1
 
 window/vsync/vsync_mode=2
 
+[editor]
+
+movie_writer/movie_file="/home/adeel/Videos/fpht.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/maaacks_menus_template/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg")

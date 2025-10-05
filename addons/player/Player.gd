@@ -67,6 +67,8 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom
 @onready var footsteps: AudioStreamPlayer3D = %FootSteps
 @onready var foot_steps_animation_player: AnimationPlayer = %FootStepsAnimationPlayer
 @onready var camera_animation_player: AnimationPlayer = %CameraAnimationPlayer
+@onready var generic_6dof_joint_3d: Joint3D = %Generic6DOFJoint3D
+@onready var hand: Marker3D = %Hand
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -228,6 +230,15 @@ func handle_lean(delta: float) -> void:
 		camera_base_position.z
 	)
 	camera.position = lerp(camera.position, lean_target_position, LEAN_SPEED)
+
+
+func attach_to_hand(body: RigidBody3D) -> void:
+	body.global_position = %RayCast3D.to_global(%RayCast3D.target_position)
+	generic_6dof_joint_3d.node_b = body.get_path()
+
+
+func detach_from_hand() -> void:
+	generic_6dof_joint_3d.node_b = ""
 
 
 func _get_configuration_warnings() -> PackedStringArray:

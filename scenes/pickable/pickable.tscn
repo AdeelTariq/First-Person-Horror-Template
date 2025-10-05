@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://3a8vimn70t6v"]
+
+[ext_resource type="Script" uid="uid://bkjjobtn3b4bj" path="res://scenes/pickable/pickable.gd" id="1_fd5fy"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_q88yg"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_u3te7"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_t627v"]
+
+[node name="Pickable" type="RigidBody3D"]
+collision_layer = 3
+collision_mask = 3
+angular_damp = 5.0
+script = ExtResource("1_fd5fy")
+metadata/interaction_container = null
+
+[node name="InteractionContainer" type="Node" parent="."]
+script = ExtResource("2_q88yg")
+display_name = "Little Bean"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Grab" type="Node" parent="InteractionContainer"]
+script = ExtResource("3_u3te7")
+display_name = "Grab"
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="click" type="Node" parent="InteractionContainer/Grab"]
+script = ExtResource("4_t627v")
+action = &"click"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[connection signal="on_complete" from="InteractionContainer/Grab" to="." method="_drawer_released"]
+[connection signal="on_trigger" from="InteractionContainer/Grab" to="." method="_while_drawer_grabbed"]

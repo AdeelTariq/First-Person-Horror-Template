@@ -18,7 +18,7 @@ func _physics_process(_delta: float) -> void:
 		var ray_cast: RayCast3D = _interaction_controller.get_parent()
 		var distance_to_player: float = ray_cast.global_position.distance_to(door_body.global_position)
 		if distance_to_player > release_distance:
-			_drawer_released(_interaction_controller)
+			_door_released(_interaction_controller)
 			return
 		var point: Vector3 = ray_cast.to_global(ray_cast.target_position)
 		var move_dir: Vector3 = point - _ray_point
@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 		door_body.apply_torque(Vector3(0, amount * swing_dir, 0) * speed)
 
 
-func _while_drawer_grabbed(controller: InteractionController) -> void:
+func _while_door_grabbed(controller: InteractionController) -> void:
 	_interaction_controller = controller
 	if _ray_point != Vector3.INF: return
 	_interaction_controller.grab_object(door_body)
@@ -50,7 +50,7 @@ func _while_drawer_grabbed(controller: InteractionController) -> void:
 	Player.current.lock_camera = true
 
 
-func _drawer_released(_c: InteractionController) -> void:
+func _door_released(_c: InteractionController) -> void:
 	if _interaction_controller == null: return
 	_interaction_controller.release_grabbed()
 	_interaction_controller = null
