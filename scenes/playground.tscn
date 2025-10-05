@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://djkpcj848dq8r"]
+[gd_scene load_steps=22 format=3 uid="uid://djkpcj848dq8r"]
 
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="3_k63md"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_mrac1"]
 [ext_resource type="PackedScene" uid="uid://ckn77rj2d8bks" path="res://scenes/drawer_desk/drawer_desk.tscn" id="11_2bfhc"]
+[ext_resource type="PackedScene" uid="uid://cqntmbp1q0a81" path="res://scenes/door/amnesia_door.tscn" id="12_osidk"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="17_d3jfy"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="18_q6c7b"]
 [ext_resource type="PackedScene" uid="uid://bimo0ijo3l1di" path="res://scenes/door/door.tscn" id="18_wm6m6"]
@@ -226,13 +227,13 @@ script = ExtResource("26_reluu")
 pause_menu_packed = ExtResource("27_csshy")
 
 [node name="drawer_desk" parent="." instance=ExtResource("11_2bfhc")]
-transform = Transform3D(0.53033006, 0, 0.5303301, 0, 0.75, 0, -0.5303301, 0, 0.53033006, -8.942, 0, -4.231)
+transform = Transform3D(-0.19411431, 0, 0.72444427, 0, 0.74999994, 0, -0.72444427, 0, -0.19411431, -8.776757, 0, -1.1589273)
 
 [node name="drawer_desk3" parent="." instance=ExtResource("11_2bfhc")]
-transform = Transform3D(0.53033006, 0, 0.5303301, 0, 0.75, 0, -0.5303301, 0, 0.53033006, -10.10959, 0, -3.063411)
+transform = Transform3D(-0.19411431, 0, 0.72444427, 0, 0.74999994, 0, -0.72444427, 0, -0.19411431, -8.34939, 0, 0.43602908)
 
 [node name="drawer_desk2" parent="." instance=ExtResource("11_2bfhc")]
-transform = Transform3D(-0.53033006, -0.53033006, -2.318146e-08, 0, -3.278354e-08, 0.75, -0.53033006, 0.53033006, 2.3181464e-08, -7.3392944, -2.3841858e-07, -5.7197948)
+transform = Transform3D(-0.72444427, 0.19411428, 8.485005e-09, 6.434358e-16, -3.278354e-08, 0.75, 0.19411428, 0.72444427, 3.1666467e-08, -9.264738, -2.3841858e-07, -3.2913086)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)
@@ -242,6 +243,9 @@ mesh = SubResource("CapsuleMesh_2bfhc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("ConvexPolygonShape3D_osidk")
+
+[node name="AmnesiaDoor" parent="." instance=ExtResource("12_osidk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
 
 [connection signal="on_complete" from="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact" to="Door" method="interact"]
 [connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Open" to="SimpleLockedDoor" method="interact"]
