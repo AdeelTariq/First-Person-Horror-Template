@@ -10,7 +10,6 @@ var _interaction_controller: InteractionController = null
 var _is_drawer_grabbed: bool:
 	get(): return _interaction_controller != null
 var _ray_point: Vector3 = Vector3.INF
-var _mouse_point: Vector3 = Vector3.INF
 
 
 func _physics_process(_delta: float) -> void:
@@ -29,9 +28,12 @@ func _physics_process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and _is_drawer_grabbed:
 		var mouse_event: InputEventMouseMotion = event
-		var world_position: Vector3 = get_viewport().get_camera_3d().project_position(mouse_event.relative, .1)
-		var direction: Vector3 = world_position - _mouse_point
-		drawer_body.apply_force(direction * 1000 * speed)
+		var ray_cast: RayCast3D = _interaction_controller.get_parent()
+		var mouse_move_dir: Vector3 = Vector3(mouse_event.relative.x, 0, mouse_event.relative.y)
+		var direction: Vector3 = ray_cast.global_position.direction_to(global_position)
+		var amount: float = mouse_move_dir.dot(Vector3.FORWARD)
+		var move_dir: float = sign(direction.dot(Vector3.BACK))
+		drawer_body.apply_force(Vector3(0, 0, amount * move_dir) * speed)
 
 
 func _while_drawer_grabbed(controller: InteractionController) -> void:
@@ -40,7 +42,6 @@ func _while_drawer_grabbed(controller: InteractionController) -> void:
 	_interaction_controller.grab_object(drawer_body)
 	var ray_cast: RayCast3D = _interaction_controller.get_parent()
 	_ray_point = ray_cast.to_global(ray_cast.target_position)
-	_mouse_point = get_viewport().get_camera_3d().project_position(Vector2.ZERO, .1)
 	Player.current.lock_camera = true
 
 
@@ -49,5 +50,4 @@ func _drawer_released(_c: InteractionController) -> void:
 	_interaction_controller.release_grabbed()
 	_interaction_controller = null
 	_ray_point = Vector3.INF
-	_mouse_point = Vector3.INF
 	Player.current.lock_camera = false
