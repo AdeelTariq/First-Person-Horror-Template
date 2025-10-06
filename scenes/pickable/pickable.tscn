@@ -1,16 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://3a8vimn70t6v"]
+[gd_scene load_steps=6 format=3 uid="uid://3a8vimn70t6v"]
 
 [ext_resource type="Script" uid="uid://bkjjobtn3b4bj" path="res://scenes/pickable/pickable.gd" id="1_fd5fy"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_q88yg"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_u3te7"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_t627v"]
+[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_q88yg"]
 
 [node name="Pickable" type="RigidBody3D"]
 collision_layer = 3
 collision_mask = 3
 angular_damp = 5.0
 script = ExtResource("1_fd5fy")
-metadata/interaction_container = null
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_q88yg"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_u3te7")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_u3te7"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_t627v"),"type":0,"override_action_name":false,"_action":&"","action":&"click","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="InteractionContainer" type="Node" parent="."]
 script = ExtResource("2_q88yg")
@@ -19,6 +23,7 @@ metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
 [node name="Grab" type="Node" parent="InteractionContainer"]
 script = ExtResource("3_u3te7")
+hide_while_grabbed = true
 display_name = "Grab"
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
@@ -27,5 +32,35 @@ script = ExtResource("4_t627v")
 action = &"click"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
+[node name="WhileGrabbed" type="Node" parent="InteractionContainer"]
+script = ExtResource("5_q88yg")
+context_id = 1
+metadata/_custom_type_script = "uid://doc0okecalxnp"
+
+[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_u3te7")
+hide_while_grabbed = null
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="scroll" type="Node" parent="InteractionContainer/WhileGrabbed/Change Distance"]
+script = ExtResource("4_t627v")
+type = 1
+action = &"scroll"
+negative_x = &"scroll_down"
+positive_x = &"scroll_up"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed"]
+script = ExtResource("3_u3te7")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="rotate" type="Node" parent="InteractionContainer/WhileGrabbed/Rotate"]
+script = ExtResource("4_t627v")
+action = &"rotate"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
 [connection signal="on_complete" from="InteractionContainer/Grab" to="." method="_drawer_released"]
 [connection signal="on_trigger" from="InteractionContainer/Grab" to="." method="_while_drawer_grabbed"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Change Distance" to="." method="_on_change_distance"]
+[connection signal="on_complete" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_stopped_rotating"]
+[connection signal="on_trigger" from="InteractionContainer/WhileGrabbed/Rotate" to="." method="_while_rotating"]

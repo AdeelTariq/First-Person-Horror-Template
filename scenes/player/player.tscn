@@ -1,11 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bia32vkq1a5i"]
+[gd_scene load_steps=9 format=3 uid="uid://bia32vkq1a5i"]
 
 [ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/player/player.tscn" id="1_lvxji"]
+[ext_resource type="AudioStream" uid="uid://b5w7kope1qekn" path="res://assets/sounds/step2.ogg" id="2_0owmy"]
 [ext_resource type="Script" uid="uid://dqdodfuuahflt" path="res://addons/interaction_system/interaction_controllers/3d/ray_cast_3d_interaction_controller.gd" id="2_p47bc"]
 [ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/game_controls/vanilla/mouse_game_control.gd" id="3_75vfm"]
+[ext_resource type="AudioStream" uid="uid://1y2wgje8ommq" path="res://assets/sounds/step3.ogg" id="3_qek5x"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_0owmy"]
+[ext_resource type="AudioStream" uid="uid://cohl5wjeir637" path="res://assets/sounds/step6.ogg" id="4_5gtgg"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h17s1"]
+streams_count = 3
+stream_0/stream = ExtResource("2_0owmy")
+stream_1/stream = ExtResource("3_qek5x")
+stream_2/stream = ExtResource("4_5gtgg")
 
 [node name="Player" instance=ExtResource("1_lvxji")]
+footsteps_sound = SubResource("AudioStreamRandomizer_h17s1")
 
 [node name="RayCast3DInteractionController" type="Node" parent="Head/Neck/Camera3D/RayCast3D" index="0"]
 script = ExtResource("2_p47bc")

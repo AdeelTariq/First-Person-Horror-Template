@@ -18,9 +18,15 @@ func _nothing_interactable() -> void:
 
 func _something_interactable(object_name: String, actions: Array[Interaction], alt_display: bool) -> void:
 	if alt_display:
-		_nothing_interactable()
+		cross_hair.hide()
+		actions = actions.filter(func(a: Interaction) -> bool: return not a.hide_while_grabbed)
+	else:
+		cross_hair.show()
+	
+	if actions.is_empty():
+		interact_prompt.text = ""
 		return
-	cross_hair.show()
+	
 	interact_prompt.text = "[b]%s[/b]: %s" % [
 		object_name,
 		", ".join(actions.map(func(a: Interaction) -> String:

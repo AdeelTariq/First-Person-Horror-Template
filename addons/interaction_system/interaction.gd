@@ -3,7 +3,7 @@
 class_name Interaction
 extends Node
 
-@export var is_hold: bool = false
+@export var hide_while_grabbed: bool = false
 
 @export var override_display_name: bool = false:
 	set(value):

@@ -29,6 +29,11 @@ func value() -> float:
 	if type == Type.Default:
 		return Input.get_action_strength(action)
 	else:
+		var use_workaround: bool = (InputMap.action_get_events(negative_x) + InputMap.action_get_events(positive_x))\
+			.any(func(e: InputEvent) -> bool: return e is InputEventMouseButton)
+		if use_workaround:
+			print(Input.is_action_just_pressed(positive_x), " - ", Input.is_action_just_pressed(negative_x))
+			return (1 if Input.is_action_just_pressed(positive_x) else 0) - (1 if Input.is_action_just_pressed(negative_x) else 0)
 		return Input.get_axis(negative_x, positive_x)
 
 func value_axis_2d() -> Vector2:
