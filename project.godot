@@ -138,6 +138,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/
 
 [layer_names]
 
+3d_physics/layer_1="main"
 3d_physics/layer_2="interactables"
 
 [maaacks_menus_template]

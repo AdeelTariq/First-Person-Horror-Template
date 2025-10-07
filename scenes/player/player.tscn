@@ -21,6 +21,12 @@ footsteps_sound = SubResource("AudioStreamRandomizer_h17s1")
 script = ExtResource("2_p47bc")
 metadata/_custom_type_script = "uid://dqdodfuuahflt"
 
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" index="0"]
+node_a = NodePath("../../../../../..")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+
 [node name="InputMapControls" type="Node" parent="." index="5"]
 
 [node name="look" type="Node" parent="InputMapControls" index="0"]

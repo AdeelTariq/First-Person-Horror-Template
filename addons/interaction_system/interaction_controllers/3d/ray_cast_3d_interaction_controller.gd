@@ -4,6 +4,9 @@ extends InteractionController
 ## Require parent to be an RayCast3D and collision layers to be setup properly
 class_name RayCast3DInteractionController
 
+## Join to exclude grabbed object from colliding with the player
+@export var collision_excluding_joint: Joint3D
+
 var raycast: RayCast3D
 var _collider: Node3D = null
 
@@ -42,3 +45,15 @@ func collider_changed() -> void:
 ## Check if any node is within range
 func _is_interactable_available() -> bool:
 	return _collider != null and InteractionContainer.is_attached(_collider)
+
+
+func grab_object(object: Node) -> void:
+	super.grab_object(object)
+	if collision_excluding_joint == null: return
+	collision_excluding_joint.node_b = object.get_path()
+
+
+func release_grabbed() -> void:
+	super.release_grabbed()
+	if collision_excluding_joint == null: return
+	collision_excluding_joint.node_b = ""
