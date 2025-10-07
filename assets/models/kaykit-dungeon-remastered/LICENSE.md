@@ -12,7 +12,9 @@
 
 	This content is free to use in personal, educational and commercial projects.
 
-	Support me by crediting Kay Lousberg, www.kaylousberg.com (this is not mandatory)
+	Support me by crediting Kay Lousberg, 
+	Website: https://kaylousberg.itch.io/kaykit-dungeon-remastered
+	Author Link: www.kaylousberg.com (this is not mandatory)
 
 			------------------------------
 

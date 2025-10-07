@@ -41,11 +41,11 @@ func generate():
 				auto_generated += "#### %s\n" % sub
 			for credit: Credit in grouped[category][sub]:
 				auto_generated += "##### [%s](%s)\n" % [credit.package_name, credit.package_link]
-				auto_generated += "Author: %s  \n" % credit.author
+				auto_generated += "Author: [%s](%s)  \n" % [credit.author, credit.author_link]
 				auto_generated += "License: [%s](%s)  \n\n" % [credit.license, credit.license_link]
 
 	result = result.replace(auto_generated_keyword, auto_generated)
-	result = remove_comments(result)
+	result = remove_comments(result).strip_edges()
 	write_file(credits_path, result)
 	EditorInterface.get_resource_filesystem().scan()
 	print("CREDITS.md generated successfully")
@@ -103,11 +103,7 @@ func create_credits_from_paths(paths: Array[String]) -> Array:
 
 		var credit = Credit.new()
 		credit.path = path
-		var metadata: Array[String] = get_metadata(path)
-		credit.author = metadata[0]
-		credit.license = metadata[1]
-		credit.license_link = metadata[2]
-		credit.package_link = metadata[3]
+		credit = get_metadata(path, credit)
 
 		# Determine category
 		credit.category = parts[0].capitalize()
@@ -126,16 +122,16 @@ func create_credits_from_paths(paths: Array[String]) -> Array:
 	return credits
 
 
-func get_metadata(path: String) -> Array[String]:
+func get_metadata(path: String, credit: Credit) -> Credit:
 	if not FileAccess.file_exists(path):
-		return []
+		return credit
 
 	var text = FileAccess.open(path, FileAccess.READ).get_as_text()
 	var lines = text.split("\n")
-	var name: String = ""
-	var license: String = ""
-	var website: String = ""
-	var license_link: String = ""
+	credit.author = ""
+	
+	var re_author = RegEx.new()
+	re_author.compile(r"Author:\s+([^(]+)")
 
 	var re_copyright = RegEx.new()
 	re_copyright.compile(r"Copyright\s*\(c\)\s*\d{4}(?:-[0-9]+)?(?:-present)?\s*(.*)")
@@ -152,31 +148,42 @@ func get_metadata(path: String) -> Array[String]:
 	var re_website = RegEx.new()
 	re_website.compile(r"Website:\s+([^(]+)")
 	
+	var re_author_link = RegEx.new()
+	re_author_link.compile(r"Author Link:\s+([^(]+)")
+	
 	for line in lines:
 		line = line.strip_edges()
 		if line == "":
 			continue
-		var found = re_copyright.search(line)
-		if found:
-			name = found.get_string(1).strip_edges()
+		var found = re_author.search(line)
+		if found and credit.author == "":
+			credit.author = found.get_string(1).strip_edges()
+			continue
+		found = re_copyright.search(line)
+		if found and credit.author == "":
+			credit.author = found.get_string(1).strip_edges()
 			continue
 		found = re_created.search(line)
-		if found and name == "":
-			name = found.get_string(1).strip_edges()
+		if found and credit.author == "":
+			credit.author = found.get_string(1).strip_edges()
 			continue
 		found = re_license.search(line)
 		if found:
-			license = found.get_string(1).strip_edges()
+			credit.license = found.get_string(1).strip_edges()
 			continue
 		found = re_license_link.search(line)
 		if found:
-			license_link = found.get_string(1).strip_edges()
+			credit.license_link = found.get_string(1).strip_edges()
 			continue
 		found = re_website.search(line)
 		if found:
-			website = found.get_string(1).strip_edges()
+			credit.package_link = found.get_string(1).strip_edges()
 			continue
-	return [name, license, license_link, website]
+		found = re_author_link.search(line)
+		if found:
+			credit.author_link = found.get_string(1).strip_edges()
+			continue
+	return credit
 
 
 func group_credits(credits: Array[Credit]) -> Dictionary[String, Dictionary]:

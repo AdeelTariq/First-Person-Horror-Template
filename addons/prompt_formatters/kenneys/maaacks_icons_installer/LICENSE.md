@@ -1,6 +1,9 @@
 [
+Author: Marek Belski and contributors
 License: MIT license (c) 2022-present
 Website: https://github.com/Maaack/Godot-Menus-Template
+License Link: https://github.com/Maaack/Godot-Menus-Template/blob/main/LICENSE.txt
+Author Link: https://github.com/Maaack/Godot-Menus-Template/graphs/contributors
 ]: #
 Copyright (c) 2022-present Marek Belski.
 

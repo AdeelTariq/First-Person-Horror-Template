@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://t187pehmaqp2"
-path="res://.godot/imported/drawer_desk.glb-385caa338931d4af22d741e530c6e261.scn"
+uid="uid://bmni5tpmmy2ph"
+path="res://.godot/imported/chair.glb-bdf62e96e2409bfe2bc7979cebf9d4da.scn"
 
 [deps]
 
-source_file="res://assets/models/kaykit/drawer_desk.glb"
-dest_files=["res://.godot/imported/drawer_desk.glb-385caa338931d4af22d741e530c6e261.scn"]
+source_file="res://assets/models/kaykit-dungeon-remastered/chair.glb"
+dest_files=["res://.godot/imported/chair.glb-bdf62e96e2409bfe2bc7979cebf9d4da.scn"]
 
 [params]
 
@@ -39,9 +39,9 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"texture.159": {
+"texture.073": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/kaykit/texture.tres",
+"use_external/fallback_path": "res://assets/models/kaykit-dungeon-remastered/texture.tres",
 "use_external/path": "uid://d0os3hurh3fk4"
 }
 }

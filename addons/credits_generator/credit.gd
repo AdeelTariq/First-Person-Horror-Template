@@ -4,6 +4,7 @@ var sub_category: String
 var package_name: String
 var path: String
 var author: String
+var author_link: String
 var license: String
 var license_link: String
 var package_link: String

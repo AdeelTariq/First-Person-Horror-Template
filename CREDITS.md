@@ -1,5 +1,3 @@
-
-
 ## Made by 
 #### Adeel Tariq
 
@@ -7,46 +5,46 @@
 ## Sourced
 ### Addons
 ##### [Game Controls](https://github.com/AdeelTariq/First-Person-Horror-Template)
-Author: Adeel Tariq  
+Author: [Adeel Tariq]()  
 License: [MIT license (c) 2025-present]()  
 
 ##### [Prompt Formatters](https://github.com/AdeelTariq/First-Person-Horror-Template)
-Author: Adeel Tariq  
+Author: [Adeel Tariq]()  
 License: [MIT license (c) 2025-present]()  
 
 ##### [Maaacks Icons Installer](https://github.com/Maaack/Godot-Menus-Template)
-Author: Marek Belski.  
-License: [MIT license (c) 2022-present]()  
+Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Menus-Template/graphs/contributors)  
+License: [MIT license (c) 2022-present](https://github.com/Maaack/Godot-Menus-Template/blob/main/LICENSE.txt)  
 
 ##### [Player](https://github.com/AdeelTariq/First-Person-Horror-Template)
-Author: Adeel Tariq  
+Author: [Adeel Tariq]()  
 License: [MIT license (c) 2025-present]()  
 
 ##### [Interaction System](https://github.com/AdeelTariq/First-Person-Horror-Template)
-Author: Adeel Tariq  
+Author: [Adeel Tariq]()  
 License: [MIT license (c) 2025-present]()  
 
 ##### [Maaacks Menus Template](https://github.com/Maaack/Godot-Menus-Template)
-Author: Marek Belski.  
-License: [MIT license (c) 2022-present]()  
+Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Menus-Template/graphs/contributors)  
+License: [MIT license (c) 2022-present](https://github.com/Maaack/Godot-Menus-Template/blob/main/LICENSE.txt)  
 
 ##### [Game Pieces](https://github.com/AdeelTariq/First-Person-Horror-Template)
-Author: Adeel Tariq  
+Author: [Adeel Tariq]()  
 License: [MIT license (c) 2025-present]()  
 
 ##### [Credits Generator](https://github.com/AdeelTariq/First-Person-Horror-Template)
-Author: Adeel Tariq  
+Author: [Adeel Tariq]()  
 License: [MIT license (c) 2025-present]()  
 
 ### Assets
 #### Models
-##### [Kaykit]()
-Author: Kay Lousberg  
+##### [Kaykit Dungeon Remastered](https://kaylousberg.itch.io/kaykit-dungeon-remastered)
+Author: [Kay Lousberg](www.kaylousberg.com)  
 License: [Creative Commons Zero, CC0](http://creativecommons.org/publicdomain/zero/1.0/)  
 
 #### Others
-##### [Kenney Input Prompts](www.kenney.nl)
-Author: Kenney  
+##### [Kenney Input Prompts](https://kenney.nl/assets/input-prompts)
+Author: [Kenney](www.kenney.nl)  
 License: [Creative Commons Zero, CC0](http://creativecommons.org/publicdomain/zero/1.0/)  
 
 

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cg45nrous4phy" path="res://scenes/pieces/pickable.tscn" id="12_fn4oh"]
 [ext_resource type="PackedScene" uid="uid://cqntmbp1q0a81" path="res://scenes/door/amnesia_door.tscn" id="12_osidk"]
 [ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="13_k63md"]
-[ext_resource type="PackedScene" uid="uid://bmni5tpmmy2ph" path="res://assets/models/kaykit/chair.glb" id="14_fn4oh"]
+[ext_resource type="PackedScene" uid="uid://bmni5tpmmy2ph" path="res://assets/models/kaykit-dungeon-remastered/chair.glb" id="14_fn4oh"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="17_d3jfy"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="18_q6c7b"]
 [ext_resource type="PackedScene" uid="uid://bimo0ijo3l1di" path="res://scenes/door/door.tscn" id="18_wm6m6"]
@@ -106,12 +106,6 @@ material = SubResource("StandardMaterial3D_x2tju")
 [node name="Door" parent="." instance=ExtResource("18_wm6m6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
-[node name="StaticBody3D" parent="Door/wall_doorway/wall_doorway_door" index="0"]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
 [node name="InteractionContainer" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
 script = ExtResource("17_d3jfy")
 display_name = "Door"
@@ -131,14 +125,6 @@ metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 [node name="SimpleLockedDoor" parent="." instance=ExtResource("18_wm6m6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
 script = ExtResource("21_62tve")
-
-[node name="StaticBody3D" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door" index="0"]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"use","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
 
 [node name="InteractionContainer" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
 script = ExtResource("17_d3jfy")

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bhjr5v2x0rwhv"
-path="res://.godot/imported/wall_doorway.gltf-21ccb2f4887b8399b72c9dabb72446b2.scn"
+path="res://.godot/imported/wall_doorway.gltf-1daac821b5b4f6074e1800ada9ed4c18.scn"
 
 [deps]
 
-source_file="res://assets/models/kaykit/wall_doorway.gltf"
-dest_files=["res://.godot/imported/wall_doorway.gltf-21ccb2f4887b8399b72c9dabb72446b2.scn"]
+source_file="res://assets/models/kaykit-dungeon-remastered/wall_doorway.gltf"
+dest_files=["res://.godot/imported/wall_doorway.gltf-1daac821b5b4f6074e1800ada9ed4c18.scn"]
 
 [params]
 

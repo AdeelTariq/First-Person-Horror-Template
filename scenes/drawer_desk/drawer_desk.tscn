@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://ckn77rj2d8bks"]
 
-[ext_resource type="PackedScene" uid="uid://t187pehmaqp2" path="res://assets/models/kaykit/drawer_desk.glb" id="1_5yx2i"]
+[ext_resource type="PackedScene" uid="uid://t187pehmaqp2" path="res://assets/models/kaykit-dungeon-remastered/drawer_desk.glb" id="1_5yx2i"]
 [ext_resource type="Script" uid="uid://b75vc6lcbaog1" path="res://scenes/drawer_desk/drawer_desk.gd" id="2_e7ekl"]
-[ext_resource type="PackedScene" uid="uid://yfr4kuq7wly0" path="res://assets/models/kaykit/drawer.glb" id="2_qld66"]
+[ext_resource type="PackedScene" uid="uid://yfr4kuq7wly0" path="res://assets/models/kaykit-dungeon-remastered/drawer.glb" id="2_qld66"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="3_sku7b"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="4_e7ekl"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="5_g6muf"]

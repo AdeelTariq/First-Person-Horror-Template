@@ -16,7 +16,8 @@
 
 			------------------------------
 
-	• Website: www.kenney.nl
+	• Website: https://kenney.nl/assets/input-prompts
+	• Author Link: www.kenney.nl
 	• Donate  : www.kenney.nl/donate
 
 	• Patreon : patreon.com/kenney

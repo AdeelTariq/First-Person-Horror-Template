@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=4 uid="uid://cqntmbp1q0a81"]
 
-[ext_resource type="Texture2D" uid="uid://bec224ctuh0rr" path="res://assets/models/kaykit/dungeon_texture.png" id="1_03qcw"]
+[ext_resource type="Texture2D" uid="uid://bec224ctuh0rr" path="res://assets/models/kaykit-dungeon-remastered/dungeon_texture.png" id="1_03qcw"]
 [ext_resource type="Script" uid="uid://gomr6iqov747" path="res://scenes/door/amnesia_door.gd" id="1_cilu6"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_jj1qt"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_cilu6"]

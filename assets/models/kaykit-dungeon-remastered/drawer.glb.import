@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://yfr4kuq7wly0"
-path="res://.godot/imported/drawer.glb-b583cfab2a99cd5ecc4717b9ddd3493e.scn"
+path="res://.godot/imported/drawer.glb-ab58578445658def8a834d2ab93f4b29.scn"
 
 [deps]
 
-source_file="res://assets/models/kaykit/drawer.glb"
-dest_files=["res://.godot/imported/drawer.glb-b583cfab2a99cd5ecc4717b9ddd3493e.scn"]
+source_file="res://assets/models/kaykit-dungeon-remastered/drawer.glb"
+dest_files=["res://.godot/imported/drawer.glb-ab58578445658def8a834d2ab93f4b29.scn"]
 
 [params]
 
@@ -41,7 +41,7 @@ _subresources={
 "materials": {
 "texture.074": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/models/kaykit/texture.tres",
+"use_external/fallback_path": "res://assets/models/kaykit-dungeon-remastered/texture.tres",
 "use_external/path": "uid://d0os3hurh3fk4"
 }
 }
