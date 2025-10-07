@@ -7,8 +7,8 @@
 
 			------------------------------
 
-	License: (Creative Commons Zero, CC0)
-	http://creativecommons.org/publicdomain/zero/1.0/
+	License: Creative Commons Zero, CC0
+	License Link: http://creativecommons.org/publicdomain/zero/1.0/
 
 	You can use this content for personal, educational, and commercial purposes.
 
@@ -16,7 +16,7 @@
 
 			------------------------------
 
-	• Website : www.kenney.nl
+	• Website: www.kenney.nl
 	• Donate  : www.kenney.nl/donate
 
 	• Patreon : patreon.com/kenney

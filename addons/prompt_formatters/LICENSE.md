@@ -1,3 +1,7 @@
+[
+License: MIT license (c) 2025-present
+Website: https://github.com/AdeelTariq/First-Person-Horror-Template
+---
 Copyright (c) 2025-present Adeel Tariq
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

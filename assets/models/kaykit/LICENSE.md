@@ -7,8 +7,8 @@
 
 			------------------------------
 
-	License: (Creative Commons Zero, CC0)
-	http://creativecommons.org/publicdomain/zero/1.0/
+	License: Creative Commons Zero, CC0
+	License Link: http://creativecommons.org/publicdomain/zero/1.0/
 
 	This content is free to use in personal, educational and commercial projects.
 

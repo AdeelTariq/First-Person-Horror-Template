@@ -43,7 +43,7 @@ movie_writer/movie_file="/home/adeel/Videos/fpht.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/game_pieces/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg")
+enabled=PackedStringArray("res://addons/credits_generator/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg")
 
 [input]
 

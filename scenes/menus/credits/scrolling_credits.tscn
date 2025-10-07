@@ -50,7 +50,7 @@ Author: [Linus Torvalds](https://github.com/torvalds)
 Source: [git-scm.com](https://git-scm.com/downloads)  
 License: [GNU General Public License version 2](https://opensource.org/licenses/GPL-2.0)
 "
-attribution_file_path = "res://ATTRIBUTION.md"
+attribution_file_path = "res://CREDITS.md"
 
 [node name="FooterSpace" parent="ScrollContainer/VBoxContainer" index="2"]
 custom_minimum_size = Vector2(0, 648)
