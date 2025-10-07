@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="3_k63md"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_mrac1"]
 [ext_resource type="PackedScene" uid="uid://ckn77rj2d8bks" path="res://scenes/drawer_desk/drawer_desk.tscn" id="11_2bfhc"]
-[ext_resource type="PackedScene" uid="uid://3a8vimn70t6v" path="res://addons/game_pieces/pickable/pickable.tscn" id="12_fn4oh"]
+[ext_resource type="PackedScene" uid="uid://cg45nrous4phy" path="res://scenes/pieces/pickable.tscn" id="12_fn4oh"]
 [ext_resource type="PackedScene" uid="uid://cqntmbp1q0a81" path="res://scenes/door/amnesia_door.tscn" id="12_osidk"]
 [ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="13_k63md"]
 [ext_resource type="PackedScene" uid="uid://bmni5tpmmy2ph" path="res://assets/models/kaykit/chair.glb" id="14_fn4oh"]
