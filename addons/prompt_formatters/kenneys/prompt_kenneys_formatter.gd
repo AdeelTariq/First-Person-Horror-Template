@@ -30,7 +30,7 @@ func format_async(game_control: GameControl) -> String:
 
 func get_action_icon(input_action : String) -> Texture:
 	var input_events = InputMap.action_get_events(input_action)
-	var input_event_index = min(Input.get_connected_joypads().size(), input_events.size())
+	var input_event_index = min(Input.get_connected_joypads().size(), input_events.size() - 1)
 	var icon = InputIconMapperGlobal.get_icon(input_events[input_event_index]) as Texture
 	if not icon:
 		icon = InputIconMapperGlobal.get_icon(input_events[0]) as Texture
