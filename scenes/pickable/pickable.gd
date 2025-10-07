@@ -14,6 +14,7 @@ var _initial_position: Vector3 = Vector3.ZERO
 var _min_offset: float = 0.65
 var _max_offset: float = 1.65
 var _is_rotating: bool = false
+var _throw_power: float = 10
 
 
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
@@ -55,7 +56,7 @@ func _input(event: InputEvent) -> void:
 	_initial_basis = offset * _initial_basis
 
 
-func _while_drawer_grabbed(controller: InteractionController) -> void:
+func _while_grabbed(controller: InteractionController) -> void:
 	if _interaction_controller != null: return
 	apply_central_force(Vector3.ONE)
 	_interaction_controller = controller
@@ -69,7 +70,7 @@ func _while_drawer_grabbed(controller: InteractionController) -> void:
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
 
 
-func _drawer_released(_c: InteractionController) -> void:
+func _released(_c: InteractionController) -> void:
 	if _c != _interaction_controller: return
 	if _interaction_controller == null: return
 	_interaction_controller.release_grabbed()
@@ -93,3 +94,15 @@ func _stopped_rotating(controller: InteractionController) -> void:
 	if controller != _interaction_controller: return
 	_is_rotating = false
 	Player.current.lock_camera = false
+
+
+func _on_throw(controller: InteractionController) -> void:
+	if controller != _interaction_controller: return
+	_released(controller)
+	InteractionContainer.from(self).disable() # Disable interactions while throwing
+	var reference_node: Node3D = controller.get_parent()
+	var hand_position: Vector3 = reference_node.to_global(_initial_position * _position_offset)
+	var direction: Vector3 = reference_node.global_position.direction_to(hand_position)
+	apply_impulse(direction * _throw_power)
+	await get_tree().process_frame
+	InteractionContainer.from(self).enable()
