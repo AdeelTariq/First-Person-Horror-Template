@@ -1,9 +1,9 @@
 extends RigidBody3D
 
-@export var pull_force: float = 10
+@export var pull_force: float = 15
+@export var throw_power: float = 10
 @export var interaction_context_when_grabbed: int = 1
-
-@onready var change_distance: Interaction = $"InteractionContainer/WhileGrabbed/Change Distance"
+@export var change_distance_interaction: Interaction
 
 var _interaction_controller: InteractionController = null
 var _is_grabbed: bool:
@@ -14,7 +14,6 @@ var _initial_position: Vector3 = Vector3.ZERO
 var _min_offset: float = 0.65
 var _max_offset: float = 1.65
 var _is_rotating: bool = false
-var _throw_power: float = 10
 
 
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
@@ -58,9 +57,9 @@ func _input(event: InputEvent) -> void:
 
 func _while_grabbed(controller: InteractionController) -> void:
 	if _interaction_controller != null: return
-	apply_central_force(Vector3.ONE)
 	_interaction_controller = controller
 	_interaction_controller.grab_object(self)
+	apply_central_force(Vector3.ONE)
 	_position_offset = 1.0
 	var reference_node: Node3D = _interaction_controller.get_parent()
 	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
@@ -80,20 +79,20 @@ func _released(_c: InteractionController) -> void:
 
 func _on_change_distance(controller: InteractionController) -> void:
 	if controller != _interaction_controller: return
-	_position_offset += change_distance.control.value() * 0.1
+	_position_offset += change_distance_interaction.control.value() * 0.1
 	_position_offset = clampf(_position_offset, _min_offset, _max_offset)
 
 
 func _while_rotating(controller: InteractionController) -> void:
 	if controller != _interaction_controller: return
 	_is_rotating = true
-	Player.current.lock_camera = true
+	GamePiecesEventBus.request_camera_lock(true)
 
 
 func _stopped_rotating(controller: InteractionController) -> void:
 	if controller != _interaction_controller: return
 	_is_rotating = false
-	Player.current.lock_camera = false
+	GamePiecesEventBus.request_camera_lock(false)
 
 
 func _on_throw(controller: InteractionController) -> void:
@@ -103,6 +102,6 @@ func _on_throw(controller: InteractionController) -> void:
 	var reference_node: Node3D = controller.get_parent()
 	var hand_position: Vector3 = reference_node.to_global(_initial_position * _position_offset)
 	var direction: Vector3 = reference_node.global_position.direction_to(hand_position)
-	apply_impulse(direction * _throw_power)
+	apply_impulse(direction * throw_power)
 	await get_tree().process_frame
 	InteractionContainer.from(self).enable()

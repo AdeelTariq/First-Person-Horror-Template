@@ -1,11 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://djkpcj848dq8r"]
+[gd_scene load_steps=30 format=3 uid="uid://djkpcj848dq8r"]
 
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="3_k63md"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_mrac1"]
 [ext_resource type="PackedScene" uid="uid://ckn77rj2d8bks" path="res://scenes/drawer_desk/drawer_desk.tscn" id="11_2bfhc"]
-[ext_resource type="PackedScene" uid="uid://3a8vimn70t6v" path="res://scenes/pickable/pickable.tscn" id="12_fn4oh"]
+[ext_resource type="PackedScene" uid="uid://3a8vimn70t6v" path="res://addons/game_pieces/pickable/pickable.tscn" id="12_fn4oh"]
 [ext_resource type="PackedScene" uid="uid://cqntmbp1q0a81" path="res://scenes/door/amnesia_door.tscn" id="12_osidk"]
 [ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="13_k63md"]
+[ext_resource type="PackedScene" uid="uid://bmni5tpmmy2ph" path="res://assets/models/kaykit/chair.glb" id="14_fn4oh"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="17_d3jfy"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="18_q6c7b"]
 [ext_resource type="PackedScene" uid="uid://bimo0ijo3l1di" path="res://scenes/door/door.tscn" id="18_wm6m6"]
@@ -60,6 +61,12 @@ albedo_texture = ExtResource("13_k63md")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_osidk"]
 points = PackedVector3Array(-0.06260148, -0.2663933, -0.24024686, 0.011391564, 0.2380352, 0.24944204, 0.0848621, 0.27959216, 0.23210225, 0.11552247, -0.40178484, 0.1602234, 0.2036852, 0.3254891, -0.12174913, -0.24141228, 0.29744264, 0.04110926, -0.18142185, -0.34113356, 0.14483915, 0.23452342, -0.32726675, -0.0331359, -0.063723475, 0.42136097, -0.16905558, -0.19670239, -0.34194493, -0.12234867, 0.21911418, 0.31163558, 0.10041885, 0.0420738, 0.48872638, 0.05739727, -0.034101244, -0.4882299, -0.06463532, 0.09974278, -0.29478467, -0.22445785, -0.0927739, 0.2977592, -0.22676277, -0.1366803, 0.2961318, 0.20387545, -0.0034682432, -0.23841153, 0.24983013, 0.18791044, -0.2943068, 0.15847757, 0.055792414, 0.2815455, -0.24060236, -0.20864561, 0.2639582, -0.13526182, -0.24227779, -0.2984917, -0.033255555, -0.13987412, 0.45428273, 0.026668143, -0.12509164, -0.44033265, 0.10265427, 0.1318245, -0.45138898, -0.06369768, 0.18671456, -0.26317215, -0.1641312, 0.14668888, 0.43577814, -0.07860067, 0.2498313, 0.23832074, -0.0034442788, 0.026553063, 0.43750578, 0.1623532, -0.07727637, -0.2954455, 0.23295411, -0.19385616, -0.2491256, 0.15784955, -0.04863674, -0.39115503, -0.19908188, -0.15033956, -0.29399702, -0.19445038)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fn4oh"]
+size = Vector3(0.74194336, 0.5, 0.7451172)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j30dx"]
+size = Vector3(0.20141602, 0.72351074, 0.7441406)
+
 [node name="Playground" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -75,6 +82,7 @@ jump_power = 3.0
 
 [node name="Slide" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.507557, 0)
+visible = false
 calculate_tangents = false
 use_collision = true
 mesh = SubResource("PrismMesh_k63md")
@@ -245,9 +253,6 @@ transform = Transform3D(-0.19411431, 0, 0.72444427, 0, 0.74999994, 0, -0.7244442
 [node name="drawer_desk3" parent="." instance=ExtResource("11_2bfhc")]
 transform = Transform3D(-0.19411431, 0, 0.72444427, 0, 0.74999994, 0, -0.72444427, 0, -0.19411431, -8.34939, 0, 0.43602908)
 
-[node name="drawer_desk2" parent="." instance=ExtResource("11_2bfhc")]
-transform = Transform3D(-0.72444427, 0.19411428, 8.485005e-09, 6.434358e-16, -3.278354e-08, 0.75, 0.19411428, 0.72444427, 3.1666467e-08, -9.264738, -2.3841858e-07, -3.2913086)
-
 [node name="Pickable" parent="." instance=ExtResource("12_fn4oh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
 metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
@@ -293,6 +298,25 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fn4oh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pickable3"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_osidk")
+
+[node name="PickableChair" parent="." instance=ExtResource("12_fn4oh")]
+transform = Transform3D(-0.9659257, 0, -0.25881892, 0, 1, 0, 0.25881892, 0, -0.9659257, -8, 1.0174876, 1.6093277)
+mass = 2.0
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="chair2" parent="PickableChair" instance=ExtResource("14_fn4oh")]
+transform = Transform3D(1.0000005, 0, 0, 0, 1, 0, 0, 0, 1.0000005, 0, -0.57228905, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickableChair"]
+transform = Transform3D(1.0000012, 0, 0, 0, 1, 0, 0, 0, 1.0000012, 0, -0.32228905, 0)
+shape = SubResource("BoxShape3D_fn4oh")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PickableChair"]
+transform = Transform3D(1.0000012, 0, 0, 0, 1, 0, 0, 0, 1.0000012, 0.2496351, 0.2855023, 0)
+shape = SubResource("BoxShape3D_j30dx")
 
 [node name="AmnesiaDoor" parent="." instance=ExtResource("12_osidk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)

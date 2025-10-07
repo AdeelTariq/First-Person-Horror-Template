@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bia32vkq1a5i"]
+[gd_scene load_steps=10 format=3 uid="uid://bia32vkq1a5i"]
 
 [ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/player/player.tscn" id="1_lvxji"]
 [ext_resource type="AudioStream" uid="uid://b5w7kope1qekn" path="res://assets/sounds/step2.ogg" id="2_0owmy"]
 [ext_resource type="Script" uid="uid://dqdodfuuahflt" path="res://addons/interaction_system/interaction_controllers/3d/ray_cast_3d_interaction_controller.gd" id="2_p47bc"]
+[ext_resource type="Script" uid="uid://3c3xf31fwdg1" path="res://scenes/player/player.gd" id="2_qek5x"]
 [ext_resource type="Script" uid="uid://byf0ij6s7416m" path="res://addons/game_controls/vanilla/mouse_game_control.gd" id="3_75vfm"]
 [ext_resource type="AudioStream" uid="uid://1y2wgje8ommq" path="res://assets/sounds/step3.ogg" id="3_qek5x"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="4_0owmy"]
@@ -15,10 +16,12 @@ stream_1/stream = ExtResource("3_qek5x")
 stream_2/stream = ExtResource("4_5gtgg")
 
 [node name="Player" instance=ExtResource("1_lvxji")]
+script = ExtResource("2_qek5x")
 footsteps_sound = SubResource("AudioStreamRandomizer_h17s1")
 
-[node name="RayCast3DInteractionController" type="Node" parent="Head/Neck/Camera3D/RayCast3D" index="0"]
+[node name="RayCast3DInteractionController" type="Node" parent="Head/Neck/Camera3D/RayCast3D" index="0" node_paths=PackedStringArray("collision_excluding_joint")]
 script = ExtResource("2_p47bc")
+collision_excluding_joint = NodePath("Generic6DOFJoint3D")
 metadata/_custom_type_script = "uid://dqdodfuuahflt"
 
 [node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" index="0"]
@@ -26,6 +29,9 @@ node_a = NodePath("../../../../../..")
 linear_limit_x/enabled = false
 linear_limit_y/enabled = false
 linear_limit_z/enabled = false
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
 
 [node name="InputMapControls" type="Node" parent="." index="5"]
 

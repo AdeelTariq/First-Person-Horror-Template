@@ -24,6 +24,7 @@ func _something_interactable(object_name: String, actions: Array[Interaction], a
 		cross_hair.show()
 	
 	if actions.is_empty():
+		cross_hair.hide()
 		interact_prompt.text = ""
 		return
 	

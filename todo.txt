@@ -9,7 +9,6 @@ Don't allow to stand up or jump until there is space to standup
 Add psx style shaders
 Ability to pickup items. Pickup items:
 	weilding items like guns
-	throwing items
 	
 	reading notes
 	picking and adding items to the inventory
