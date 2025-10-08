@@ -80,7 +80,7 @@ var bob_time: float = 0.0
 var crouch_released_last_frame: bool = true
 var crouching: bool:
 	get():
-		return is_equal_approx(scale.y, crouch_height)
+		return abs(scale.y - crouch_height) < 0.01
 var _crouch_tween: Tween
 
 

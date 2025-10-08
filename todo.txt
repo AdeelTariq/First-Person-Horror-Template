@@ -1,11 +1,9 @@
 Make drawer and door easier to use
 pressing buttons, pulling a lever with mouse
 Add additional options and settings
-Add automatic credits generation
-
+More player sounds like jumping and landing
 Open an interface upon interacting with a thing (hacking, lockpicking, pincode pabel, reading a note)
 Can npcs do the same things as player?
-Don't allow to stand up or jump until there is space to standup
 Add psx style shaders
 Ability to pickup items. Pickup items:
 	weilding items like guns
