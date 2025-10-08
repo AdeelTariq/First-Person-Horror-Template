@@ -1,10 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvm1x6igaprq3"]
+[gd_scene load_steps=13 format=3 uid="uid://cvm1x6igaprq3"]
 
 [ext_resource type="Script" uid="uid://ba1l1kqe7yxt6" path="res://addons/player/Player.gd" id="1_cyojo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xc2g5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydro"]
+height = 1.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dverj"]
+radius = 0.75
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_dverj"]
+length = 0.5
+slide_on_slope = true
 
 [sub_resource type="Animation" id="Animation_by45h"]
 length = 0.001
@@ -155,16 +163,40 @@ script = ExtResource("1_cyojo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 layers = 524288
 mesh = SubResource("CapsuleMesh_xc2g5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("CapsuleShape3D_wydro")
+
+[node name="Ceiling" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+shape = SubResource("SphereShape3D_dverj")
+target_position = Vector3(0, 1, 0)
+max_results = 1
+debug_shape_custom_color = Color(0.87734646, 2.9119105e-06, 1.92523e-07, 1)
+
+[node name="Ground" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0.5)
+shape = SubResource("SeparationRayShape3D_dverj")
+
+[node name="Ground2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, -0.5)
+shape = SubResource("SeparationRayShape3D_dverj")
+
+[node name="Ground3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.5, 0.5, 0)
+shape = SubResource("SeparationRayShape3D_dverj")
+
+[node name="Ground4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 0.5, 0)
+shape = SubResource("SeparationRayShape3D_dverj")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.679, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Neck" type="Node3D" parent="Head"]
 unique_name_in_owner = true

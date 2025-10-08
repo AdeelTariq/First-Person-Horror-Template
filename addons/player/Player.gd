@@ -36,7 +36,7 @@ const LEAN_SPEED: float = 0.1
 @export var full_height: float = 1.
 @export var crouch_height: float = .5
 ## Time it takes to crouch or stand back up
-@export var crouch_time: float = 0.2
+@export var crouch_time: float = 0.16
 @export_group("Leaning")
 @export var camera_base_position: Vector3 = Vector3.ZERO
 @export var camera_lean_position: Vector3 = Vector3(1., -0.1, 0.)
@@ -69,6 +69,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom
 @onready var camera_animation_player: AnimationPlayer = %CameraAnimationPlayer
 @onready var generic_6dof_joint_3d: Joint3D = %Generic6DOFJoint3D
 @onready var hand: Marker3D = %Hand
+@onready var ceiling: ShapeCast3D = $Ceiling
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -79,7 +80,7 @@ var bob_time: float = 0.0
 var crouch_released_last_frame: bool = true
 var crouching: bool:
 	get():
-		return not is_equal_approx(scale.y, full_height)
+		return is_equal_approx(scale.y, crouch_height)
 var _crouch_tween: Tween
 
 
@@ -156,11 +157,12 @@ func toggle_crouch_state() -> void:
 
 func set_crouch(enable: bool) -> void:
 	if _crouch_tween != null:
-		_crouch_tween.stop()
-	_crouch_tween = create_tween()
+		_crouch_tween.kill()
 	if enable:
+		_crouch_tween = create_tween()
 		_crouch_tween.tween_property(self, "scale", crouch_height * Vector3.ONE, crouch_time)
-	else:
+	elif not ceiling.is_colliding():
+		_crouch_tween = create_tween()
 		_crouch_tween.tween_property(self, "scale", full_height * Vector3.ONE, crouch_time)
 
 

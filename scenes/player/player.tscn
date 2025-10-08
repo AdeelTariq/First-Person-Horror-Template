@@ -19,19 +19,8 @@ stream_2/stream = ExtResource("4_5gtgg")
 script = ExtResource("2_qek5x")
 footsteps_sound = SubResource("AudioStreamRandomizer_h17s1")
 
-[node name="RayCast3DInteractionController" type="Node" parent="Head/Neck/Camera3D/RayCast3D" index="0" node_paths=PackedStringArray("collision_excluding_joint")]
-script = ExtResource("2_p47bc")
-collision_excluding_joint = NodePath("Generic6DOFJoint3D")
-metadata/_custom_type_script = "uid://dqdodfuuahflt"
-
-[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" index="0"]
-node_a = NodePath("../../../../../..")
-linear_limit_x/enabled = false
-linear_limit_y/enabled = false
-linear_limit_z/enabled = false
-angular_limit_x/enabled = false
-angular_limit_y/enabled = false
-angular_limit_z/enabled = false
+[node name="MeshInstance3D" parent="." index="0"]
+visible = true
 
 [node name="InputMapControls" type="Node" parent="." index="5"]
 
@@ -99,3 +88,17 @@ positive_x = &"ui_right"
 negative_y = &"ui_up"
 positive_y = &"ui_down"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="RayCast3DInteractionController" type="Node" parent="Head/Neck/Camera3D/RayCast3D" index="0" node_paths=PackedStringArray("collision_excluding_joint")]
+script = ExtResource("2_p47bc")
+collision_excluding_joint = NodePath("Generic6DOFJoint3D")
+metadata/_custom_type_script = "uid://dqdodfuuahflt"
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" index="0"]
+node_a = NodePath("../../../../../..")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false

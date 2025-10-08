@@ -78,11 +78,10 @@ environment = SubResource("Environment_mrac1")
 
 [node name="Player" parent="." instance=ExtResource("3_k63md")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-jump_power = 3.0
+toggle_crouch = false
 
 [node name="Slide" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.507557, 0)
-visible = false
 calculate_tangents = false
 use_collision = true
 mesh = SubResource("PrismMesh_k63md")
@@ -106,6 +105,12 @@ material = SubResource("StandardMaterial3D_x2tju")
 [node name="Door" parent="." instance=ExtResource("18_wm6m6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 
+[node name="StaticBody3D" parent="Door/wall_doorway/wall_doorway_door" index="0"]
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
 [node name="InteractionContainer" type="Node" parent="Door/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
 script = ExtResource("17_d3jfy")
 display_name = "Door"
@@ -125,6 +130,14 @@ metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 [node name="SimpleLockedDoor" parent="." instance=ExtResource("18_wm6m6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
 script = ExtResource("21_62tve")
+
+[node name="StaticBody3D" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door" index="0"]
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"use","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="InteractionContainer" type="Node" parent="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
 script = ExtResource("17_d3jfy")
@@ -308,6 +321,51 @@ shape = SubResource("BoxShape3D_j30dx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
 speed = 3.0
 release_distance = 4.0
+
+[node name="Stairs" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 4)
+use_collision = true
+size = Vector3(2, 0.5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+use_collision = true
+size = Vector3(2, 0.5, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Stairs/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+use_collision = true
+size = Vector3(2, 0.5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Stairs/CSGBox3D2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+use_collision = true
+size = Vector3(2, 0.5, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Stairs/CSGBox3D2/CSGBox3D3/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+use_collision = true
+size = Vector3(2, 0.5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Stairs/CSGBox3D2/CSGBox3D3/CSGBox3D2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+use_collision = true
+size = Vector3(2, 0.5, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Stairs/CSGBox3D2/CSGBox3D3/CSGBox3D2/CSGBox3D3/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+use_collision = true
+size = Vector3(2, 0.5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Stairs/CSGBox3D2/CSGBox3D3/CSGBox3D2/CSGBox3D3/CSGBox3D2/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+use_collision = true
+size = Vector3(2, 0.5, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Stairs/CSGBox3D2/CSGBox3D3/CSGBox3D2/CSGBox3D3/CSGBox3D2/CSGBox3D3/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+use_collision = true
+size = Vector3(2, 0.5, 1)
 
 [connection signal="on_complete" from="Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact" to="Door" method="interact"]
 [connection signal="on_complete" from="SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Open" to="SimpleLockedDoor" method="interact"]
