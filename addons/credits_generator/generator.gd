@@ -1,7 +1,11 @@
 class_name Generator extends RefCounted
 
-var license_file_name: String = "LICENSE.md"
-var auto_generated_keyword: String = "[](AUTO_GENERATED)"
+const license_file_name: String = "LICENSE.md"
+const auto_generated_keyword: String = "[](AUTO_GENERATED)"
+const godot_license_keyword: String = "[](GODOT_LICENSE)"
+const godot_3rd_party_copyright_keyword: String = "[](GODOT_3RD_PARTY_COPYRIGHT)"
+const godot_3rd_party_licenses_keyword: String = "[](GODOT_3RD_PARTY_LICENSES)"
+
 
 func generate():
 	var base_dir = get_plugin_path()
@@ -45,6 +49,10 @@ func generate():
 				auto_generated += "License: [%s](%s)  \n\n" % [credit.license, credit.license_link]
 
 	result = result.replace(auto_generated_keyword, auto_generated)
+	result = result.replace(godot_license_keyword, Engine.get_license_text())
+	result = result.replace(godot_3rd_party_copyright_keyword, format_godot_3rd_party_copyright())
+	result = result.replace(godot_3rd_party_licenses_keyword, format_godot_3rd_party_licenses())
+	
 	result = remove_comments(result).strip_edges()
 	write_file(credits_path, result)
 	EditorInterface.get_resource_filesystem().scan()
@@ -197,3 +205,23 @@ func group_credits(credits: Array[Credit]) -> Dictionary[String, Dictionary]:
 		grouped[credit.category][credit.sub_category].append(credit)
 
 	return grouped
+
+
+func format_godot_3rd_party_licenses() -> String:
+	var result: String = ""
+	var licenses: Dictionary = Engine.get_license_info()
+	for license: String in licenses:
+		result += "#### %s\n" % license
+		result += "%s  \n\n" % licenses[license]
+	return result
+
+
+func format_godot_3rd_party_copyright() -> String:
+	var result: String = ""
+	for dict: Dictionary in Engine.get_copyright_info():
+		result += "#### %s\n" % dict["name"]
+		for part: Dictionary in dict["parts"]:
+			result += "**Copyright**  \n"
+			result += "  \n".join(part["copyright"])
+			result += "  \n**License**: %s  \n\n" % part["license"]
+	return result

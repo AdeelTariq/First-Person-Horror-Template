@@ -2,11 +2,6 @@
 Manually add credits in this file for the ones not included automatically.
 -->
 ## Tools
-#### Godot
-![Godot Engine Logo](/assets/logos/godot_engine_logo/logo_vertical_color_dark.png)  
-Author: [Juan Linietsky, Ariel Manzur, and contributors](https://godotengine.org/contact)  
-Source: [godotengine.org](https://godotengine.org/)  
-License: [MIT License](https://github.com/godotengine/godot/blob/master/LICENSE.txt) 
 
 #### Godot Menus Template
 ![Maaack Plugin Icon](/assets/logos/plugin_logo/logo.png)  
