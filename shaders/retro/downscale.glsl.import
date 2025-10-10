@@ -1,0 +1,14 @@
+[remap]
+
+importer="glsl"
+type="RDShaderFile"
+uid="uid://wrmlq8r5830q"
+path="res://.godot/imported/downscale.glsl-4e12ef3882174182b987dd9e7c5a72c4.res"
+
+[deps]
+
+source_file="res://shaders/retro/downscale.glsl"
+dest_files=["res://.godot/imported/downscale.glsl-4e12ef3882174182b987dd9e7c5a72c4.res"]
+
+[params]
+

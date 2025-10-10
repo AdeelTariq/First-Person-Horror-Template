@@ -1,7 +1,24 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d0os3hurh3fk4"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://d0os3hurh3fk4"]
 
 [ext_resource type="Texture2D" uid="uid://bec224ctuh0rr" path="res://assets/models/kaykit-dungeon-remastered/dungeon_texture.png" id="1_trf0l"]
+[ext_resource type="Shader" uid="uid://b6gd76th1aenv" path="res://shaders/psx_model/model_advanced.tres" id="1_ydkdj"]
 
 [resource]
 resource_name = "texture"
-albedo_texture = ExtResource("1_trf0l")
+render_priority = 0
+shader = ExtResource("1_ydkdj")
+shader_parameter/affine_mapping = true
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(480, 270)
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("1_trf0l")
+shader_parameter/point_size = 1.0
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/triplanar = false
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/proximity_fade = false
+shader_parameter/proximity_fade_distance = 1.0

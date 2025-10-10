@@ -1,7 +1,7 @@
 <!-- 
 Links in this file will be replaced with actual content of other files.
 Feel free to arrange the order of links or add extra files.
-AUTO_GENERATED, GODOT_LICENSE, GODOT_3RD_PARTY_LICENSES, GODOT_3RD_PARTY_COPYRIGHT is a special keyword.
+AUTO_GENERATED, GODOT_LICENSE, GODOT_3RD_PARTY_LICENSES, GODOT_3RD_PARTY_COPYRIGHT are special keywords.
 -->
 [](AUTHORS.md)
 
@@ -17,5 +17,7 @@ AUTO_GENERATED, GODOT_LICENSE, GODOT_3RD_PARTY_LICENSES, GODOT_3RD_PARTY_COPYRIG
 
 [](GODOT_3RD_PARTY_COPYRIGHT)
 
+<!-- 
 ### Licenses
 [](GODOT_3RD_PARTY_LICENSES)
+-->

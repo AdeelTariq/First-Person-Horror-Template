@@ -45,6 +45,17 @@ movie_writer/movie_file="/home/adeel/Videos/fpht.avi"
 
 enabled=PackedStringArray("res://addons/credits_generator/plugin.cfg", "res://addons/game_pieces/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg", "res://addons/prompt_formatters/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "blue",
+"res://assets/": "orange",
+"res://resources/": "red",
+"res://scenes/": "pink",
+"res://scripts/": "gray",
+"res://shaders/": "purple"
+}
+
 [input]
 
 move_forward={
@@ -152,8 +163,3 @@ copy_path="res://scenes/menus/"
 [physics]
 
 3d/physics_engine="Jolt Physics"
-
-[rendering]
-
-anti_aliasing/quality/msaa_3d=1
-anti_aliasing/quality/screen_space_aa=1
