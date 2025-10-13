@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8eom7lmmvqxh"]
+
+[ext_resource type="PackedScene" uid="uid://ckn77rj2d8bks" path="res://addons/game_pieces/drawer/drawer.tscn" id="1_r4aw4"]
+[ext_resource type="PackedScene" uid="uid://yfr4kuq7wly0" path="res://assets/models/kaykit-dungeon-remastered/drawer.glb" id="2_5v5vj"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="2_5x2id"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5x2id"]
+size = Vector3(0.46044922, 0.1, 0.96569824)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xqe2u"]
+size = Vector3(0.80029297, 0.050390624, 0.99212646)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qm8ee"]
+size = Vector3(1.0275879, 0.5088776, 0.07095947)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icxh1"]
+size = Vector3(0.9503174, 0.41025886, 0.08613281)
+
+[node name="Drawer" instance=ExtResource("1_r4aw4")]
+
+[node name="SliderJoint3D" parent="." index="0"]
+node_a = NodePath("/root/@EditorNode@20438/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@62/@VBoxContainer@63/@EditorMainScreen@103/MainScreen/@CanvasItemEditor@10871/@VSplitContainer@10516/@HSplitContainer@10518/@HSplitContainer@10520/@Control@10521/@SubViewportContainer@10522/@SubViewport@10523")
+
+[node name="RigidBody3D" parent="." index="1"]
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Drawer","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_5x2id"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="primary_action" type="Node" parent="RigidBody3D/InteractionContainer/Grab" index="0"]
+script = ExtResource("2_5x2id")
+action = &"primary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="LeftSide" type="CollisionShape3D" parent="RigidBody3D" index="1"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.42697906, 0.9590888, 0.15018687)
+shape = SubResource("BoxShape3D_5x2id")
+
+[node name="RightSide" type="CollisionShape3D" parent="RigidBody3D" index="2"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.4317727, 0.9583025, 0.12480736)
+shape = SubResource("BoxShape3D_5x2id")
+
+[node name="Bottom" type="CollisionShape3D" parent="RigidBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0061035156, 0.6992238, 0.14179659)
+shape = SubResource("BoxShape3D_xqe2u")
+
+[node name="Front" type="CollisionShape3D" parent="RigidBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0020751953, 0.93574655, 0.67657673)
+shape = SubResource("BoxShape3D_qm8ee")
+
+[node name="Back" type="CollisionShape3D" parent="RigidBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0005493164, 0.9450947, -0.38676736)
+shape = SubResource("BoxShape3D_icxh1")
+
+[node name="drawer" parent="RigidBody3D" index="6" instance=ExtResource("2_5v5vj")]
