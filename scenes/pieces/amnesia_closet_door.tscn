@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b47dxda5gh1kf"]
+
+[ext_resource type="PackedScene" uid="uid://cqntmbp1q0a81" path="res://addons/game_pieces/amnesia_door/amnesia_door.tscn" id="1_4oxqr"]
+[ext_resource type="PackedScene" uid="uid://bh7xhprwmnpis" path="res://assets/models/kaykit-dungeon-remastered/closet_door.glb" id="2_4oxqr"]
+[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="3_4gblu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cs7bg"]
+size = Vector3(1.2872314, 2.7217236, 0.3)
+
+[node name="AmnesiaClosetDoor" instance=ExtResource("1_4oxqr")]
+
+[node name="RigidBody3D" parent="." index="0"]
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_4gblu"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6436157, 1.3613617, 0)
+shape = SubResource("BoxShape3D_cs7bg")
+
+[node name="closet_door2" parent="RigidBody3D" index="1" instance=ExtResource("2_4oxqr")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="primary_action" type="Node" parent="RigidBody3D/InteractionContainer/Grab" index="0"]
+script = ExtResource("3_4gblu")
+action = &"primary_action"
+metadata/_custom_type_script = "uid://bxe74cq2uqemi"
+
+[node name="HingeJoint3D" parent="." index="1"]
+node_a = NodePath("../../AmnesiaDoor/HingeJoint3D/root/@EditorNode@20438/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@62/@VBoxContainer@63/@EditorMainScreen@103/MainScreen/@CanvasItemEditor@10871/@VSplitContainer@10516/@HSplitContainer@10518/@HSplitContainer@10520/@Control@10521/@SubViewportContainer@10522/@SubViewport@10523")
