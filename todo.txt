@@ -1,4 +1,3 @@
-Fix drawer release distance issue
 Make drawer and door easier to use
 Fix rotation and dragging of heavy objects
 pressing buttons, pulling a lever with mouse

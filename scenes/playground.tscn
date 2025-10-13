@@ -6,11 +6,11 @@
 [ext_resource type="Shader" uid="uid://ckeoq8wwo66jj" path="res://shaders/tv_static_border/tv_static_border.gdshader" id="3_d3jfy"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="3_k63md"]
 [ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_mrac1"]
-[ext_resource type="PackedScene" uid="uid://ckn77rj2d8bks" path="res://scenes/drawer_desk/drawer_desk.tscn" id="11_2bfhc"]
 [ext_resource type="PackedScene" uid="uid://cg45nrous4phy" path="res://scenes/pieces/pickable.tscn" id="12_fn4oh"]
 [ext_resource type="PackedScene" uid="uid://cqntmbp1q0a81" path="res://scenes/door/amnesia_door.tscn" id="12_osidk"]
 [ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="13_k63md"]
 [ext_resource type="PackedScene" uid="uid://bmni5tpmmy2ph" path="res://assets/models/kaykit-dungeon-remastered/chair.glb" id="14_fn4oh"]
+[ext_resource type="PackedScene" uid="uid://bmsqvo3s4sucf" path="res://scenes/pieces/desk_drawer.tscn" id="16_q6c7b"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="17_d3jfy"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="18_q6c7b"]
 [ext_resource type="PackedScene" uid="uid://bimo0ijo3l1di" path="res://scenes/door/door.tscn" id="18_wm6m6"]
@@ -271,12 +271,6 @@ script = ExtResource("8_mrac1")
 action = &"interact"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="drawer_desk" parent="Level" instance=ExtResource("11_2bfhc")]
-transform = Transform3D(-0.19411431, 0, 0.72444427, 0, 0.74999994, 0, -0.72444427, 0, -0.19411431, -8.776757, 0, -1.1589273)
-
-[node name="drawer_desk3" parent="Level" instance=ExtResource("11_2bfhc")]
-transform = Transform3D(-0.19411431, 0, 0.72444427, 0, 0.74999994, 0, -0.72444427, 0, -0.19411431, -8.34939, 0, 0.43602908)
-
 [node name="Pickable" parent="Level" instance=ExtResource("12_fn4oh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
 metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
@@ -363,6 +357,9 @@ shape = SubResource("BoxShape3D_j30dx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
 speed = 3.0
 release_distance = 4.0
+
+[node name="DeskDrawer" parent="Level" instance=ExtResource("16_q6c7b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
 
 [node name="Stairs" type="CSGBox3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 4)

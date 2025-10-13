@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckn77rj2d8bks"]
+
+[ext_resource type="Script" uid="uid://b75vc6lcbaog1" path="res://addons/game_pieces/drawer/drawer.gd" id="2_e7ekl"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="3_sku7b"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="4_e7ekl"]
+
+[node name="Drawer" type="Node3D"]
+script = ExtResource("2_e7ekl")
+
+[node name="SliderJoint3D" type="SliderJoint3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+node_b = NodePath("../RigidBody3D")
+linear_limit/upper_distance = 0.0
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+linear_damp = 5.0
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_sku7b"),"default_context_id":0,"display_name":"Drawer","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("4_e7ekl")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("4_e7ekl"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="RigidBody3D"]
+script = ExtResource("3_sku7b")
+display_name = "Drawer"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Grab" type="Node" parent="RigidBody3D/InteractionContainer"]
+script = ExtResource("4_e7ekl")
+hide_while_grabbed = true
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[connection signal="on_complete" from="RigidBody3D/InteractionContainer/Grab" to="." method="_drawer_released"]
+[connection signal="on_trigger" from="RigidBody3D/InteractionContainer/Grab" to="." method="_while_drawer_grabbed"]

@@ -1,9 +1,11 @@
-extends Node3D
+@tool
+class_name Drawer extends Node3D
 
 @export_range(1., 10., 0.1) var speed: float = 3.
 @export var release_distance: float = 4.
 
 @onready var drawer_body: RigidBody3D = $RigidBody3D
+@onready var slider_joint_3d: SliderJoint3D = $SliderJoint3D
 
 
 var _interaction_controller: InteractionController = null
@@ -13,6 +15,9 @@ var _ray_point: Vector3 = Vector3.INF
 var _mouse_point: Vector3 = Vector3.INF
 var _initial_distance: float = 0.0
 
+
+func _ready() -> void:
+	slider_joint_3d.node_a = get_parent().get_path()
 
 
 func _physics_process(_delta: float) -> void:
@@ -55,3 +60,11 @@ func _drawer_released(_c: InteractionController) -> void:
 	_ray_point = Vector3.INF
 	_mouse_point = Vector3.INF
 	Player.current.lock_camera = false
+
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings:PackedStringArray = []
+	if get_parent() is not StaticBody3D:
+		warnings.append("Drawer must be a child of a StaticBody3D")
+	return warnings
