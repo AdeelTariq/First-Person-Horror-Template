@@ -1,16 +1,22 @@
-extends Node3D
+@tool
+class_name AmnesiaDrawer extends Node3D
 
 @export_range(1., 10., 0.1) var speed: float = 3.
 @export var release_distance: float = 4.
 
 @onready var door_body: RigidBody3D = $RigidBody3D
 @onready var collider: CollisionShape3D = $RigidBody3D/CollisionShape3D
+@onready var hinge_joint_3d: HingeJoint3D = $HingeJoint3D
 
 
 var _interaction_controller: InteractionController = null
 var _is_grabbed: bool:
 	get(): return _interaction_controller != null
 var _ray_point: Vector3 = Vector3.INF
+
+
+func _ready() -> void:
+	hinge_joint_3d.node_a = get_parent().get_path()
 
 
 func _physics_process(_delta: float) -> void:
@@ -56,3 +62,10 @@ func _door_released(_c: InteractionController) -> void:
 	_interaction_controller = null
 	_ray_point = Vector3.INF
 	Player.current.lock_camera = false
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings:PackedStringArray = []
+	if get_parent() is not StaticBody3D:
+		warnings.append("Drawer must be a child of a StaticBody3D")
+	return warnings

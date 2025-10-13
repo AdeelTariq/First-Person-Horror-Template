@@ -1,21 +1,18 @@
-[gd_scene load_steps=39 format=3 uid="uid://djkpcj848dq8r"]
+[gd_scene load_steps=36 format=3 uid="uid://djkpcj848dq8r"]
 
 [ext_resource type="Shader" uid="uid://cee527dfy7dpo" path="res://shaders/psx_post_process/post_process.gdshader" id="1_d3jfy"]
 [ext_resource type="Shader" uid="uid://b2jbjl5waune8" path="res://shaders/retro/retro.gdshader" id="1_j30dx"]
 [ext_resource type="Script" uid="uid://b2d7r0uj56lbg" path="res://scripts/match_back_buffer_copy_to_screen.gd" id="2_q6c7b"]
 [ext_resource type="Shader" uid="uid://ckeoq8wwo66jj" path="res://shaders/tv_static_border/tv_static_border.gdshader" id="3_d3jfy"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="3_k63md"]
-[ext_resource type="Script" uid="uid://bxe74cq2uqemi" path="res://addons/game_controls/vanilla/input_map_game_control.gd" id="8_mrac1"]
 [ext_resource type="PackedScene" uid="uid://cg45nrous4phy" path="res://scenes/pieces/pickable.tscn" id="12_fn4oh"]
-[ext_resource type="PackedScene" uid="uid://cqntmbp1q0a81" path="res://scenes/door/amnesia_door.tscn" id="12_osidk"]
+[ext_resource type="PackedScene" uid="uid://crmffc87i8wof" path="res://scenes/pieces/lockable_interactable_door.tscn" id="13_2ilni"]
 [ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="13_k63md"]
 [ext_resource type="PackedScene" uid="uid://bmni5tpmmy2ph" path="res://assets/models/kaykit-dungeon-remastered/chair.glb" id="14_fn4oh"]
+[ext_resource type="PackedScene" uid="uid://dgqg1bjfa5smg" path="res://scenes/pieces/interactable_door.tscn" id="15_wm6m6"]
 [ext_resource type="PackedScene" uid="uid://bmsqvo3s4sucf" path="res://scenes/pieces/desk_drawer.tscn" id="16_q6c7b"]
-[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="17_d3jfy"]
-[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="18_q6c7b"]
-[ext_resource type="PackedScene" uid="uid://bimo0ijo3l1di" path="res://scenes/door/door.tscn" id="18_wm6m6"]
-[ext_resource type="Script" uid="uid://c684mkssofm3a" path="res://scenes/door/lockable_door.gd" id="21_62tve"]
-[ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="21_ocmmj"]
+[ext_resource type="PackedScene" uid="uid://do11gpu3tpjcg" path="res://scenes/pieces/doorway.tscn" id="16_x2tju"]
+[ext_resource type="PackedScene" uid="uid://vbpvk8lv7a8m" path="res://scenes/pieces/amnesia_door.tscn" id="17_wm6m6"]
 [ext_resource type="Script" uid="uid://dbv6ey8p6fq33" path="res://scenes/hud.gd" id="21_wm6m6"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="26_reluu"]
 [ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="27_csshy"]
@@ -59,7 +56,9 @@ sky = SubResource("Sky_emj6c")
 tonemap_mode = 2
 glow_enabled = true
 fog_enabled = true
-fog_density = 0.005
+fog_mode = 1
+fog_density = 1.0
+fog_depth_end = 75.0
 volumetric_fog_density = 0.01
 
 [sub_resource type="PrismMesh" id="PrismMesh_k63md"]
@@ -107,6 +106,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Playground" type="Node3D"]
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
 
 [node name="RetroEffect" type="ColorRect" parent="."]
 visible = false
@@ -173,107 +174,9 @@ use_collision = true
 size = Vector3(100, 100, 100)
 material = SubResource("StandardMaterial3D_x2tju")
 
-[node name="Door" parent="Level" instance=ExtResource("18_wm6m6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
-
-[node name="StaticBody3D" parent="Level/Door/wall_doorway/wall_doorway_door" index="0"]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":true,"disabled_display_name":"Locked Door","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"disabled_display_name":"Locked Door","metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
-[node name="InteractionContainer" type="Node" parent="Level/Door/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
-script = ExtResource("17_d3jfy")
-display_name = "Door"
-override_disabled_display_name = true
-disabled_display_name = "Locked Door"
-metadata/_custom_type_script = "uid://ck3cei0hvspym"
-
-[node name="Interact" type="Node" parent="Level/Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
-script = ExtResource("18_q6c7b")
-metadata/_custom_type_script = "uid://5tinbhq6p45k"
-
-[node name="interact" type="Node" parent="Level/Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact"]
-script = ExtResource("8_mrac1")
-action = &"interact"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
-[node name="SimpleLockedDoor" parent="Level" instance=ExtResource("18_wm6m6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
-script = ExtResource("21_62tve")
-
-[node name="StaticBody3D" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door" index="0"]
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-, Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"use","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
-[node name="InteractionContainer" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D" index="1"]
-script = ExtResource("17_d3jfy")
-display_name = "Door"
-metadata/_custom_type_script = "uid://ck3cei0hvspym"
-
-[node name="Closed" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
-script = ExtResource("21_ocmmj")
-override_display_name = true
-display_name = "Closed Door"
-metadata/_custom_type_script = "uid://doc0okecalxnp"
-
-[node name="Open" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed"]
-script = ExtResource("18_q6c7b")
-metadata/_custom_type_script = "uid://5tinbhq6p45k"
-
-[node name="interact" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Open"]
-script = ExtResource("8_mrac1")
-action = &"interact"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
-[node name="Lock" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed"]
-script = ExtResource("18_q6c7b")
-metadata/_custom_type_script = "uid://5tinbhq6p45k"
-
-[node name="use" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Lock"]
-script = ExtResource("8_mrac1")
-action = &"use"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
-[node name="Open" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
-script = ExtResource("21_ocmmj")
-context_id = 1
-override_display_name = true
-display_name = "Open Door"
-metadata/_custom_type_script = "uid://doc0okecalxnp"
-
-[node name="Close" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open"]
-script = ExtResource("18_q6c7b")
-metadata/_custom_type_script = "uid://5tinbhq6p45k"
-
-[node name="interact" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open/Close"]
-script = ExtResource("8_mrac1")
-action = &"interact"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
-[node name="Locked" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer"]
-script = ExtResource("21_ocmmj")
-context_id = 2
-override_display_name = true
-display_name = "Locked Door"
-metadata/_custom_type_script = "uid://doc0okecalxnp"
-
-[node name="Unlock" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked"]
-script = ExtResource("18_q6c7b")
-metadata/_custom_type_script = "uid://5tinbhq6p45k"
-
-[node name="interact" type="Node" parent="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked/Unlock"]
-script = ExtResource("8_mrac1")
-action = &"interact"
-metadata/_custom_type_script = "uid://bxe74cq2uqemi"
-
 [node name="Pickable" parent="Level" instance=ExtResource("12_fn4oh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
@@ -287,7 +190,7 @@ shape = SubResource("ConvexPolygonShape3D_osidk")
 
 [node name="Pickable2" parent="Level" instance=ExtResource("12_fn4oh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
@@ -303,7 +206,7 @@ shape = SubResource("ConvexPolygonShape3D_osidk")
 
 [node name="Pickable3" parent="Level" instance=ExtResource("12_fn4oh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
@@ -320,7 +223,7 @@ shape = SubResource("ConvexPolygonShape3D_osidk")
 [node name="Pickable4" parent="Level" instance=ExtResource("12_fn4oh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -1)
 mass = 100.0
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
@@ -337,7 +240,7 @@ shape = SubResource("ConvexPolygonShape3D_x2tju")
 [node name="PickableChair" parent="Level" instance=ExtResource("12_fn4oh")]
 transform = Transform3D(-0.9659257, 0, -0.25881892, 0, 1, 0, 0.25881892, 0, -0.9659257, -8, 1.0174876, 1.6093277)
 mass = 2.0
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("17_d3jfy"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("18_q6c7b")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("18_q6c7b"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("8_mrac1"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
@@ -352,11 +255,6 @@ shape = SubResource("BoxShape3D_fn4oh")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Level/PickableChair"]
 transform = Transform3D(1.0000012, 0, 0, 0, 1, 0, 0, 0, 1.0000012, 0.2496351, 0.2855023, 0)
 shape = SubResource("BoxShape3D_j30dx")
-
-[node name="AmnesiaDoor" parent="Level" instance=ExtResource("12_osidk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
-speed = 3.0
-release_distance = 4.0
 
 [node name="DeskDrawer" parent="Level" instance=ExtResource("16_q6c7b")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11, 0, 0)
@@ -409,6 +307,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
 use_collision = true
 size = Vector3(2, 0.5, 1)
 
+[node name="Doorway" parent="Level" instance=ExtResource("16_x2tju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+
+[node name="AmnesiaDoor" parent="Level/Doorway" instance=ExtResource("17_wm6m6")]
+
+[node name="Doorway2" parent="Level" instance=ExtResource("16_x2tju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="LockableInteractableDoor" parent="Level/Doorway2" instance=ExtResource("13_2ilni")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Lockable Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+, Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"use","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="Doorway3" parent="Level" instance=ExtResource("16_x2tju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="InteractableDoor" parent="Level/Doorway3" instance=ExtResource("15_wm6m6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Interactable Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"interact","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -454,12 +379,3 @@ horizontal_alignment = 1
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("26_reluu")
 pause_menu_packed = ExtResource("27_csshy")
-
-[connection signal="on_complete" from="Level/Door/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Interact" to="Level/Door" method="interact"]
-[connection signal="on_complete" from="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Open" to="Level/SimpleLockedDoor" method="interact"]
-[connection signal="on_complete" from="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Closed/Lock" to="Level/SimpleLockedDoor" method="lock_door"]
-[connection signal="on_complete" from="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Open/Close" to="Level/SimpleLockedDoor" method="interact"]
-[connection signal="on_complete" from="Level/SimpleLockedDoor/wall_doorway/wall_doorway_door/StaticBody3D/InteractionContainer/Locked/Unlock" to="Level/SimpleLockedDoor" method="unlock_door"]
-
-[editable path="Level/Door"]
-[editable path="Level/SimpleLockedDoor"]

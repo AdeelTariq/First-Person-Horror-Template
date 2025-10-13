@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqntmbp1q0a81"]
+
+[ext_resource type="Script" uid="uid://gomr6iqov747" path="res://addons/game_pieces/amnesia_door/amnesia_door.gd" id="1_cilu6"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_jj1qt"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_cilu6"]
+
+[node name="AmnesiaDoor" type="Node3D"]
+script = ExtResource("1_cilu6")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+collision_layer = 3
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+center_of_mass_mode = 1
+angular_damp = 5.0
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_jj1qt"),"default_context_id":0,"display_name":"Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_cilu6")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_cilu6"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="RigidBody3D"]
+script = ExtResource("2_jj1qt")
+display_name = "Door"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Grab" type="Node" parent="RigidBody3D/InteractionContainer"]
+script = ExtResource("3_cilu6")
+hide_while_grabbed = true
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="HingeJoint3D" type="HingeJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1, 0, 0)
+node_b = NodePath("../RigidBody3D")
+angular_limit/enable = true
+angular_limit/upper = 1.3089969
+angular_limit/lower = 0.0
+
+[connection signal="on_complete" from="RigidBody3D/InteractionContainer/Grab" to="." method="_door_released"]
+[connection signal="on_trigger" from="RigidBody3D/InteractionContainer/Grab" to="." method="_while_door_grabbed"]

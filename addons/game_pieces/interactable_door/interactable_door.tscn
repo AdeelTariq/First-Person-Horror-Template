@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bimo0ijo3l1di"]
+
+[ext_resource type="Script" uid="uid://c4pm11yrvd53" path="res://addons/game_pieces/interactable_door/interactable_door.gd" id="2_odsy8"]
+[ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="3_8bda1"]
+[ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_asid2"]
+
+[node name="InteractableDoor" type="StaticBody3D"]
+collision_layer = 3
+script = ExtResource("2_odsy8")
+metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_8bda1"),"default_context_id":0,"display_name":"Interactable Door","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_asid2")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_asid2"),"hide_while_grabbed":false,"override_display_name":false,"display_name":"","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="InteractionContainer" type="Node" parent="."]
+script = ExtResource("3_8bda1")
+display_name = "Interactable Door"
+metadata/_custom_type_script = "uid://ck3cei0hvspym"
+
+[node name="Interact" type="Node" parent="InteractionContainer"]
+script = ExtResource("3_asid2")
+metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[connection signal="on_complete" from="InteractionContainer/Interact" to="." method="interact"]
