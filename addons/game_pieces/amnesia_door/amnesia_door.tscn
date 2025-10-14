@@ -6,7 +6,8 @@
 
 [node name="AmnesiaDoor" type="Node3D"]
 script = ExtResource("1_cilu6")
-upper_angle = 74.99999867197056
+upper_angle = null
+lower_angle = null
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)

@@ -228,7 +228,7 @@ shape = SubResource("ConvexPolygonShape3D_osidk")
 
 [node name="Pickable4" parent="Level" instance=ExtResource("12_fn4oh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -1)
-mass = 100.0
+mass = 50.0
 metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","metadata/_custom_type_script":"uid://bxe74cq2uqemi")
 ,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
@@ -317,16 +317,22 @@ size = Vector3(2, 0.5, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
 
 [node name="AmnesiaDoor" parent="Level/Doorway" instance=ExtResource("17_wm6m6")]
+upper_angle = 74.99999867197056
+lower_angle = 0.0
 
 [node name="Doorway4" parent="Level" instance=ExtResource("16_x2tju")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -17, 0, -5.9999995)
 
 [node name="AmnesiaDoor" parent="Level/Doorway4" instance=ExtResource("17_wm6m6")]
+upper_angle = 74.99999867197056
+lower_angle = 0.0
 
 [node name="Doorway5" parent="Level" instance=ExtResource("16_x2tju")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -14, 0, -2.9999998)
 
 [node name="AmnesiaDoor" parent="Level/Doorway5" instance=ExtResource("17_wm6m6")]
+upper_angle = 74.99999867197056
+lower_angle = 0.0
 
 [node name="Doorway2" parent="Level" instance=ExtResource("16_x2tju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
@@ -358,6 +364,8 @@ transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50
 
 [node name="AmnesiaClosetDoor" parent="Level/Closet" instance=ExtResource("15_q6c7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33235744, 0.7072005, 0.94403434)
+upper_angle = 74.99999867197056
+lower_angle = 0.0
 
 [node name="AmnesiaClosetDoor2" parent="Level/Closet" instance=ExtResource("15_q6c7b")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.2845865, 0.7072005, 0.9440344)

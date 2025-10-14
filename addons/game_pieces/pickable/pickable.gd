@@ -40,7 +40,7 @@ func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	var angle: float = quaternion_diff.get_angle()
 	if angle > 0.001 and angle < PI:
 		var axis: Vector3 = quaternion_diff.get_axis()
-		angular_velocity = axis * angle / 0.01
+		angular_velocity = axis * (angle  * (pull_force / (mass * 100))) / 0.01
 	else:
 		angular_velocity = Vector3.ZERO
 
@@ -75,6 +75,7 @@ func _released(_c: InteractionController) -> void:
 	_interaction_controller.release_grabbed()
 	_interaction_controller = null
 	InteractionContainer.from(self).enable()
+	GamePiecesEventBus.request_camera_lock(false)
 
 
 func _on_change_distance(controller: InteractionController) -> void:
