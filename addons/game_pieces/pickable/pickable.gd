@@ -4,6 +4,7 @@ extends RigidBody3D
 @export var throw_power: float = 10
 @export var interaction_context_when_grabbed: int = 1
 @export var change_distance_interaction: Interaction
+@export var release_distance: float = 4.
 
 var _interaction_controller: InteractionController = null
 var _is_grabbed: bool:
@@ -14,6 +15,14 @@ var _initial_position: Vector3 = Vector3.ZERO
 var _min_offset: float = 0.65
 var _max_offset: float = 1.65
 var _is_rotating: bool = false
+
+func _physics_process(_delta: float) -> void:
+	if Engine.is_editor_hint(): return
+	if _is_grabbed:
+		var ray_cast: RayCast3D = _interaction_controller.get_parent()
+		var distance_to_player: float = ray_cast.global_position.distance_to(global_position)
+		if distance_to_player > release_distance * _position_offset:
+			_released(_interaction_controller)
 
 
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
