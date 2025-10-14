@@ -6,6 +6,7 @@
 
 [node name="AmnesiaDoor" type="Node3D"]
 script = ExtResource("1_cilu6")
+upper_angle = 74.99999867197056
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
@@ -33,6 +34,7 @@ metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
 [node name="HingeJoint3D" type="HingeJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1, 0, 0)
+node_a = NodePath("/root/@EditorNode@20438/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@62/@VBoxContainer@63/@EditorMainScreen@103/MainScreen/@CanvasItemEditor@10871/@VSplitContainer@10516/@HSplitContainer@10518/@HSplitContainer@10520/@Control@10521/@SubViewportContainer@10522/@SubViewport@10523")
 node_b = NodePath("../RigidBody3D")
 angular_limit/enable = true
 angular_limit/upper = 1.3089969

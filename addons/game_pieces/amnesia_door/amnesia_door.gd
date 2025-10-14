@@ -4,6 +4,19 @@ class_name AmnesiaDrawer extends Node3D
 @export_range(1., 10., 0.1) var speed: float = 3.
 @export var release_distance: float = 4.
 
+@export var upper_angle: float:
+	set(value): 
+		upper_angle = value
+		if hinge_joint_3d == null: return
+		hinge_joint_3d.set_param(HingeJoint3D.PARAM_LIMIT_UPPER, deg_to_rad(value))
+
+@export var lower_angle: float:
+	set(value):
+		lower_angle = value
+		if hinge_joint_3d == null: return
+		hinge_joint_3d.set_param(HingeJoint3D.PARAM_LIMIT_LOWER, deg_to_rad(value))
+
+
 @onready var door_body: RigidBody3D = $RigidBody3D
 @onready var collider: CollisionShape3D = $RigidBody3D/CollisionShape3D
 @onready var hinge_joint_3d: HingeJoint3D = $HingeJoint3D
@@ -17,9 +30,12 @@ var _ray_point: Vector3 = Vector3.INF
 
 func _ready() -> void:
 	hinge_joint_3d.node_a = get_parent().get_path()
+	hinge_joint_3d.set_param(HingeJoint3D.PARAM_LIMIT_UPPER, deg_to_rad(upper_angle))
+	hinge_joint_3d.set_param(HingeJoint3D.PARAM_LIMIT_LOWER, deg_to_rad(lower_angle))
 
 
 func _physics_process(_delta: float) -> void:
+	if Engine.is_editor_hint(): return
 	if _is_grabbed:
 		var ray_cast: RayCast3D = _interaction_controller.get_parent()
 		var distance_to_player: float = ray_cast.global_position.distance_to(door_body.global_position)
@@ -31,8 +47,9 @@ func _physics_process(_delta: float) -> void:
 		move_dir.y = 0
 		var direction: Vector3 = ray_cast.global_position.direction_to(global_position)
 		var amount: float = move_dir.dot(direction)
-		var swing_dir: float = sign(direction.dot(Vector3.FORWARD))
-		door_body.apply_torque(Vector3(0, amount * swing_dir, 0) * 200 * speed)
+		if abs(amount) <= 0: return
+		var swing_dir: float = sign(direction.dot(-global_basis.z))
+		door_body.apply_torque(Vector3(0, amount * swing_dir, 0) * 100 * speed)
 		_ray_point = point
 
 
@@ -43,7 +60,7 @@ func _input(event: InputEvent) -> void:
 		var move_dir: Vector3 = Vector3(mouse_event.relative.x, 0, mouse_event.relative.y) / 10.
 		var direction: Vector3 = ray_cast.global_position.direction_to(global_position)
 		var amount: float = move_dir.dot(Vector3.FORWARD)
-		var swing_dir: float = sign(direction.dot(Vector3.FORWARD))
+		var swing_dir: float = sign(direction.dot(-global_basis.z))
 		door_body.apply_torque(Vector3(0, amount * swing_dir, 0) * speed)
 
 

@@ -318,6 +318,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
 
 [node name="AmnesiaDoor" parent="Level/Doorway" instance=ExtResource("17_wm6m6")]
 
+[node name="Doorway4" parent="Level" instance=ExtResource("16_x2tju")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -17, 0, -5.9999995)
+
+[node name="AmnesiaDoor" parent="Level/Doorway4" instance=ExtResource("17_wm6m6")]
+
+[node name="Doorway5" parent="Level" instance=ExtResource("16_x2tju")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -14, 0, -2.9999998)
+
+[node name="AmnesiaDoor" parent="Level/Doorway5" instance=ExtResource("17_wm6m6")]
+
 [node name="Doorway2" parent="Level" instance=ExtResource("16_x2tju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
 
@@ -351,6 +361,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33235744, 0.7072005, 0.944
 
 [node name="AmnesiaClosetDoor2" parent="Level/Closet" instance=ExtResource("15_q6c7b")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.2845865, 0.7072005, 0.9440344)
+upper_angle = 0.0
+lower_angle = -75.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Closet"]
 shape = SubResource("ConcavePolygonShape3D_d3jfy")
