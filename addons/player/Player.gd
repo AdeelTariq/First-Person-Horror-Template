@@ -2,8 +2,6 @@
 ## Stuff here?
 class_name Player extends CharacterBody3D
 
-static var current: Player
-
 @export var footsteps_sound: AudioStream
 
 ## The constant value that footsteps and head bob are calculated against
@@ -82,10 +80,6 @@ var crouching: bool:
 	get():
 		return abs(scale.y - crouch_height) < 0.01
 var _crouch_tween: Tween
-
-
-func _init() -> void:
-	current = self
 
 
 func _ready() -> void:

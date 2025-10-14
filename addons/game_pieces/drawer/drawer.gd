@@ -49,7 +49,7 @@ func _while_drawer_grabbed(controller: InteractionController) -> void:
 	var ray_cast: RayCast3D = _interaction_controller.get_parent()
 	_ray_point = ray_cast.to_global(ray_cast.target_position)
 	_mouse_point = get_viewport().get_camera_3d().project_position(Vector2.ZERO, .1)
-	Player.current.lock_camera = true
+	GamePiecesEventBus.request_camera_lock(true)
 	_initial_distance = ray_cast.global_position.distance_to(drawer_body.global_position)
 
 
@@ -59,7 +59,7 @@ func _drawer_released(_c: InteractionController) -> void:
 	_interaction_controller = null
 	_ray_point = Vector3.INF
 	_mouse_point = Vector3.INF
-	Player.current.lock_camera = false
+	GamePiecesEventBus.request_camera_lock(false)
 
 
 

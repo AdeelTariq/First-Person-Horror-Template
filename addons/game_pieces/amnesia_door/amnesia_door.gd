@@ -70,7 +70,7 @@ func _while_door_grabbed(controller: InteractionController) -> void:
 	_interaction_controller.grab_object(door_body)
 	var ray_cast: RayCast3D = _interaction_controller.get_parent()
 	_ray_point = ray_cast.to_global(ray_cast.target_position)
-	Player.current.lock_camera = true
+	GamePiecesEventBus.request_camera_lock(true)
 
 
 func _door_released(_c: InteractionController) -> void:
@@ -78,7 +78,7 @@ func _door_released(_c: InteractionController) -> void:
 	_interaction_controller.release_grabbed()
 	_interaction_controller = null
 	_ray_point = Vector3.INF
-	Player.current.lock_camera = false
+	GamePiecesEventBus.request_camera_lock(false)
 
 
 func _get_configuration_warnings() -> PackedStringArray:

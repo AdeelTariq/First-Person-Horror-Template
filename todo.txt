@@ -1,4 +1,3 @@
-Fix cabinet doors not opening the correct way
 Fix rotation and dragging of heavy objects
 pressing buttons, pulling a lever with mouse
 Add additional options and settings
