@@ -1,4 +1,3 @@
-Fix rotation and dragging of heavy objects
 pressing buttons, pulling a lever with mouse
 Add additional options and settings
 More player sounds like jumping and landing
