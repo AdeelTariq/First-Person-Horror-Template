@@ -212,21 +212,13 @@ target_position = Vector3(0, 0, -2)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/Neck/Camera3D"]
+[node name="RightHand" type="Marker3D" parent="Head/Neck/Camera3D"]
 unique_name_in_owner = true
-linear_limit_x/enabled = false
-linear_limit_y/enabled = false
-linear_limit_z/enabled = false
-linear_spring_x/enabled = true
-linear_spring_y/enabled = true
-linear_spring_z/enabled = true
-angular_spring_x/enabled = true
-angular_spring_y/enabled = true
-angular_spring_z/enabled = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.25, -0.6)
 
-[node name="Hand" type="Marker3D" parent="Head/Neck/Camera3D"]
+[node name="LeftHand" type="Marker3D" parent="Head/Neck/Camera3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.25, -0.6)
 
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head"]
 unique_name_in_owner = true

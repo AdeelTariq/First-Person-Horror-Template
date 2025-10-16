@@ -65,9 +65,9 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom
 @onready var footsteps: AudioStreamPlayer3D = %FootSteps
 @onready var foot_steps_animation_player: AnimationPlayer = %FootStepsAnimationPlayer
 @onready var camera_animation_player: AnimationPlayer = %CameraAnimationPlayer
-@onready var generic_6dof_joint_3d: Joint3D = %Generic6DOFJoint3D
-@onready var hand: Marker3D = %Hand
 @onready var ceiling: ShapeCast3D = $Ceiling
+@onready var right_hand_pos: Vector3 = %RightHand.transform.origin
+@onready var left_hand_pos: Vector3 = %LeftHand.transform.origin
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -201,6 +201,8 @@ func handle_head_bob(delta: float) -> void:
 	pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength
 	pos.x = cos(bob_time * BOB_FREQ / 2) * head_bob_strength
 	neck.transform.origin =  pos
+	%RightHand.transform.origin = right_hand_pos - pos / 4
+	%LeftHand.transform.origin = left_hand_pos - pos / 4
 
 
 func handle_fov_change(delta: float) -> void:
@@ -226,15 +228,6 @@ func handle_lean(delta: float) -> void:
 		camera_base_position.z
 	)
 	camera.position = lerp(camera.position, lean_target_position, LEAN_SPEED)
-
-
-func attach_to_hand(body: RigidBody3D) -> void:
-	body.global_position = %RayCast3D.to_global(%RayCast3D.target_position)
-	generic_6dof_joint_3d.node_b = body.get_path()
-
-
-func detach_from_hand() -> void:
-	generic_6dof_joint_3d.node_b = ""
 
 
 func _get_configuration_warnings() -> PackedStringArray:

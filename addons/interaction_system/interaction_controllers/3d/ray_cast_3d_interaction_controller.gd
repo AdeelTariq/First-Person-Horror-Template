@@ -8,6 +8,7 @@ const DISABLE_COLLISION_GROUP = "disable_collision_while_grabbed"
 
 ## Join to exclude grabbed object from colliding with the player
 @export var collision_excluding_joint: Joint3D
+@export var hands: Array[Node3D]
 
 var raycast: RayCast3D
 var _collider: Node3D = null
@@ -60,3 +61,15 @@ func release_grabbed() -> void:
 	super.release_grabbed()
 	if collision_excluding_joint == null: return
 	collision_excluding_joint.node_b = ""
+
+
+func equip_object(object: Node) -> void:
+	super.equip_object(object)
+	var empty_hands: Array[Node3D] = hands.filter(
+		func(h: Node3D) -> bool: 
+			return h != null and h.get_child_count() == 0
+	)
+	if empty_hands.is_empty(): return
+	object.reparent(empty_hands[0])
+	object.position = Vector3.ZERO
+	object.rotation = Vector3.ZERO

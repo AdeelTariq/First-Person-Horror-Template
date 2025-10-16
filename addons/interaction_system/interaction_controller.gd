@@ -9,6 +9,7 @@ static var current: InteractionController
 var _focused_interactions: Array[Interaction] = []
 var _focused_object_name: String = ""
 var _picked_object: Node = null
+var _equipped_objects: Array[Node] = []
 var _is_focused_object_picked: bool = false
 
 
@@ -20,6 +21,11 @@ func _process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
 	for interaction in _focused_interactions:
 		interaction.process_interaction(self)
+	
+	for equipped_object in _equipped_objects:
+		var container: InteractionContainer = InteractionContainer.from(equipped_object)
+		for interaction in container.get_interactions():
+			interaction.process_interaction(self)
 
 
 func on_new_object_available(node: Node) -> void:
@@ -68,3 +74,6 @@ func grab_object(object: Node) -> void:
 func release_grabbed() -> void:
 	_picked_object = null
 	_clear_prompts()
+
+func equip_object(object: Node) -> void:
+	_equipped_objects.append(object)
