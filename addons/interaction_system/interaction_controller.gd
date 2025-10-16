@@ -75,5 +75,12 @@ func release_grabbed() -> void:
 	_picked_object = null
 	_clear_prompts()
 
-func equip_object(object: Node) -> void:
+
+func equip_object(object: Node) -> bool:
 	_equipped_objects.append(object)
+	return true
+
+
+func drop_object(object: Node) -> bool:
+	_equipped_objects.erase(object)
+	return true
