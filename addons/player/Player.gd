@@ -79,6 +79,12 @@ var crouch_released_last_frame: bool = true
 var crouching: bool:
 	get():
 		return abs(scale.y - crouch_height) < 0.01
+
+var facing: Vector3:
+	get():
+		return -camera.global_basis.z
+
+
 var _crouch_tween: Tween
 
 
@@ -175,7 +181,7 @@ func look_around() -> void:
 	if lock_camera: return
 	head.rotate_y(look_control.value_axis_2d().x * mouse_sensitivity)
 	neck.rotate_x(look_control.value_axis_2d().y * mouse_sensitivity)
-	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-75), deg_to_rad(60))
 
 
 func handle_movement(delta: float) -> void:

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cc37235kj4384"]
 
 [ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_menus_template/base/scripts/ui_sound_controller.gd" id="1_dmagn"]
-[ext_resource type="AudioStream" uid="uid://cmpaybk6gmrgi" path="res://assets/models/psx-mega-pack/sounds/button_hover.ogg" id="2_qg0v4"]
-[ext_resource type="AudioStream" uid="uid://b3dhonwvr8oh7" path="res://assets/models/psx-mega-pack/sounds/button_pressed.ogg" id="3_wr46q"]
+[ext_resource type="AudioStream" uid="uid://cmpaybk6gmrgi" path="res://assets/sounds/button_hover.ogg" id="2_qg0v4"]
+[ext_resource type="AudioStream" uid="uid://b3dhonwvr8oh7" path="res://assets/sounds/button_pressed.ogg" id="3_wr46q"]
 
 [node name="ProjectUISoundController" type="Node"]
 script = ExtResource("1_dmagn")

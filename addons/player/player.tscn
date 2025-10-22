@@ -158,7 +158,7 @@ _data = {
 &"footsteps": SubResource("Animation_0l22m")
 }
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_cyojo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
