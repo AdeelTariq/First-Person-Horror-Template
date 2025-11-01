@@ -45,7 +45,7 @@ const LEAN_SPEED: float = 0.1
 @export_custom(PROPERTY_HINT_MULTILINE_TEXT, "", PROPERTY_USAGE_READ_ONLY | PROPERTY_USAGE_EDITOR)
 var _1: String = "Player node requires uniquely named children inheriting from GameControl.
 Required: %look, %move.
-Optional: %jump, %sprint, %crouch, %lean, %zoom
+Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 "
 
 ## Control where x and z values will control the movement direction of the player
@@ -86,7 +86,7 @@ var facing: Vector3:
 
 
 var _crouch_tween: Tween
-
+var _switched: bool = false
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
@@ -106,6 +106,7 @@ func _physics_process(delta) -> void:
 	handle_head_bob(delta)
 	handle_fov_change(delta)
 	handle_zoom(delta)
+	handle_switch_hands()
 	handle_lean(delta)
 	move_and_slide()
 
@@ -221,6 +222,21 @@ func handle_zoom(delta: float) -> void:
 	if get_node_or_null("%zoom") == null: return
 	var target_fov: float = camera.fov * .33 if %zoom.is_triggered() else camera.fov
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+
+
+func handle_switch_hands() -> void:
+	if get_node_or_null("%switch_hands") == null: return
+	if not %switch_hands.is_triggered(): 
+		_switched = false
+		return
+	if _switched: return
+	_switched = true
+	var right_items: Array = %RightHand.get_children()
+	var left_items: Array = %LeftHand.get_children()
+	for item: Node in right_items:
+		item.reparent(%LeftHand, false)
+	for item: Node in left_items:
+		item.reparent(%RightHand, false)
 
 
 func handle_lean(delta: float) -> void:
