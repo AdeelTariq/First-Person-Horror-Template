@@ -130,7 +130,7 @@ func create_credits_from_paths(paths: Array[String]) -> Array:
 	return credits
 
 
-func get_metadata(path: String, credit: Credit) -> Credit:
+static func get_metadata(path: String, credit: Credit) -> Credit:
 	if not FileAccess.file_exists(path):
 		return credit
 

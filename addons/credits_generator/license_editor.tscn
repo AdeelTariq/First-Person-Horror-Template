@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1fog6jempap"]
+
+[ext_resource type="Script" uid="uid://o86txenxmh1k" path="res://addons/credits_generator/license_editor.gd" id="1_yir1k"]
+
+[node name="LicenseEditor" type="ConfirmationDialog"]
+oversampling_override = 1.0
+title = "License Info"
+initial_position = 2
+size = Vector2i(512, 432)
+visible = true
+ok_button_text = "Save"
+script = ExtResource("1_yir1k")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 504.0
+offset_bottom = 383.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Author"
+
+[node name="Author" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "e.g. Adeel"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Author Link"
+
+[node name="AuthorLink" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "e.g. https://adeeltariq.itch.io/"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "License"
+
+[node name="License" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "e.g. CC0 1.0"
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "License Link"
+
+[node name="License Link" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "e.g. https://creativecommons.org/publicdomain/zero/1.0/"
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Asset Link"
+
+[node name="Asset Link" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+placeholder_text = "e.g. https://github.com/AdeelTariq/First-Person-Horror-Template"
+wrap_mode = 1

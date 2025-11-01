@@ -74,8 +74,9 @@ func _while_grabbed(controller: InteractionController) -> void:
 	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
 	_initial_position = reference_node.to_local(global_position)
 	# Bring it closer to reference node
-	_initial_position *= 0.9
+	_initial_position *= 0.8
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
+	set_transparency(self, 0.35)
 
 
 func _released(_c: InteractionController) -> void:
@@ -85,6 +86,7 @@ func _released(_c: InteractionController) -> void:
 	_interaction_controller = null
 	InteractionContainer.from(self).enable()
 	GamePiecesEventBus.request_camera_lock(false)
+	set_transparency(self, 0.0)
 
 
 func _on_change_distance(controller: InteractionController) -> void:
@@ -115,3 +117,12 @@ func _on_throw(controller: InteractionController) -> void:
 	apply_impulse(direction * throw_power)
 	await get_tree().process_frame
 	InteractionContainer.from(self).enable()
+
+
+func set_transparency(object: Node, value: float) -> void:
+	for child in object.get_children(true):
+		if child is not MeshInstance3D: 
+			set_transparency(child, value)
+			continue
+		var mesh: MeshInstance3D = child
+		mesh.transparency = value
