@@ -54,7 +54,7 @@ func generate():
 	result = result.replace(godot_3rd_party_licenses_keyword, format_godot_3rd_party_licenses())
 	
 	result = remove_comments(result).strip_edges()
-	write_file(credits_path, result)
+	write_file(credits_path, "\n" + result)
 	EditorInterface.get_resource_filesystem().scan()
 	print("CREDITS.md generated successfully")
 

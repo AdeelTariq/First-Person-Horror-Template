@@ -15,6 +15,7 @@ var _initial_position: Vector3 = Vector3.ZERO
 var _min_offset: float = 0.65
 var _max_offset: float = 1.65
 var _is_rotating: bool = false
+var _delay_timer: Tween = null
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -66,6 +67,8 @@ func _input(event: InputEvent) -> void:
 
 func _while_grabbed(controller: InteractionController) -> void:
 	if _interaction_controller != null: return
+	# Again cool down to avoid player flying off
+	if _delay_timer != null and _delay_timer.is_running(): return
 	_interaction_controller = controller
 	_interaction_controller.grab_object(self)
 	apply_central_force(Vector3.ONE)
@@ -73,15 +76,23 @@ func _while_grabbed(controller: InteractionController) -> void:
 	var reference_node: Node3D = _interaction_controller.get_parent()
 	_initial_basis = reference_node.global_transform.basis.inverse() * global_transform.basis
 	_initial_position = reference_node.to_local(global_position)
-	# Bring it closer to reference node
-	_initial_position *= 0.8
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
 	set_transparency(self, 0.35)
+	$PickupSound.play()
+	# Bring it closer to reference node but with a delay to avoid player flying off
+	_delay_timer = create_tween()
+	_delay_timer.tween_interval(0.1)
+	await _delay_timer.finished
+	_initial_position *= 0.8
 
 
 func _released(_c: InteractionController) -> void:
 	if _c != _interaction_controller: return
 	if _interaction_controller == null: return
+	if _delay_timer != null: 
+		_delay_timer.kill()
+	_delay_timer = create_tween()
+	_delay_timer.tween_interval(0.3)
 	_interaction_controller.release_grabbed()
 	_interaction_controller = null
 	InteractionContainer.from(self).enable()

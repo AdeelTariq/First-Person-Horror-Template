@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://3a8vimn70t6v"]
+[gd_scene load_steps=6 format=3 uid="uid://3a8vimn70t6v"]
 
 [ext_resource type="Script" uid="uid://bkjjobtn3b4bj" path="res://addons/game_pieces/pickable/pickable.gd" id="1_fd5fy"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_q88yg"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_u3te7"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_q88yg"]
+[ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="5_wuhtr"]
 
 [node name="Pickable" type="RigidBody3D" node_paths=PackedStringArray("change_distance_interaction")]
 collision_layer = 3
 collision_mask = 3
+contact_monitor = true
+max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_fd5fy")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
@@ -42,6 +45,18 @@ metadata/_custom_type_script = "uid://5tinbhq6p45k"
 [node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed"]
 script = ExtResource("3_u3te7")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+
+[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="."]
+max_polyphony = 3
+script = ExtResource("5_wuhtr")
+sounds_per_velocity = Dictionary[int, AudioStream]({
+2: null,
+6: null,
+12: null
+})
+metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
 
 [connection signal="on_complete" from="InteractionContainer/Grab" to="." method="_released"]
 [connection signal="on_trigger" from="InteractionContainer/Grab" to="." method="_while_grabbed"]

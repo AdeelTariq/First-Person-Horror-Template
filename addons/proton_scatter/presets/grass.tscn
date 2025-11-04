@@ -1,0 +1,49 @@
+[gd_scene load_steps=15 format=3 uid="uid://2e6nvcbuqhao"]
+
+[ext_resource type="Script" uid="uid://bbahf6is88s5p" path="res://addons/proton_scatter/src/scatter.gd" id="1_hwvsa"]
+[ext_resource type="Script" uid="uid://d38y0i2ibelu0" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_84xri"]
+[ext_resource type="Script" uid="uid://ssa6b3bg372b" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="3_p472w"]
+[ext_resource type="Script" uid="uid://5c5gdprm23lr" path="res://addons/proton_scatter/src/modifiers/create_inside_grid.gd" id="3_t5gts"]
+[ext_resource type="Script" uid="uid://bs4fc24xaayra" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="4_v7woi"]
+[ext_resource type="Script" uid="uid://csorvcx0rkwiy" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="5_tgf12"]
+[ext_resource type="Script" uid="uid://dsf118w1pot40" path="res://addons/proton_scatter/src/scatter_item.gd" id="6_11eqr"]
+[ext_resource type="Script" uid="uid://dxkwudbrrwwe2" path="res://addons/proton_scatter/src/scatter_shape.gd" id="7_vk3gk"]
+[ext_resource type="Script" uid="uid://13djdxbjt07f" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="9_w0igc"]
+
+[sub_resource type="Resource" id="Resource_eq6fx"]
+script = ExtResource("3_t5gts")
+spacing = Vector3(0.2, 1, 0.2)
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_fkpko"]
+script = ExtResource("4_v7woi")
+rotation = Vector3(20, 360, 20)
+scale = Vector3(4, 2, 4)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_hk8h4"]
+script = ExtResource("5_tgf12")
+ray_offset = 10.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_x02d4"]
+script = ExtResource("2_84xri")
+stack = Array[ExtResource("3_p472w")]([SubResource("Resource_eq6fx"), SubResource("Resource_fkpko"), SubResource("Resource_hk8h4")])
+
+[sub_resource type="Resource" id="Resource_gaw40"]
+script = ExtResource("9_w0igc")
+radius = 5.0
+
+[node name="ProtonScatter" type="Node3D"]
+script = ExtResource("1_hwvsa")
+modifier_stack = SubResource("Resource_x02d4")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="Grass" type="Node3D" parent="."]
+script = ExtResource("6_11eqr")
+path = "res://addons/proton_scatter/demos/assets/grass_2.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="."]
+script = ExtResource("7_vk3gk")
+shape = SubResource("Resource_gaw40")
