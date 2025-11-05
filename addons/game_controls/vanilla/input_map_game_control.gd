@@ -25,6 +25,10 @@ var action: StringName:
 @export var negative_y: StringName
 @export var positive_y: StringName
 
+func control_id() -> String:
+	return action
+
+
 func value() -> float:
 	if type == Type.Default:
 		return Input.get_action_strength(action)

@@ -19,12 +19,15 @@ func _init() -> void:
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
+	var active_controls: Array[String] = []
 	for interaction in _focused_interactions:
-		interaction.process_interaction(self)
+		if interaction.process_interaction(self):
+			active_controls.append(interaction.control.control_id())
 	
 	for equipped_object in _equipped_objects:
 		var container: InteractionContainer = InteractionContainer.from(equipped_object)
 		for interaction in container.get_interactions():
+			if active_controls.has(interaction.control.control_id()): continue
 			interaction.process_interaction(self)
 
 

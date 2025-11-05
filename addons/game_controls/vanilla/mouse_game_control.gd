@@ -3,6 +3,10 @@ class_name MouseGameControl extends GameControl
 # The mouse movement since the last frame. 
 var _mouse_movement: Vector2 = Vector2.ZERO
 
+func control_id() -> String:
+	return "mouse_movement"
+
+
 func value() -> float:
 	return 0.0
 

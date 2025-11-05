@@ -21,14 +21,18 @@ var control: GameControl:
 var _triggered_last_frame: bool = false
 
 
-func process_interaction(controller: InteractionController) -> void:
-	if Engine.is_editor_hint(): return
+func process_interaction(controller: InteractionController) -> bool:
+	if Engine.is_editor_hint(): return false
 	if control.is_triggered():
 		perform(controller)
+		_triggered_last_frame = true
+		return true
 	if _triggered_last_frame and not control.is_triggered():
+		_triggered_last_frame = false
 		complete(controller)
-	
-	_triggered_last_frame = control.is_triggered()
+		return true
+	_triggered_last_frame = false
+	return false
 
 
 func perform(controller: InteractionController) -> void:
