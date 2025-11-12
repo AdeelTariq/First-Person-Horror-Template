@@ -1,10 +1,4 @@
-pressing buttons, pulling a lever with mouse
 Add additional options and settings
-More player sounds like jumping and landing
-Open an interface upon interacting with a thing (hacking, lockpicking, pincode pabel, reading a note)
 Can npcs do the same things as player?
-Ability to pickup items. Pickup items:
-	weilding items like guns
-	picking and adding items to the inventory
 Make a dependency map
 Create demo games

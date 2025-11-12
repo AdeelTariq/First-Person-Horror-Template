@@ -12,8 +12,12 @@ Right now the template includes:
 - Interactable Game Pieces like doors, drawers and physics objects
 - Amnesia style doors and drawer interactions
 - An automatic credits generator
+- Proton Scatter Plugn
+- Talo plugin for analytics gathering
 
 
 **Core principle and goal of this template is to be modular.**
 So you can delete any part of it you don't want or replace any part with your own custom solution.
 I guess that may come at the cost of complexity, so I'll try to add explainations to each module as much as possible.
+
+#### DEMO GAME: https://adeeltariq.itch.io/lumboo

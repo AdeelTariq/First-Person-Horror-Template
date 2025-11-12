@@ -89,6 +89,7 @@ static func get_or_create_multimesh(item: ProtonScatterItem, count: int) -> Mult
 	mmi.position = Vector3.ZERO
 	mmi.material_override = get_final_material(item, mesh_instance)
 	mmi.set_cast_shadows_setting(item.override_cast_shadow)
+	mmi.set_sorting_offset(item.override_sorting_offset)
 
 	mmi.multimesh.instance_count = 0 # Set this to zero or you can't change the other values
 	mmi.multimesh.mesh = mesh_instance.mesh
@@ -133,6 +134,7 @@ static func get_or_create_multimesh_chunk(item: ProtonScatterItem,
 	mmi.position = Vector3.ZERO
 	mmi.material_override = get_final_material(item, mesh_instance)
 	mmi.set_cast_shadows_setting(item.override_cast_shadow)
+	mmi.set_sorting_offset(item.override_sorting_offset)
 
 	mmi.multimesh.instance_count = 0 # Set this to zero or you can't change the other values
 	mmi.multimesh.mesh = mesh_instance.mesh

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://buj78s188sa3y"]
+
+[ext_resource type="Script" uid="uid://bjmuh5li4wesj" path="res://addons/sound_fx_manager/sound_fx_mgr.gd" id="1_sbadq"]
+
+[node name="SoundFxMgr" type="Node"]
+process_mode = 3
+script = ExtResource("1_sbadq")

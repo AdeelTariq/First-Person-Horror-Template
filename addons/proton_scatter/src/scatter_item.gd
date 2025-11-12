@@ -53,6 +53,11 @@ const ScatterUtil := preload('./common/scatter_util.gd')
 		override_cast_shadow = val
 		ScatterUtil.request_parent_to_rebuild(self) # TODO - Only change the multimesh flag instead
 
+@export var override_sorting_offset: float = 0.0:
+	set(val):
+		override_sorting_offset = val
+		ScatterUtil.request_parent_to_rebuild(self) # TODO - Only change the multimesh flag instead
+
 @export_group("Visibility", "visibility")
 @export_flags_3d_render var visibility_layers: int = 1
 @export var visibility_range_begin : float = 0

@@ -180,8 +180,9 @@ func set_movement_speed() -> void:
 
 func look_around() -> void:
 	if lock_camera: return
-	head.rotate_y(look_control.value_axis_2d().x * mouse_sensitivity)
-	neck.rotate_x(look_control.value_axis_2d().y * mouse_sensitivity)
+	var sensitivity: float = PlayerConfig.get_config("InputSettings", "MouseSensitivity", 1.0) * mouse_sensitivity
+	head.rotate_y(look_control.value_axis_2d().x * sensitivity)
+	neck.rotate_x(look_control.value_axis_2d().y * sensitivity)
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-75), deg_to_rad(60))
 
 
@@ -205,8 +206,9 @@ func handle_movement(delta: float) -> void:
 func handle_head_bob(delta: float) -> void:
 	bob_time += delta * velocity.length() * float(is_on_floor())
 	var pos: Vector3 = Vector3.ZERO
-	pos.y = sin(bob_time * BOB_FREQ) * head_bob_strength
-	pos.x = cos(bob_time * BOB_FREQ / 2) * head_bob_strength
+	var head_bob_value: float = PlayerConfig.get_config("InputSettings", "HeadBob", 1.0) * head_bob_strength
+	pos.y = sin(bob_time * BOB_FREQ) * head_bob_value
+	pos.x = cos(bob_time * BOB_FREQ / 2) * head_bob_value
 	neck.transform.origin =  pos
 	%RightHand.transform.origin = right_hand_pos - pos / 4
 	%LeftHand.transform.origin = left_hand_pos - pos / 4
@@ -214,7 +216,8 @@ func handle_head_bob(delta: float) -> void:
 
 func handle_fov_change(delta: float) -> void:
 	var velocity_clamped: float = clamp(Vector2(velocity.x, velocity.z).length(), 0.5, sprint_speed * 2)
-	var target_fov: float = base_fov + fov_change * velocity_clamped
+	var fov_value = PlayerConfig.get_config("InputSettings", "FOV", 1.0) * base_fov
+	var target_fov: float = fov_value + fov_change * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 
 
