@@ -4,35 +4,46 @@
 code = "// NOTE: Shader automatically c;onverted from Godot Engine 4.4.dev6's StandardMaterial3D.
 
 shader_type spatial;
-render_mode blend_mix,
-	depth_prepass_alpha,
-	shadows_disabled,
-	specular_disabled,
-	vertex_lighting;
+render_mode
+blend_mix
+,depth_prepass_alpha
+,depth_draw_always
+,specular_disabled
+;
 
 
 uniform bool affine_mapping = false;
-uniform float alpha_scissor : hint_range(0, 1) = 0.5;
 uniform float jitter: hint_range(0, 1) = 0.25;
 uniform ivec2 resolution = ivec2(480, 270);
 
-uniform vec4 albedo : source_color = vec4(1.0);
+uniform vec4 albedo : source_color = vec4(1.);
 uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
-uniform float point_size : hint_range(0.1, 128.0, 0.1) = 1.0;
+
+uniform bool triplanar = false;
 
 varying vec3 uv1_triplanar_pos;
 uniform float uv1_blend_sharpness : hint_range(0.0, 150.0, 0.001) = 1.0f;
 varying vec3 uv1_power_normal;
 
-uniform bool triplanar = false;
-
 uniform vec3 uv1_scale = vec3(1.0);
 uniform vec3 uv1_offset;
+
+
+group_uniforms ProximityFade;
+uniform bool proximity_fade = false;
+uniform float proximity_fade_distance : hint_range(0.0, 4096.0, 0.01) = 1.0;
+
+
+group_uniforms OverlayTexture;
+uniform bool overlay_texture = false;
+uniform sampler2D texture_albedo_2 : source_color, filter_nearest, repeat_enable;
+uniform bool triplanar_2 = false;
+varying vec3 uv2_triplanar_pos;
+uniform float uv2_blend_sharpness : hint_range(0.0, 150.0, 0.001) = 1.0f;
+varying vec3 uv2_power_normal;
 uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
-uniform bool proximity_fade = false;
-uniform float proximity_fade_distance : hint_range(0.0, 4096.0, 0.01) = 1.0;
 uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
 
 
@@ -74,12 +85,19 @@ void vertex() {
 	}
 
 	if (triplanar) {
-
 		// UV1 Triplanar: Enabled (with World Triplanar)
 		uv1_power_normal = pow(abs(normal), vec3(uv1_blend_sharpness));
 		uv1_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * uv1_scale + uv1_offset;
 		uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
 		uv1_triplanar_pos *= vec3(1.0, -1.0, 1.0);
+	}
+
+	if (triplanar_2 && overlay_texture) {
+		// UV1 Triplanar: Enabled (with World Triplanar)
+		uv2_power_normal = pow(abs(normal), vec3(uv2_blend_sharpness));
+		uv2_triplanar_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz * uv2_scale + uv2_offset;
+		uv2_power_normal /= dot(uv2_power_normal, vec3(1.0));
+		uv2_triplanar_pos *= vec3(1.0, -1.0, 1.0);
 	}
 }
 
@@ -99,8 +117,19 @@ void fragment() {
 		albedo_tex = texture(texture_albedo, UV);
 	}
 
-	ALBEDO = (albedo * albedo_tex).rgb;
-	ALPHA = albedo_tex.a * albedo.a;
+	if (overlay_texture) {
+		vec4 albedo_tex_2;
+		if (triplanar_2) {
+			albedo_tex_2 = triplanar_texture(texture_albedo_2, uv2_power_normal, uv2_triplanar_pos);
+		} else {
+			albedo_tex_2 = texture(texture_albedo_2, UV);
+		}
+		ALBEDO = (albedo * albedo_tex * albedo_tex_2).rgb;
+		ALPHA = albedo_tex.a * albedo_tex_2.a * albedo.a * ALPHA;
+	} else {
+		ALBEDO = (albedo * albedo_tex).rgb;
+		ALPHA = albedo_tex.a * albedo.a * ALPHA;
+	}
 
 	if (proximity_fade) {
 		// Proximity Fade: Enabled
@@ -109,5 +138,4 @@ void fragment() {
 		proximity_view_pos.xyz /= proximity_view_pos.w;
 		ALPHA *= clamp(1.0 - smoothstep(proximity_view_pos.z + proximity_fade_distance, proximity_view_pos.z, VERTEX.z), 0.0, 1.0);
 	}
-}
-"
+}"
