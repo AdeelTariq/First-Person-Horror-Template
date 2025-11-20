@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c37gofthe2bh3"
-path="res://.godot/imported/icons-filled-white-vector.svg-af17fdef281e2d7e46656a1eea5243e3.ctex"
+uid="uid://c1lpc33fpmd4p"
+path="res://.godot/imported/icons-outlined-white-vector.svg-05b5ecdf39cf678b6720b97697fdeb8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/maaacks_menus_template/assets/input-icons/icons-filled-white-vector.svg"
-dest_files=["res://.godot/imported/icons-filled-white-vector.svg-af17fdef281e2d7e46656a1eea5243e3.ctex"]
+source_file="res://addons/prompt_formatters/kenneys/input-icons/icons-outlined-white-vector.svg"
+dest_files=["res://.godot/imported/icons-outlined-white-vector.svg-05b5ecdf39cf678b6720b97697fdeb8c.ctex"]
 
 [params]
 

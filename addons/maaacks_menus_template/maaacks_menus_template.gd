@@ -4,7 +4,6 @@ extends EditorPlugin
 
 const APIClient = preload("res://addons/maaacks_menus_template/utilities/api_client.gd")
 const DownloadAndExtract = preload("res://addons/maaacks_menus_template/utilities/download_and_extract.gd")
-const CopyAndEdit = preload("res://addons/maaacks_menus_template/installer/copy_and_edit_files.gd")
 
 const PLUGIN_NAME = "Maaack's Menus Template"
 const PROJECT_SETTINGS_PATH = "maaacks_menus_template/"
@@ -210,17 +209,10 @@ func open_input_icons_dialog() -> void:
 	input_icons_instance.copy_dir_path = get_copy_path()
 	add_child(input_icons_instance)
 
-func open_copy_and_edit_dialog() -> void:
-	var copy_and_edit_scene : PackedScene = load(get_plugin_path() + "installer/copy_and_edit_files.tscn")
-	var copy_and_edit_instance : CopyAndEdit = copy_and_edit_scene.instantiate()
-	copy_and_edit_instance.completed.connect(_on_completed_copy_to_directory)
-	copy_and_edit_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
-	add_child(copy_and_edit_instance)
-
 func _open_confirmation_dialog() -> void:
 	var confirmation_scene : PackedScene = load(get_plugin_path() + "installer/copy_confirmation_dialog.tscn")
 	var confirmation_instance : ConfirmationDialog = confirmation_scene.instantiate()
-	confirmation_instance.confirmed.connect(open_copy_and_edit_dialog)
+	confirmation_instance.confirmed.connect(_on_completed_copy_to_directory)
 	confirmation_instance.canceled.connect(_check_main_scene_needs_updating.bind(get_copy_path()))
 	add_child(confirmation_instance)
 

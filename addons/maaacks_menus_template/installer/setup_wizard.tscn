@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://uojlvirhbysk"]
 
-[ext_resource type="Script" uid="uid://coq26stqrim51" path="res://addons/prompt_formatters/kenneys/maaacks_icons_installer/setup_wizard.gd" id="1_jck5m"]
+[ext_resource type="Script" uid="uid://coq26stqrim51" path="res://addons/maaacks_menus_template/installer/setup_wizard.gd" id="1_jck5m"]
 
 [node name="SetupWizardDialog" type="AcceptDialog"]
 oversampling_override = 1.0
@@ -38,59 +38,69 @@ autowrap_mode = 3
 layout_mode = 2
 
 [node name="StepsContainer" type="GridContainer" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 4
 theme_override_constants/h_separation = 12
 columns = 3
 
 [node name="UpdateLabel" type="Label" parent="VBoxContainer/StepsContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Update to Latest Version v1.3.0"
+text = "Update to Latest Version v1.3.3"
 
 [node name="UpdateCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 disabled = true
 
 [node name="UpdateButton" type="Button" parent="VBoxContainer/StepsContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Run"
 
 [node name="CopyLabel" type="Label" parent="VBoxContainer/StepsContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Copy Example Files"
 
 [node name="CopyCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 disabled = true
 button_pressed = true
 
 [node name="CopyButton" type="Button" parent="VBoxContainer/StepsContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 disabled = true
 text = "Run"
 
 [node name="DeleteLabel" type="Label" parent="VBoxContainer/StepsContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Delete Example Files"
 
 [node name="DeleteCheckBox" type="CheckBox" parent="VBoxContainer/StepsContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 disabled = true
 button_pressed = true
 
 [node name="DeleteButton" type="Button" parent="VBoxContainer/StepsContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 disabled = true
@@ -139,9 +149,11 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 disabled = true
+button_pressed = true
 
 [node name="AddInputIconsButton" type="Button" parent="VBoxContainer/StepsContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Run"
