@@ -12,6 +12,7 @@ const CUSTOM_SECTION = &'CustomSettings'
 const FULLSCREEN = &'Fullscreen'
 const SCREEN_RESOLUTION = &'ScreenResolution'
 const V_SYNC = &'V-Sync'
+const SCALE = &'Scale'
 const MUTE_SETTING = &'Mute'
 const MASTER_BUS_INDEX = 0
 const SYSTEM_BUS_NAME_PREFIX = "_"
@@ -168,6 +169,24 @@ static func _set_v_sync_from_config(window: Window) -> DisplayServer.VSyncMode:
 	set_vsync(vsync)
 	return vsync
 
+
+static func set_scale(scale : float, window : Window = null) -> void:
+	if window == null:
+		return
+	window.content_scale_factor = scale
+
+static func get_scale(window : Window = null) -> float:
+	if window == null:
+		return 1.0
+	return window.content_scale_factor
+
+static func _set_scale_from_config(window: Window) -> float:
+	var scale := get_scale(window)
+	scale = PlayerConfig.get_config(VIDEO_SECTION, SCALE, scale)
+	set_scale(scale, window)
+	return scale
+
+
 static func set_video_from_config(window : Window) -> void:
 	window.size_changed.connect(_on_window_size_changed.bind(window))
 	var fullscreen_enabled := _set_fullscreen_from_config(window)
@@ -175,6 +194,7 @@ static func set_video_from_config(window : Window) -> void:
 		var current_resolution : Vector2i = get_resolution(window)
 		set_resolution(current_resolution, window)
 	_set_v_sync_from_config(window)
+	_set_scale_from_config(window)
 
 # All
 

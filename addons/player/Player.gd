@@ -18,7 +18,7 @@ const LEAN_SPEED: float = 0.1
 
 ## Base FOV Setting
 @export var base_fov: float = 75.0
-@export var toggle_crouch: bool = true
+
 
 @export_category("Other Configuration")
 @export_group("Movement")
@@ -30,7 +30,9 @@ const LEAN_SPEED: float = 0.1
 @export var fov_change: float = 1
 ## To disable sprint for when player runs out of stamina for example
 @export var disable_sprint: bool = false
+@export var toggle_sprint: bool = true
 @export_group("Crouching")
+@export var toggle_crouch: bool = true
 @export var full_height: float = 1.
 @export var crouch_height: float = .5
 ## Time it takes to crouch or stand back up
@@ -45,7 +47,7 @@ const LEAN_SPEED: float = 0.1
 @export_custom(PROPERTY_HINT_MULTILINE_TEXT, "", PROPERTY_USAGE_READ_ONLY | PROPERTY_USAGE_EDITOR)
 var _1: String = "Player node requires uniquely named children inheriting from GameControl.
 Required: %look, %move.
-Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
+Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands, %auto_walk
 "
 
 ## Control where x and z values will control the movement direction of the player
@@ -72,10 +74,9 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = 9.8
-var speed: float
+var speed: float = walk_speed
 var on_floor_last_frame: bool = false
 var bob_time: float = 0.0
-var crouch_released_last_frame: bool = true
 var crouching: bool:
 	get():
 		return abs(scale.y - crouch_height) < 0.01
@@ -84,9 +85,8 @@ var facing: Vector3:
 	get():
 		return -camera.global_basis.z
 
-
+var _auto_walking: bool = false
 var _crouch_tween: Tween
-var _switched: bool = false
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
@@ -99,9 +99,10 @@ func _physics_process(delta) -> void:
 	handle_effects(delta)
 	handle_falling(delta)
 	handle_jump()
-	handle_crouch(delta)
+	handle_crouch()
 	set_movement_speed()
 	look_around()
+	handle_auto_walk_toggle()
 	handle_movement(delta)
 	handle_head_bob(delta)
 	handle_fov_change(delta)
@@ -138,21 +139,19 @@ func handle_jump() -> void:
 		camera_animation_player.play("jump")
 
 
-func handle_crouch(delta: float) -> void:
+func handle_crouch() -> void:
 	var crouch_pressed: bool = get_node_or_null("%crouch") != null and %crouch.is_triggered()
 	if toggle_crouch:
-		if crouch_pressed:
-			toggle_crouch_state()
+		toggle_crouch_state()
 	else:
 		if crouch_pressed and not crouching:
 			set_crouch(true)
 		elif not crouch_pressed and crouching:
 			set_crouch(false)
-	crouch_released_last_frame = not crouch_pressed
 
 
 func toggle_crouch_state() -> void:
-	if not crouch_released_last_frame: return
+	if not %crouch.is_first_triggered(): return
 	set_crouch(not crouching)
 
 
@@ -168,13 +167,23 @@ func set_crouch(enable: bool) -> void:
 
 
 func set_movement_speed() -> void:
-	if get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint:
-		speed = sprint_speed
-	else:
+	if velocity.length() < 0.01:
 		speed = walk_speed
+		return
+	var sprint_pressed: bool = get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint
+	if toggle_sprint:
+		if %sprint.is_first_triggered():
+			speed = sprint_speed if speed == walk_speed else walk_speed
+	else:
+		if sprint_pressed:
+			speed = sprint_speed
+		else:
+			speed = walk_speed
 	
 	if crouching:
 		speed = crouch_speed
+	elif speed == crouch_speed:
+		speed = walk_speed
 	footsteps.volume_linear = speed / walk_speed
 
 
@@ -186,9 +195,19 @@ func look_around() -> void:
 	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-75), deg_to_rad(60))
 
 
+func handle_auto_walk_toggle() -> void:
+	if get_node_or_null("%auto_walk") == null: return
+	if not %auto_walk.is_first_triggered(): return
+	_auto_walking = !_auto_walking
+
+
 func handle_movement(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir: Vector3 = move_control.value_axis_3d()
+	
+	if input_dir.length() > 0: _auto_walking = false
+	
+	if _auto_walking: input_dir = Vector3.FORWARD
 	
 	var direction: Vector3 = (head.transform.basis * transform.basis * input_dir).normalized()
 	if is_on_floor():
@@ -229,11 +248,7 @@ func handle_zoom(delta: float) -> void:
 
 func handle_switch_hands() -> void:
 	if get_node_or_null("%switch_hands") == null: return
-	if not %switch_hands.is_triggered(): 
-		_switched = false
-		return
-	if _switched: return
-	_switched = true
+	if not %switch_hands.is_first_triggered(): return
 	var right_items: Array = %RightHand.get_children()
 	var left_items: Array = %LeftHand.get_children()
 	for item: Node in right_items:
