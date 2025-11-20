@@ -31,3 +31,6 @@ InteractionContainer
 
 As you can see each context will have different interactions. While the Inspect interaction will always be present.
 Multiple contexts can be turned on at the same time too, by giving them the same context ID.
+
+Depends on the GameControls
+Used by GamePieces
