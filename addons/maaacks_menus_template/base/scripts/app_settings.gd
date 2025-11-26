@@ -16,6 +16,7 @@ const SCALE = &'Scale'
 const MUTE_SETTING = &'Mute'
 const MASTER_BUS_INDEX = 0
 const SYSTEM_BUS_NAME_PREFIX = "_"
+const BASE_RESOLUTION: float = 1080
 
 # Input
 static var default_action_events : Dictionary
@@ -133,6 +134,7 @@ static func set_resolution(value : Vector2i, window : Window, update_config : bo
 	window.size = value
 	if update_config:
 		PlayerConfig.set_config(VIDEO_SECTION, SCREEN_RESOLUTION, value)
+	set_scale(value.y / BASE_RESOLUTION, window)
 
 static func is_fullscreen(window : Window) -> bool:
 	return (window.mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (window.mode == Window.MODE_FULLSCREEN)
@@ -175,6 +177,7 @@ static func set_scale(scale : float, window : Window = null) -> void:
 		return
 	window.content_scale_factor = scale
 
+
 static func get_scale(window : Window = null) -> float:
 	if window == null:
 		return 1.0
@@ -194,7 +197,6 @@ static func set_video_from_config(window : Window) -> void:
 		var current_resolution : Vector2i = get_resolution(window)
 		set_resolution(current_resolution, window)
 	_set_v_sync_from_config(window)
-	_set_scale_from_config(window)
 
 # All
 
