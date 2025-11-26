@@ -372,6 +372,9 @@ stream = ExtResource("5_sr523")
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
+[node name="TitleMargin" parent="MenuContainer" index="0"]
+theme_override_constants/margin_top = 96
+
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
@@ -379,7 +382,7 @@ modulate = Color(1, 1, 1, 0)
 text = "First Person Horror Template"
 
 [node name="SubTitleMargin" parent="MenuContainer" index="1"]
-visible = false
+theme_override_constants/margin_top = 200
 
 [node name="SubTitleContainer" parent="MenuContainer/SubTitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)

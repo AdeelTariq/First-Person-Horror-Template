@@ -46,6 +46,36 @@ min_value = 0.25
 max_value = 2.0
 tick_count = 8
 
+[node name="FOVControl" parent="VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_goqr1")]
+layout_mode = 2
+option_name = "Field Of View"
+option_section = 1
+key = "FOV"
+section = "InputSettings"
+
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/FOVControl" index="0"]
+text = "Field Of View :"
+
+[node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/FOVControl" index="1"]
+min_value = 0.8
+max_value = 1.6
+tick_count = 8
+
+[node name="HeadBobControl" parent="VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_goqr1")]
+layout_mode = 2
+option_name = "Head Bob"
+option_section = 1
+key = "HeadBob"
+section = "InputSettings"
+
+[node name="OptionLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/HeadBobControl" index="0"]
+text = "Head Bob :"
+
+[node name="HSlider" parent="VBoxContainer/MarginContainer/VBoxContainer/HeadBobControl" index="1"]
+min_value = 0.5
+max_value = 1.5
+tick_count = 8
+
 [node name="JoypadSensitivityControl" parent="VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_goqr1")]
 layout_mode = 2
 option_name = "Joypad Sensitivity"
@@ -62,4 +92,6 @@ max_value = 2.0
 tick_count = 8
 
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/MouseSensitivityControl"]
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/FOVControl"]
+[editable path="VBoxContainer/MarginContainer/VBoxContainer/HeadBobControl"]
 [editable path="VBoxContainer/MarginContainer/VBoxContainer/JoypadSensitivityControl"]

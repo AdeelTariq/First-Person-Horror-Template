@@ -38,6 +38,7 @@ gdscript/warnings/unsafe_call_argument=1
 
 [display]
 
+window/size/mode=3
 window/vsync/vsync_mode=2
 
 [editor]
@@ -176,6 +177,10 @@ copy_path="res://scenes/menus/"
 [physics]
 
 3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 
 [sound_fx_manager]
 
