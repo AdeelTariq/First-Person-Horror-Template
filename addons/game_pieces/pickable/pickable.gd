@@ -5,6 +5,10 @@ extends RigidBody3D
 @export var interaction_context_when_grabbed: int = 1
 @export var change_distance_interaction: Interaction
 @export var release_distance: float = 4.
+## As opposed to hold to grab
+@export var press_to_grab: bool = false
+## Automatically go into rotate mode on grab
+@export var auto_start_rotate: bool = false
 
 var _interaction_controller: InteractionController = null
 var _is_grabbed: bool:
@@ -16,6 +20,7 @@ var _min_offset: float = 0.65
 var _max_offset: float = 1.65
 var _is_rotating: bool = false
 var _delay_timer: Tween = null
+var _grab_button_released: bool = false
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -66,7 +71,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _while_grabbed(controller: InteractionController) -> void:
-	if _interaction_controller != null: return
+	if _interaction_controller != null: 
+		if press_to_grab and _grab_button_released: _released(controller)
+		return
 	# Again cool down to avoid player flying off
 	if _delay_timer != null and _delay_timer.is_running(): return
 	_interaction_controller = controller
@@ -79,6 +86,9 @@ func _while_grabbed(controller: InteractionController) -> void:
 	InteractionContainer.from(self).enable(interaction_context_when_grabbed)
 	set_transparency(self, 0.35)
 	$PickupSound.play()
+	if auto_start_rotate:
+		_is_rotating = true
+		GamePiecesEventBus.request_camera_lock(true)
 	# Bring it closer to reference node but with a delay to avoid player flying off
 	_delay_timer = create_tween()
 	_delay_timer.tween_interval(0.1)
@@ -89,6 +99,10 @@ func _while_grabbed(controller: InteractionController) -> void:
 func _released(_c: InteractionController) -> void:
 	if _c != _interaction_controller: return
 	if _interaction_controller == null: return
+	if press_to_grab and not _grab_button_released: 
+		_grab_button_released = true
+		return
+	_grab_button_released = false
 	if _delay_timer != null: 
 		_delay_timer.kill()
 	_delay_timer = create_tween()
@@ -114,6 +128,7 @@ func _while_rotating(controller: InteractionController) -> void:
 
 func _stopped_rotating(controller: InteractionController) -> void:
 	if controller != _interaction_controller: return
+	if auto_start_rotate: return
 	_is_rotating = false
 	GamePiecesEventBus.request_camera_lock(false)
 
