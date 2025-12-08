@@ -73,7 +73,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands, %auto_walk
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity: float = 9.8
+var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var speed: float = walk_speed
 var on_floor_last_frame: bool = false
 var bob_time: float = 0.0
