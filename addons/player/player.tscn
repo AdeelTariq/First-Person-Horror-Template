@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cvm1x6igaprq3"]
+[gd_scene format=3 uid="uid://cvm1x6igaprq3"]
 
 [ext_resource type="Script" uid="uid://ba1l1kqe7yxt6" path="res://addons/player/Player.gd" id="1_cyojo"]
 
@@ -7,8 +7,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wydro"]
 height = 1.5
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_dverj"]
-radius = 0.75
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dverj"]
+radius = 0.25
+height = 0.75
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_dverj"]
 length = 0.5
@@ -158,81 +159,77 @@ _data = {
 &"footsteps": SubResource("Animation_0l22m")
 }
 
-[node name="Player" type="CharacterBody3D" groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=564714309 groups=["player"]]
 script = ExtResource("1_cyojo")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=652406622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 layers = 524288
 mesh = SubResource("CapsuleMesh_xc2g5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1222903765]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("CapsuleShape3D_wydro")
 
-[node name="Ceiling" type="ShapeCast3D" parent="."]
+[node name="Ceiling" type="ShapeCast3D" parent="." unique_id=881510198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
-shape = SubResource("SphereShape3D_dverj")
-target_position = Vector3(0, 1, 0)
+shape = SubResource("CapsuleShape3D_dverj")
+target_position = Vector3(0, 0.5, 0)
 max_results = 1
 debug_shape_custom_color = Color(0.87734646, 2.9119105e-06, 1.92523e-07, 1)
 
-[node name="Ground" type="CollisionShape3D" parent="."]
+[node name="Ground" type="CollisionShape3D" parent="." unique_id=1493172245]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, 0.5)
 shape = SubResource("SeparationRayShape3D_dverj")
 
-[node name="Ground2" type="CollisionShape3D" parent="."]
+[node name="Ground2" type="CollisionShape3D" parent="." unique_id=511184383]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5, -0.5)
 shape = SubResource("SeparationRayShape3D_dverj")
 
-[node name="Ground3" type="CollisionShape3D" parent="."]
+[node name="Ground3" type="CollisionShape3D" parent="." unique_id=633663169]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.5, 0.5, 0)
 shape = SubResource("SeparationRayShape3D_dverj")
 
-[node name="Ground4" type="CollisionShape3D" parent="."]
+[node name="Ground4" type="CollisionShape3D" parent="." unique_id=668969892]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 0.5, 0)
 shape = SubResource("SeparationRayShape3D_dverj")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=756133568]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
-[node name="Neck" type="Node3D" parent="Head"]
+[node name="Neck" type="Node3D" parent="Head" unique_id=1362544940]
 unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="Head/Neck"]
+[node name="Camera3D" type="Camera3D" parent="Head/Neck" unique_id=953429760]
 unique_name_in_owner = true
 cull_mask = 524287
 current = true
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D" unique_id=309823336]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -2)
 collision_mask = 2
 collide_with_areas = true
 
-[node name="RightHand" type="Marker3D" parent="Head/Neck/Camera3D"]
+[node name="RightHand" type="Marker3D" parent="Head/Neck/Camera3D" unique_id=302417303]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.25, -0.6)
 
-[node name="LeftHand" type="Marker3D" parent="Head/Neck/Camera3D"]
+[node name="LeftHand" type="Marker3D" parent="Head/Neck/Camera3D" unique_id=1913524996]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.25, -0.6)
 
-[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head"]
+[node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2088985971]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_by45h")
-}
+libraries/ = SubResource("AnimationLibrary_by45h")
 
-[node name="FootSteps" type="AudioStreamPlayer3D" parent="."]
+[node name="FootSteps" type="AudioStreamPlayer3D" parent="." unique_id=573958288]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
-[node name="FootStepsAnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="FootStepsAnimationPlayer" type="AnimationPlayer" parent="." unique_id=379904718]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_3br5i")
-}
-autoplay = "footsteps"
+libraries/ = SubResource("AnimationLibrary_3br5i")
+autoplay = &"footsteps"

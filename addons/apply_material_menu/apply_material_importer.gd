@@ -1,5 +1,8 @@
 class_name ApplyMaterialImporter extends EditorScenePostImportPlugin
 
+
+var new_mat_store: Dictionary[String, ShaderMaterial] = {}
+
 func _get_name() -> String:
 	return "ApplyMaterialImporter"
 
@@ -30,6 +33,7 @@ func _post_process(scene: Node) -> void:
 		printerr("ApplyMaterialImporter: Failed to load material at: ", material_path)
 		return
 
+	new_mat_store = {}
 	_apply_material_to_scene(scene, material)
 
 
@@ -38,7 +42,7 @@ func _post_process(scene: Node) -> void:
 # ---------------------------------------------------------
 func _apply_material_to_scene(node: Node, material: ShaderMaterial) -> void:
 	if node is MeshInstance3D:
-		_apply_material_to_mesh(node, material.duplicate_deep())
+		_apply_material_to_mesh(node, material)
 
 	for child in node.get_children():
 		_apply_material_to_scene(child, material)
@@ -49,13 +53,20 @@ func _apply_material_to_mesh(mesh_instance: MeshInstance3D, material: ShaderMate
 	if mesh == null:
 		return
 
+
 	for i in mesh.get_surface_count():
 		var original_mat := mesh.surface_get_material(i)
+		
+		var original_mat_key = str(original_mat)
+		var material_already_exists: bool = new_mat_store.has(original_mat_key)
+		var new_mat = new_mat_store[original_mat_key] if material_already_exists else material.duplicate_deep()
+		new_mat_store[original_mat_key] = new_mat
+		
+		if original_mat and not material_already_exists:
+			_preserve_material_data(original_mat, new_mat)
+		
 
-		if original_mat:
-			_preserve_material_data(original_mat, material)
-
-		mesh.surface_set_material(i, material)
+		mesh.surface_set_material(i, new_mat)
 
 
 # ------------------------------------------------------------
@@ -83,11 +94,11 @@ func _copy_standard_material(std: StandardMaterial3D, sm: ShaderMaterial) -> voi
 		"emission": "emission_color",
 		"emission_texture": "emission_texture"
 	}
-
+	
 	for std_key in mapping.keys():
 		if std.get(std_key) == null:
 			continue
-
+		
 		var value = std.get(std_key)
 		var material_uniform = mapping[std_key]
 
@@ -95,6 +106,25 @@ func _copy_standard_material(std: StandardMaterial3D, sm: ShaderMaterial) -> voi
 
 
 func _copy_material_parameters(from_material_mat: ShaderMaterial, to_material_mat: ShaderMaterial) -> void:
-	# todo
-	print("TODO: Not implemented")
-	pass
+	# Maps StandardMaterial3D fields to material uniform names
+	var mapping := {
+		"albedo_color": "albedo_color",
+		"albedo_texture": "albedo_texture",
+		"metallic": "metallic",
+		"metallic_texture": "metallic_texture",
+		"roughness": "roughness",
+		"roughness_texture": "roughness_texture",
+		"normal_texture": "normal_texture",
+		"ao_texture": "ao_texture",
+		"emission": "emission_color",
+		"emission_texture": "emission_texture"
+	}
+
+	for std_key in mapping.keys():
+		if from_material_mat.get_shader_parameter(std_key) == null:
+			continue
+		
+		var value = from_material_mat.get_shader_parameter(std_key)
+		var material_uniform = mapping[std_key]
+
+		to_material_mat.set_shader_parameter(material_uniform, value)
