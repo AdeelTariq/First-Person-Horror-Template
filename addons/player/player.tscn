@@ -221,6 +221,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.25, -0.6)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.25, -0.6)
 
+[node name="LeanLeftRayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D" unique_id=2005790691]
+unique_name_in_owner = true
+target_position = Vector3(-1, 0, 0)
+collision_mask = 4294967295
+
+[node name="LeanRightRayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D" unique_id=2129051242]
+unique_name_in_owner = true
+target_position = Vector3(1, 0, 0)
+collision_mask = 4294967295
+
 [node name="CameraAnimationPlayer" type="AnimationPlayer" parent="Head" unique_id=2088985971]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_by45h")

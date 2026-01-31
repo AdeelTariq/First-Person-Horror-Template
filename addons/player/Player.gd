@@ -70,6 +70,8 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands, %auto_walk
 @onready var ceiling: ShapeCast3D = $Ceiling
 @onready var right_hand_pos: Vector3 = %RightHand.transform.origin
 @onready var left_hand_pos: Vector3 = %LeftHand.transform.origin
+@onready var left_lean_ray: RayCast3D = %LeanLeftRayCast3D
+@onready var right_lean_ray: RayCast3D = %LeanRightRayCast3D
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -171,8 +173,9 @@ func set_movement_speed() -> void:
 		speed = walk_speed
 		return
 	var sprint_pressed: bool = get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint
+	var sprint_first_triggered: bool = get_node_or_null("%sprint") != null and %sprint.is_first_triggered()
 	if toggle_sprint:
-		if %sprint.is_first_triggered():
+		if sprint_first_triggered:
 			speed = sprint_speed if speed == walk_speed else walk_speed
 	else:
 		if sprint_pressed:
@@ -261,9 +264,10 @@ func handle_lean(delta: float) -> void:
 	if get_node_or_null("%lean") == null: return
 	var lean_control: GameControl = %lean
 	var lean_value = lean_control.value()
-	
+	var min_possible_lean = _possible_lean_distance_for(left_lean_ray) * -1.0
+	var max_possible_lean = _possible_lean_distance_for(right_lean_ray)
 	var lean_target_position = Vector3(
-		lean_value * camera_lean_position.x,
+		clampf(lean_value * camera_lean_position.x, min_possible_lean, max_possible_lean),
 		camera_base_position.y if lean_value == 0 else camera_lean_position.y,
 		camera_base_position.z
 	)
@@ -277,3 +281,11 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if %move == null:
 		warnings.append("Add a unique named 'move' PlayerControl child to the player")
 	return warnings
+
+
+func _possible_lean_distance_for(ray: RayCast3D) -> float:
+	if ray.is_colliding():
+		return ray.global_position.distance_to(ray.get_collision_point())
+	else:
+		# no hit, return full ray length
+		return ray.target_position.length()
