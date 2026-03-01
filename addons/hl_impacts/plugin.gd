@@ -6,6 +6,9 @@ const SCENE_PATH = "res://addons/hl_impacts/impact_manager.tscn"
 const SCENE_NAME = "impact_manager.tscn"
 const PROJECT_SETTINGS_PATH = "impact_manager/"
 
+var inspector
+
+
 func _enable_plugin() -> void:
 	_show_plugin_setup()
 
@@ -14,11 +17,14 @@ func _disable_plugin() -> void:
 	remove_autoload_singleton(AUTOLOAD_NAME)
 
 
+func _exit_tree() -> void:
+	remove_inspector_plugin(inspector)
+
+
 func _show_plugin_setup() -> void:
 	var has_setting: bool = ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "auto_load_path")
-	var path: String = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "auto_load_path")
-	if has_setting and FileAccess.file_exists(path):
-		_complete(path)
+	if has_setting and FileAccess.file_exists(ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "auto_load_path") + SCENE_NAME):
+		_complete(ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "auto_load_path"))
 		return
 	var dialog: FileDialog = FileDialog.new()
 	dialog.mode_overrides_title = false
@@ -66,6 +72,9 @@ func _complete(path: String) -> void:
 	add_autoload_singleton(AUTOLOAD_NAME, scene_path)
 	ProjectSettings.save()
 	EditorInterface.open_scene_from_path(scene_path)
+	
+	inspector = SurfaceTypeInspector.new(scene_path)
+	add_inspector_plugin(inspector)
 
 
 func to_identifier(input: String) -> String:

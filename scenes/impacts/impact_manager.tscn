@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dsun3ccikxe7v"]
+
+[ext_resource type="PackedScene" uid="uid://e244y44jkkdk" path="res://addons/hl_impacts/impact_manager.tscn" id="1_je18u"]
+
+[node name="ImpactManager" unique_id=1048984139 instance=ExtResource("1_je18u")]

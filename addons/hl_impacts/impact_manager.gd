@@ -1,3 +1,4 @@
+@tool
 class_name ImpactManager extends Node
 
 @export var surfaces: Dictionary[String, SurfaceType]
@@ -30,3 +31,7 @@ func spawn(surface: String, pos: Vector3, normal: Vector3):
 		player.play()
 		await player.finished
 		player.queue_free()
+
+
+func get_surface_names() -> PackedStringArray:
+	return surfaces.keys()
