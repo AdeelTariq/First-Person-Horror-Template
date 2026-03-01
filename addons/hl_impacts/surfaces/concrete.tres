@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SurfaceType" format=3 uid="uid://c0b27umpqcr7s"]
+
+[ext_resource type="PackedScene" uid="uid://bjpmfbh3rmynm" path="res://addons/hl_impacts/decals/concrete_decal.tscn" id="1_318so"]
+[ext_resource type="PackedScene" uid="uid://bx0yjftofud2s" path="res://addons/hl_impacts/effects/concrete_impact_fx.tscn" id="2_318so"]
+[ext_resource type="AudioStream" uid="uid://c7dm4jm0eq2uv" path="res://addons/hl_impacts/assets/concrete.ogg" id="3_318so"]
+[ext_resource type="Script" uid="uid://dotbsqjb1xp6k" path="res://addons/hl_impacts/scripts/surface_Type.gd" id="4_ipg8l"]
+
+[resource]
+script = ExtResource("4_ipg8l")
+impact_fx = ExtResource("2_318so")
+impact_sound = ExtResource("3_318so")
+decal = ExtResource("1_318so")
+metadata/_custom_type_script = "uid://dotbsqjb1xp6k"

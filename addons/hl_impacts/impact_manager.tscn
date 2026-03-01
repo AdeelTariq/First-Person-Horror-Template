@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://e244y44jkkdk"]
+
+[ext_resource type="Script" uid="uid://hb4rkvncyiv8" path="res://addons/hl_impacts/impact_manager.gd" id="1_gp5yx"]
+[ext_resource type="Script" uid="uid://dotbsqjb1xp6k" path="res://addons/hl_impacts/scripts/surface_Type.gd" id="2_m54ku"]
+[ext_resource type="Resource" uid="uid://dsmgx72351c65" path="res://addons/hl_impacts/surfaces/wood.tres" id="2_ptnwa"]
+[ext_resource type="Resource" uid="uid://c0b27umpqcr7s" path="res://addons/hl_impacts/surfaces/concrete.tres" id="4_i0w70"]
+[ext_resource type="Resource" uid="uid://c3vxu2bi1ssx" path="res://addons/hl_impacts/surfaces/metal.tres" id="5_i0w70"]
+[ext_resource type="Resource" uid="uid://dy6sn1boo8xp1" path="res://addons/hl_impacts/surfaces/glass.tres" id="6_gjrc5"]
+
+[node name="ImpactManager" type="Node" unique_id=1048984139]
+script = ExtResource("1_gp5yx")
+surfaces = Dictionary[String, ExtResource("2_m54ku")]({
+"concrete": ExtResource("4_i0w70"),
+"default": ExtResource("4_i0w70"),
+"glass": ExtResource("6_gjrc5"),
+"metal": ExtResource("5_i0w70"),
+"wood": ExtResource("2_ptnwa")
+})

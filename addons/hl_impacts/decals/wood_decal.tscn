@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dgbefi3skd4ns"]
+
+[ext_resource type="Script" uid="uid://b0ithk2ud28xe" path="res://addons/hl_impacts/scripts/decal_fx.gd" id="1_qaar6"]
+[ext_resource type="Texture2D" uid="uid://h6wmoiyp4k2v" path="res://addons/hl_impacts/assets/decal.png" id="2_cl0hu"]
+
+[node name="Decal" type="Node3D" unique_id=1928113074]
+script = ExtResource("1_qaar6")
+
+[node name="Decal" type="Decal" parent="." unique_id=200690934]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+size = Vector3(0.15, 0.05, 0.1)
+texture_albedo = ExtResource("2_cl0hu")
+modulate = Color(0.34, 0.221, 0, 1)
+distance_fade_enabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bia32vkq1a5i"]
+[gd_scene format=3 uid="uid://bia32vkq1a5i"]
 
 [ext_resource type="PackedScene" uid="uid://cvm1x6igaprq3" path="res://addons/player/player.tscn" id="1_lvxji"]
 [ext_resource type="AudioStream" uid="uid://b5w7kope1qekn" path="res://assets/sounds/step2.ogg" id="2_0owmy"]
@@ -15,21 +15,22 @@ stream_0/stream = ExtResource("2_0owmy")
 stream_1/stream = ExtResource("3_qek5x")
 stream_2/stream = ExtResource("4_5gtgg")
 
-[node name="Player" instance=ExtResource("1_lvxji")]
+[node name="Player" unique_id=1349773951 instance=ExtResource("1_lvxji")]
 script = ExtResource("2_qek5x")
 footsteps_sound = SubResource("AudioStreamRandomizer_h17s1")
 
-[node name="MeshInstance3D" parent="." index="0"]
+[node name="MeshInstance3D" parent="." index="0" unique_id=652406622]
 visible = true
 
-[node name="InputMapControls" type="Node" parent="." index="5"]
+[node name="InputMapControls" type="Node" parent="." index="5" unique_id=381677381]
 
-[node name="look" type="Node" parent="InputMapControls" index="0"]
+[node name="look" type="Node" parent="InputMapControls" index="0" unique_id=21092594]
 unique_name_in_owner = true
 script = ExtResource("3_75vfm")
+viewport_scale = 2.0
 metadata/_custom_type_script = "uid://byf0ij6s7416m"
 
-[node name="move" type="Node" parent="InputMapControls" index="1"]
+[node name="move" type="Node" parent="InputMapControls" index="1" unique_id=905762887]
 unique_name_in_owner = true
 script = ExtResource("4_0owmy")
 type = 1
@@ -40,7 +41,7 @@ negative_y = &"move_forward"
 positive_y = &"move_back"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="lean" type="Node" parent="InputMapControls" index="2"]
+[node name="lean" type="Node" parent="InputMapControls" index="2" unique_id=541277933]
 unique_name_in_owner = true
 script = ExtResource("4_0owmy")
 type = 1
@@ -49,7 +50,7 @@ negative_x = &"lean_left"
 positive_x = &"lean_right"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="jump" type="Node" parent="InputMapControls" index="3"]
+[node name="jump" type="Node" parent="InputMapControls" index="3" unique_id=106605427]
 unique_name_in_owner = true
 script = ExtResource("4_0owmy")
 action = &"jump"
@@ -59,7 +60,7 @@ negative_y = &"ui_up"
 positive_y = &"ui_down"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="sprint" type="Node" parent="InputMapControls" index="4"]
+[node name="sprint" type="Node" parent="InputMapControls" index="4" unique_id=1516269292]
 unique_name_in_owner = true
 script = ExtResource("4_0owmy")
 action = &"sprint"
@@ -69,7 +70,7 @@ negative_y = &"ui_up"
 positive_y = &"ui_down"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="crouch" type="Node" parent="InputMapControls" index="5"]
+[node name="crouch" type="Node" parent="InputMapControls" index="5" unique_id=1230887362]
 unique_name_in_owner = true
 script = ExtResource("4_0owmy")
 action = &"crouch"
@@ -79,7 +80,7 @@ negative_y = &"ui_up"
 positive_y = &"ui_down"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="zoom" type="Node" parent="InputMapControls" index="6"]
+[node name="zoom" type="Node" parent="InputMapControls" index="6" unique_id=358664538]
 unique_name_in_owner = true
 script = ExtResource("4_0owmy")
 action = &"zoom"
@@ -89,12 +90,12 @@ negative_y = &"ui_up"
 positive_y = &"ui_down"
 metadata/_custom_type_script = "uid://bxe74cq2uqemi"
 
-[node name="RayCast3DInteractionController" type="Node" parent="Head/Neck/Camera3D/RayCast3D" index="0" node_paths=PackedStringArray("collision_excluding_joint")]
+[node name="RayCast3DInteractionController" type="Node" parent="Head/Neck/Camera3D/RayCast3D" parent_id_path=PackedInt32Array(309823336) index="0" unique_id=635469508 node_paths=PackedStringArray("collision_excluding_joint")]
 script = ExtResource("2_p47bc")
 collision_excluding_joint = NodePath("Generic6DOFJoint3D")
 metadata/_custom_type_script = "uid://dqdodfuuahflt"
 
-[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" index="0"]
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Head/Neck/Camera3D/RayCast3D/RayCast3DInteractionController" index="0" unique_id=2023397487]
 node_a = NodePath("../../../../../..")
 linear_limit_x/enabled = false
 linear_limit_y/enabled = false

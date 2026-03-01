@@ -22,16 +22,6 @@ func play(sound: NodePath, pitch : float = 1.0) -> void:
 	player.queue_free()
 
 
-func play_random(group: StringName, pitch : float = 1.0) -> void:
-	var node: Node = get_tree().get_nodes_in_group(group).pick_random()
-	var player: AudioStreamPlayer = node.duplicate()
-	add_child(player)
-	player.pitch_scale = pitch
-	player.play()
-	await player.finished
-	player.queue_free()
-
-
 func play2D(sound: NodePath, position: Vector2, pitch : float = 1.0) -> void:
 	var player: AudioStreamPlayer2D = get_node(sound).duplicate()
 	add_child(player)
@@ -44,16 +34,6 @@ func play2D(sound: NodePath, position: Vector2, pitch : float = 1.0) -> void:
 
 func play3D(sound: NodePath, position: Vector3, pitch : float = 1.0) -> void:
 	var player: AudioStreamPlayer3D = get_node(sound).duplicate()
-	add_child(player)
-	player.pitch_scale = pitch
-	player.position = position
-	player.play()
-	await player.finished
-	player.queue_free()
-
-
-func play_random3D(group: StringName, position: Vector3, pitch : float = 1.0) -> void:
-	var player: AudioStreamPlayer3D = get_tree().get_nodes_in_group(group).pick_random()
 	add_child(player)
 	player.pitch_scale = pitch
 	player.position = position

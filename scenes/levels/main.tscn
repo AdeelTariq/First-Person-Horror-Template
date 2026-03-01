@@ -1,24 +1,36 @@
-[gd_scene load_steps=26 format=3 uid="uid://6sfd8aoikbqa"]
+[gd_scene format=3 uid="uid://c13urlvq2l55t"]
 
-[ext_resource type="Shader" uid="uid://b2jbjl5waune8" path="res://shaders/retro/retro.gdshader" id="1_j4d2a"]
-[ext_resource type="Script" uid="uid://b2d7r0uj56lbg" path="res://scripts/match_back_buffer_copy_to_screen.gd" id="2_u81e1"]
-[ext_resource type="Shader" uid="uid://cee527dfy7dpo" path="res://shaders/psx_post_process/post_process.gdshader" id="3_b6bv0"]
-[ext_resource type="Shader" uid="uid://ckeoq8wwo66jj" path="res://shaders/tv_static_border/tv_static_border.gdshader" id="4_ubwgw"]
-[ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="5_vkq25"]
-[ext_resource type="Script" uid="uid://dbv6ey8p6fq33" path="res://scenes/hud.gd" id="6_7lrji"]
-[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="7_rssyh"]
-[ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="8_hwp66"]
-[ext_resource type="PackedScene" uid="uid://cg45nrous4phy" path="res://scenes/pieces/pickable.tscn" id="9_rssyh"]
-[ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="10_hwp66"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="1_b3c2k"]
+[ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="2_8wpnj"]
+[ext_resource type="Environment" uid="uid://dr0jllowrdeg1" path="res://resources/environment.tres" id="3_bsn8t"]
+[ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="4_4eqn3"]
+[ext_resource type="PackedScene" uid="uid://cg45nrous4phy" path="res://scenes/pieces/pickable.tscn" id="12_ymwe4"]
+[ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="13_jhctf"]
+[ext_resource type="Shader" uid="uid://b2jbjl5waune8" path="res://shaders/retro/retro.gdshader" id="18_lfswk"]
+[ext_resource type="Script" uid="uid://b2d7r0uj56lbg" path="res://scripts/match_back_buffer_copy_to_screen.gd" id="19_5ji1e"]
+[ext_resource type="Shader" uid="uid://cee527dfy7dpo" path="res://shaders/psx_post_process/post_process.gdshader" id="20_3yq8l"]
+[ext_resource type="Shader" uid="uid://ckeoq8wwo66jj" path="res://shaders/tv_static_border/tv_static_border.gdshader" id="21_oqlyk"]
+[ext_resource type="Script" uid="uid://dbv6ey8p6fq33" path="res://scenes/hud.gd" id="22_01o0d"]
+[ext_resource type="Script" uid="uid://bkpgat47amr4l" path="res://addons/fps_counter/fps_counter.gd" id="23_rxdmg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sv52t"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7exfm"]
+albedo_texture = ExtResource("13_jhctf")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qgoyv"]
+points = PackedVector3Array(-0.06260148, -0.2663933, -0.24024686, 0.011391564, 0.2380352, 0.24944204, 0.0848621, 0.27959216, 0.23210225, 0.11552247, -0.40178484, 0.1602234, 0.2036852, 0.3254891, -0.12174913, -0.24141228, 0.29744264, 0.04110926, -0.18142185, -0.34113356, 0.14483915, 0.23452342, -0.32726675, -0.0331359, -0.063723475, 0.42136097, -0.16905558, -0.19670239, -0.34194493, -0.12234867, 0.21911418, 0.31163558, 0.10041885, 0.0420738, 0.48872638, 0.05739727, -0.034101244, -0.4882299, -0.06463532, 0.09974278, -0.29478467, -0.22445785, -0.0927739, 0.2977592, -0.22676277, -0.1366803, 0.2961318, 0.20387545, -0.0034682432, -0.23841153, 0.24983013, 0.18791044, -0.2943068, 0.15847757, 0.055792414, 0.2815455, -0.24060236, -0.20864561, 0.2639582, -0.13526182, -0.24227779, -0.2984917, -0.033255555, -0.13987412, 0.45428273, 0.026668143, -0.12509164, -0.44033265, 0.10265427, 0.1318245, -0.45138898, -0.06369768, 0.18671456, -0.26317215, -0.1641312, 0.14668888, 0.43577814, -0.07860067, 0.2498313, 0.23832074, -0.0034442788, 0.026553063, 0.43750578, 0.1623532, -0.07727637, -0.2954455, 0.23295411, -0.19385616, -0.2491256, 0.15784955, -0.04863674, -0.39115503, -0.19908188, -0.15033956, -0.29399702, -0.19445038)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vkq25"]
-shader = ExtResource("1_j4d2a")
+shader = ExtResource("18_lfswk")
 shader_parameter/shake = 0.015
 shader_parameter/noiseQuality = 250.0
 shader_parameter/noiseIntensity = 0.0
 shader_parameter/offsetIntensity = 0.0
 shader_parameter/colorOffsetIntensity = 0.2
-shader_parameter/pixelSize = 200.0
+shader_parameter/pixelSize = 1024.0
 shader_parameter/grainIntensity = 0.0
 shader_parameter/use_overlay = true
 shader_parameter/use_lens_distortion = false
@@ -26,34 +38,18 @@ shader_parameter/overlay_color = Color(1, 1, 1, 10)
 shader_parameter/lens_distortion_strength = 0.05
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7lrji"]
-shader = ExtResource("3_b6bv0")
+shader = ExtResource("20_3yq8l")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
-shader_parameter/colors = 12
-shader_parameter/dither_size = 1
+shader_parameter/colors = 32
+shader_parameter/dither_size = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rssyh"]
-shader = ExtResource("4_ubwgw")
+shader = ExtResource("21_oqlyk")
 shader_parameter/UPDATE_INTERVAL = 0.163
 shader_parameter/STATIC_GRANULARITY = 0.002
 shader_parameter/EDGE_BLUR = 0.835
 shader_parameter/BORDER_SIZE = 0.35
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hwp66"]
-
-[sub_resource type="Sky" id="Sky_emj6c"]
-sky_material = SubResource("ProceduralSkyMaterial_hwp66")
-
-[sub_resource type="Environment" id="Environment_2xkjh"]
-background_mode = 2
-sky = SubResource("Sky_emj6c")
-tonemap_mode = 2
-glow_enabled = true
-fog_enabled = true
-fog_mode = 1
-fog_density = 1.0
-fog_depth_end = 75.0
-volumetric_fog_density = 0.01
 
 [sub_resource type="Gradient" id="Gradient_x2tju"]
 offsets = PackedFloat32Array(0, 0.125, 0.14375)
@@ -64,32 +60,73 @@ gradient = SubResource("Gradient_x2tju")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="PrismMesh" id="PrismMesh_2xkjh"]
-left_to_right = 0.4
-size = Vector3(10, 5, 10)
+[node name="Main" type="Node3D" unique_id=1889637119]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dj21o"]
-albedo_color = Color(0.29700002, 0.4266, 0.54, 1)
+[node name="PauseMenuController" type="Node" parent="." unique_id=1172546359]
+script = ExtResource("1_b3c2k")
+pause_menu_packed = ExtResource("2_8wpnj")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ui35"]
-albedo_color = Color(0.59, 0.44928497, 0.2773, 1)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=205394416]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y56qp"]
-albedo_color = Color(0.27755955, 0.4254524, 0.08938744, 1)
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1681253594]
+handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(288, 162)
+render_target_update_mode = 4
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_sv52t"]
-radius = 0.25
-height = 1.0
+[node name="Sun" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1132221272]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 29.462063, 0)
+visible = false
+metadata/_edit_lock_ = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7exfm"]
-albedo_texture = ExtResource("10_hwp66")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1733432788]
+environment = ExtResource("3_bsn8t")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qgoyv"]
-points = PackedVector3Array(-0.06260148, -0.2663933, -0.24024686, 0.011391564, 0.2380352, 0.24944204, 0.0848621, 0.27959216, 0.23210225, 0.11552247, -0.40178484, 0.1602234, 0.2036852, 0.3254891, -0.12174913, -0.24141228, 0.29744264, 0.04110926, -0.18142185, -0.34113356, 0.14483915, 0.23452342, -0.32726675, -0.0331359, -0.063723475, 0.42136097, -0.16905558, -0.19670239, -0.34194493, -0.12234867, 0.21911418, 0.31163558, 0.10041885, 0.0420738, 0.48872638, 0.05739727, -0.034101244, -0.4882299, -0.06463532, 0.09974278, -0.29478467, -0.22445785, -0.0927739, 0.2977592, -0.22676277, -0.1366803, 0.2961318, 0.20387545, -0.0034682432, -0.23841153, 0.24983013, 0.18791044, -0.2943068, 0.15847757, 0.055792414, 0.2815455, -0.24060236, -0.20864561, 0.2639582, -0.13526182, -0.24227779, -0.2984917, -0.033255555, -0.13987412, 0.45428273, 0.026668143, -0.12509164, -0.44033265, 0.10265427, 0.1318245, -0.45138898, -0.06369768, 0.18671456, -0.26317215, -0.1641312, 0.14668888, 0.43577814, -0.07860067, 0.2498313, 0.23832074, -0.0034442788, 0.026553063, 0.43750578, 0.1623532, -0.07727637, -0.2954455, 0.23295411, -0.19385616, -0.2491256, 0.15784955, -0.04863674, -0.39115503, -0.19908188, -0.15033956, -0.29399702, -0.19445038)
+[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=183312483 instance=ExtResource("4_4eqn3")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 6.0721636, 3.9256291, -3.0230842)
 
-[node name="Main" type="Node3D"]
+[node name="Level" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=367103557]
 
-[node name="RetroEffect" type="ColorRect" parent="."]
+[node name="Ground" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Level" unique_id=1444788698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8243523, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+metadata/_edit_lock_ = true
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="SubViewportContainer/SubViewport/Level/Ground" unique_id=44973777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.9788365)
+polygon = PackedVector2Array(0, 0, -2.072348, 3.615415, 2.0379062, 2.8107584, 1, 0)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="SubViewportContainer/SubViewport/Level/Ground/CSGPolygon3D" unique_id=956067588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.060041428)
+operation = 2
+polygon = PackedVector2Array(0, 0, -0.1393776, 1.833358, 1.023024, 2.0194263, 1, 0)
+depth = 1.33
+
+[node name="Pickable" parent="SubViewportContainer/SubViewport/Level" unique_id=1980793841 instance=ExtResource("12_ymwe4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","_triggered":false,"metadata/_custom_type_script":"uid://bxe74cq2uqemi")
+,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
+
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level/Pickable" unique_id=925973754]
+mesh = SubResource("CapsuleMesh_sv52t")
+surface_material_override/0 = SubResource("StandardMaterial3D_7exfm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Level/Pickable" unique_id=163409669]
+shape = SubResource("ConvexPolygonShape3D_qgoyv")
+
+[node name="RetroEffect" type="ColorRect" parent="." unique_id=1929754428]
 visible = false
 material = SubResource("ShaderMaterial_vkq25")
 anchors_preset = 15
@@ -97,40 +134,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
-visible = false
+[node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1256331432]
 rect = Rect2(0, 0, 1152, 648)
-script = ExtResource("2_u81e1")
+script = ExtResource("19_5ji1e")
 
-[node name="PSXEffect" type="ColorRect" parent="BackBufferCopy"]
+[node name="PSXEffect" type="ColorRect" parent="BackBufferCopy" unique_id=1613882343]
 material = SubResource("ShaderMaterial_7lrji")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="StaticEffect" type="ColorRect" parent="."]
+[node name="StaticEffect" type="ColorRect" parent="." unique_id=2082952662]
 material = SubResource("ShaderMaterial_rssyh")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(1, 0.99266666, 0.96, 1)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_2xkjh")
-
-[node name="Player" parent="." instance=ExtResource("5_vkq25")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="HUD" type="Control" parent="."]
+[node name="HUD" type="Control" parent="." unique_id=1071263008]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,9 +166,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("6_7lrji")
+script = ExtResource("22_01o0d")
 
-[node name="CrossHair" type="TextureRect" parent="HUD"]
+[node name="CrossHair" type="TextureRect" parent="HUD" unique_id=893785706]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -154,9 +182,30 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_2xkjh")
 
-[node name="InteractPrompt" type="RichTextLabel" parent="HUD"]
+[node name="CrossHair2" type="TextureRect" parent="HUD" unique_id=1499507851]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_2xkjh")
+
+[node name="InteractPrompt" type="RichTextLabel" parent="HUD" unique_id=1813432600]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
@@ -167,49 +216,14 @@ offset_top = -79.0
 offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 bbcode_enabled = true
 fit_content = true
 autowrap_mode = 2
 horizontal_alignment = 1
 
-[node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("7_rssyh")
-pause_menu_packed = ExtResource("8_hwp66")
-
-[node name="Level" type="Node3D" parent="."]
-
-[node name="Slide" type="CSGMesh3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.507557, 0)
-calculate_tangents = false
-use_collision = true
-mesh = SubResource("PrismMesh_2xkjh")
-material = SubResource("StandardMaterial3D_dj21o")
-
-[node name="Tunnel" type="CSGCylinder3D" parent="Level/Slide"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -1.8048909, 0)
-operation = 2
-calculate_tangents = false
-radius = 1.0
-height = 11.0
-material = SubResource("StandardMaterial3D_6ui35")
-
-[node name="Ground" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
-calculate_tangents = false
-use_collision = true
-size = Vector3(100, 100, 100)
-material = SubResource("StandardMaterial3D_y56qp")
-
-[node name="Pickable" parent="Level" instance=ExtResource("9_rssyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","_triggered":false,"metadata/_custom_type_script":"uid://bxe74cq2uqemi")
-,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
-]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
-
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Pickable"]
-mesh = SubResource("CapsuleMesh_sv52t")
-surface_material_override/0 = SubResource("StandardMaterial3D_7exfm")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Pickable"]
-shape = SubResource("ConvexPolygonShape3D_qgoyv")
+[node name="FPSCounter" type="Label" parent="." unique_id=1575000945]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("23_rxdmg")
+metadata/_custom_type_script = "uid://bkpgat47amr4l"

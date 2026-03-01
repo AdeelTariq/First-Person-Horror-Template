@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://vfff0hy2jryi"]
+
+[ext_resource type="Texture2D" uid="uid://b6ihxyaw4tkmm" path="res://addons/hl_impacts/assets/dirt_01.png" id="1_knupe"]
+[ext_resource type="Script" uid="uid://b2twfad70pmq0" path="res://addons/hl_impacts/scripts/impact_fx.gd" id="1_uoq7k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5mgw"]
+transparency = 1
+disable_fog = true
+disable_specular_occlusion = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.49874857, 0.23434953, 0, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_2tghc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.451689, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jyu1c"]
+curve = SubResource("Curve_2tghc")
+
+[sub_resource type="Curve" id="Curve_uoq7k"]
+_data = [Vector2(0, 0), 0.0, 3.8070061, 0, 0, Vector2(0.19791667, 1), 0.077046536, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_swd01"]
+curve = SubResource("Curve_uoq7k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t5mgw"]
+particle_flag_rotate_y = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 0, 1)
+spread = 60.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 59.99998
+scale_min = 0.5
+scale_max = 0.9
+scale_curve = SubResource("CurveTexture_swd01")
+alpha_curve = SubResource("CurveTexture_jyu1c")
+
+[sub_resource type="PrismMesh" id="PrismMesh_2tghc"]
+left_to_right = 0.3
+size = Vector3(0.2, 0.05, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bvay"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+specular_mode = 2
+disable_fog = true
+disable_specular_occlusion = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.32, 0.24959998, 0.21439998, 1)
+albedo_texture = ExtResource("1_knupe")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_enabled = true
+proximity_fade_distance = 0.1
+
+[sub_resource type="Curve" id="Curve_tanqi"]
+_data = [Vector2(0, 0), 0.0, 4.554308, 0, 0, Vector2(0.04166667, 0.75280905), 2.327617, 2.327617, 0, 0, Vector2(1, 0), -0.9861961, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xxxbe"]
+curve = SubResource("Curve_tanqi")
+
+[sub_resource type="Curve" id="Curve_1oees"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.011235952), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ly185"]
+curve = SubResource("Curve_1oees")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ahfv4"]
+particle_flag_rotate_y = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 0, 1)
+spread = 90.0
+initial_velocity_min = 0.59999996
+initial_velocity_max = 0.9
+angular_velocity_min = -291.72
+angular_velocity_max = 308.27997
+angular_velocity_curve = SubResource("CurveTexture_ly185")
+gravity = Vector3(0, 0, 0)
+damping_min = 1.0
+damping_max = 1.0
+scale_min = 0.5
+scale_max = 0.9
+alpha_curve = SubResource("CurveTexture_xxxbe")
+
+[sub_resource type="QuadMesh" id="QuadMesh_cp105"]
+size = Vector2(0.3, 0.3)
+
+[node name="WoodImpactFx" type="Node3D" unique_id=1558473655]
+script = ExtResource("1_uoq7k")
+
+[node name="WoodChunks" type="GPUParticles3D" parent="." unique_id=794768892]
+material_override = SubResource("StandardMaterial3D_t5mgw")
+cast_shadow = 0
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+transform_align = 2
+process_material = SubResource("ParticleProcessMaterial_t5mgw")
+draw_pass_1 = SubResource("PrismMesh_2tghc")
+
+[node name="Dirt" type="GPUParticles3D" parent="." unique_id=279564519]
+material_override = SubResource("StandardMaterial3D_3bvay")
+cast_shadow = 0
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+transform_align = 2
+process_material = SubResource("ParticleProcessMaterial_ahfv4")
+draw_pass_1 = SubResource("QuadMesh_cp105")
