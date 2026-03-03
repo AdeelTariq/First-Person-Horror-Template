@@ -1,13 +1,15 @@
 [gd_resource type="Resource" script_class="SurfaceType" format=3 uid="uid://c3vxu2bi1ssx"]
 
 [ext_resource type="PackedScene" uid="uid://i646tlxemln4" path="res://addons/hl_impacts/decals/metal_decal.tscn" id="1_uf7n4"]
+[ext_resource type="AudioStream" uid="uid://dgi534swrjo45" path="res://addons/hl_impacts/assets/metal_hit.ogg" id="2_pkwh6"]
 [ext_resource type="PackedScene" uid="uid://bhfnfom10q7ml" path="res://addons/hl_impacts/effects/metal_impact_fx.tscn" id="2_uf7n4"]
-[ext_resource type="AudioStream" uid="uid://dgi534swrjo45" path="res://addons/hl_impacts/assets/metal.ogg" id="3_uf7n4"]
 [ext_resource type="Script" uid="uid://dotbsqjb1xp6k" path="res://addons/hl_impacts/scripts/surface_Type.gd" id="4_etbah"]
+[ext_resource type="AudioStream" uid="uid://3i2u52i3y43t" path="res://addons/hl_impacts/assets/metal_tap.ogg" id="5_pkwh6"]
 
 [resource]
 script = ExtResource("4_etbah")
 impact_fx = ExtResource("2_uf7n4")
-impact_sound = ExtResource("3_uf7n4")
+hit_sound = ExtResource("2_pkwh6")
+tap_sound = ExtResource("5_pkwh6")
 decal = ExtResource("1_uf7n4")
 metadata/_custom_type_script = "uid://dotbsqjb1xp6k"

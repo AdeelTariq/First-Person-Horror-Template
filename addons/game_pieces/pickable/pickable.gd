@@ -1,4 +1,4 @@
-extends RigidBody3D
+class_name Pickable extends RigidBody3D
 
 @export var pull_force: float = 15
 @export var throw_power: float = 10
@@ -21,6 +21,12 @@ var _max_offset: float = 1.65
 var _is_rotating: bool = false
 var _delay_timer: Tween = null
 var _grab_button_released: bool = false
+var _current_colliders := {}
+
+func _ready() -> void:
+	contact_monitor = true
+	max_contacts_reported = 1
+
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -31,9 +37,27 @@ func _physics_process(_delta: float) -> void:
 			_released(_interaction_controller)
 
 
-func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
-	if not _is_grabbed: return
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	# Report contact
+	var seen := {}
+
+	for i in state.get_contact_count():
+		var collider := state.get_contact_collider_object(i)
+		seen[collider] = true
+
+		if not _current_colliders.has(collider):
+			var global_pos := state.get_contact_collider_position(i)
+			var local_normal := state.get_contact_local_normal(i)
+			var impulse := state.get_contact_impulse(i)
+
+			var global_normal := local_normal * -1
+
+			_collision_started(collider, global_pos, global_normal, impulse)
+
+	_current_colliders = seen
 	
+	if not _is_grabbed: return
+	# Grabbed code
 	var reference_node: Node3D = _interaction_controller.get_parent()
 	
 	# Calculate linear velocity
@@ -58,6 +82,11 @@ func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 		angular_velocity = axis * (angle  * (pull_force / (mass * 100))) / 0.01
 	else:
 		angular_velocity = Vector3.ZERO
+
+
+func _collision_started(collider: Node3D, position: Vector3, normal: Vector3, impulse: Vector3):
+	ImpactMgr.spawn(self, position, normal, impulse)
+	ImpactMgr.spawn(collider, position, normal, impulse)
 
 
 func _input(event: InputEvent) -> void:

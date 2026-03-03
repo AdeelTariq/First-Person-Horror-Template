@@ -2,12 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://dgbefi3skd4ns" path="res://addons/hl_impacts/decals/wood_decal.tscn" id="1_6p5lp"]
 [ext_resource type="PackedScene" uid="uid://vfff0hy2jryi" path="res://addons/hl_impacts/effects/wood_impact_fx.tscn" id="1_36wb6"]
-[ext_resource type="AudioStream" uid="uid://bcits3ob4jgpj" path="res://addons/hl_impacts/assets/wood.ogg" id="2_6p5lp"]
+[ext_resource type="AudioStream" uid="uid://bcits3ob4jgpj" path="res://addons/hl_impacts/assets/wood_hit.ogg" id="2_6p5lp"]
 [ext_resource type="Script" uid="uid://dotbsqjb1xp6k" path="res://addons/hl_impacts/scripts/surface_Type.gd" id="2_kycfh"]
+[ext_resource type="AudioStream" uid="uid://ya0v5h30pbss" path="res://addons/hl_impacts/assets/wood_tap.ogg" id="5_3oxho"]
 
 [resource]
 script = ExtResource("2_kycfh")
 impact_fx = ExtResource("1_36wb6")
-impact_sound = ExtResource("2_6p5lp")
+hit_sound = ExtResource("2_6p5lp")
+tap_sound = ExtResource("5_3oxho")
 decal = ExtResource("1_6p5lp")
 metadata/_custom_type_script = "uid://dotbsqjb1xp6k"

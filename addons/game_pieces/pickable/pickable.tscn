@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://3a8vimn70t6v"]
+[gd_scene format=3 uid="uid://3a8vimn70t6v"]
 
 [ext_resource type="Script" uid="uid://bkjjobtn3b4bj" path="res://addons/game_pieces/pickable/pickable.gd" id="1_fd5fy"]
 [ext_resource type="Script" uid="uid://ck3cei0hvspym" path="res://addons/interaction_system/interaction_container.gd" id="2_q88yg"]
 [ext_resource type="Script" uid="uid://5tinbhq6p45k" path="res://addons/interaction_system/interaction.gd" id="3_u3te7"]
 [ext_resource type="Script" uid="uid://doc0okecalxnp" path="res://addons/interaction_system/interaction_context.gd" id="5_q88yg"]
-[ext_resource type="Script" uid="uid://cp0p4yckxtvmw" path="res://addons/game_pieces/collision_sound/collision_sound_player.gd" id="5_wuhtr"]
 
-[node name="Pickable" type="RigidBody3D" node_paths=PackedStringArray("change_distance_interaction")]
+[node name="Pickable" type="RigidBody3D" unique_id=1850860325 node_paths=PackedStringArray("change_distance_interaction")]
 collision_layer = 3
 collision_mask = 3
 contact_monitor = true
@@ -14,49 +13,39 @@ max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_fd5fy")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
-metadata/interaction_container = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_q88yg"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_u3te7")]([Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_u3te7"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
+metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_q88yg"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_u3te7")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_u3te7"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 
 
-[node name="InteractionContainer" type="Node" parent="."]
+[node name="InteractionContainer" type="Node" parent="." unique_id=1020433250]
 script = ExtResource("2_q88yg")
 display_name = "Little Bean"
 metadata/_custom_type_script = "uid://ck3cei0hvspym"
 
-[node name="Grab" type="Node" parent="InteractionContainer"]
+[node name="Grab" type="Node" parent="InteractionContainer" unique_id=2069505155]
 script = ExtResource("3_u3te7")
 hide_while_grabbed = true
 display_name = "Grab"
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="WhileGrabbed" type="Node" parent="InteractionContainer"]
+[node name="WhileGrabbed" type="Node" parent="InteractionContainer" unique_id=598294484]
 script = ExtResource("5_q88yg")
 context_id = 1
 metadata/_custom_type_script = "uid://doc0okecalxnp"
 
-[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed"]
+[node name="Change Distance" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=1222268013]
 script = ExtResource("3_u3te7")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed"]
+[node name="Rotate" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=902495266]
 script = ExtResource("3_u3te7")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed"]
+[node name="Throw" type="Node" parent="InteractionContainer/WhileGrabbed" unique_id=945707556]
 script = ExtResource("3_u3te7")
 metadata/_custom_type_script = "uid://5tinbhq6p45k"
 
-[node name="PickupSound" type="AudioStreamPlayer" parent="."]
-
-[node name="CollisionSoundPlayer" type="AudioStreamPlayer3D" parent="."]
-max_polyphony = 3
-script = ExtResource("5_wuhtr")
-sounds_per_velocity = Dictionary[int, AudioStream]({
-2: null,
-6: null,
-12: null
-})
-metadata/_custom_type_script = "uid://cp0p4yckxtvmw"
+[node name="PickupSound" type="AudioStreamPlayer" parent="." unique_id=646375757]
 
 [connection signal="on_complete" from="InteractionContainer/Grab" to="." method="_released"]
 [connection signal="on_trigger" from="InteractionContainer/Grab" to="." method="_while_grabbed"]
