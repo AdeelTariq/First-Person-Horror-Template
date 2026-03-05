@@ -87,6 +87,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 func _collision_started(collider: Node3D, position: Vector3, normal: Vector3, impulse: Vector3):
 	ImpactMgr.spawn(self, position, normal, impulse)
 	ImpactMgr.spawn(collider, position, normal, impulse)
+	Breakable.apply_damage_if_breakable(self, impulse.length(), normal)
+	Breakable.apply_damage_if_breakable(collider, impulse.length(), normal)
 
 
 func _input(event: InputEvent) -> void:

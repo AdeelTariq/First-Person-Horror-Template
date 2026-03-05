@@ -17,6 +17,13 @@ func _disable_plugin() -> void:
 	remove_autoload_singleton(AUTOLOAD_NAME)
 
 
+func _enter_tree() -> void:
+	var has_setting: bool = ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "auto_load_path")
+	if has_setting and FileAccess.file_exists(ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "auto_load_path") + SCENE_NAME):
+		inspector = SurfaceTypeInspector.new(ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "auto_load_path") + SCENE_NAME)
+		add_inspector_plugin(inspector)
+
+
 func _exit_tree() -> void:
 	remove_inspector_plugin(inspector)
 

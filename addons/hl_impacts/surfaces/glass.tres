@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="SurfaceType" format=3 uid="uid://dy6sn1boo8xp1"]
 
 [ext_resource type="PackedScene" uid="uid://ccbu0gok44o17" path="res://addons/hl_impacts/decals/glass_decal.tscn" id="1_26xum"]
+[ext_resource type="AudioStream" uid="uid://cieqh2q2bdw0o" path="res://addons/hl_impacts/assets/glass_crash.ogg" id="1_xxm6l"]
 [ext_resource type="AudioStream" uid="uid://coydhfxtdphno" path="res://addons/hl_impacts/assets/glass_hit.ogg" id="2_26xum"]
 [ext_resource type="AudioStream" uid="uid://2xg4k4o8ricc" path="res://addons/hl_impacts/assets/glass_tap.ogg" id="4_7b02r"]
 [ext_resource type="Script" uid="uid://dotbsqjb1xp6k" path="res://addons/hl_impacts/scripts/surface_Type.gd" id="4_ckwis"]
 
 [resource]
 script = ExtResource("4_ckwis")
+crash_sound = ExtResource("1_xxm6l")
 hit_sound = ExtResource("2_26xum")
 tap_sound = ExtResource("4_7b02r")
 decal = ExtResource("1_26xum")
