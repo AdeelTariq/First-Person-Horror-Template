@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 	if Engine.is_editor_hint(): return
 	var active_controls: Array[String] = []
 	for interaction in _focused_interactions:
-		if interaction.process_interaction(self):
+		if interaction != null && interaction.process_interaction(self):
 			active_controls.append(interaction.control.control_id())
 	
 	for equipped_object in _equipped_objects:
@@ -79,9 +79,21 @@ func release_grabbed() -> void:
 	_clear_prompts()
 
 
+func is_grabbing() -> bool: return _picked_object != null
+
+
 func equip_object(object: Node) -> bool:
 	_equipped_objects.append(object)
 	return true
+
+func unequip_object(object: Node) -> bool:
+	_equipped_objects.erase(object)
+	return true
+
+
+func unequip_all() -> void:
+	for object: Node3D in _equipped_objects:
+		unequip_object(object)
 
 
 func drop_object(object: Node) -> bool:

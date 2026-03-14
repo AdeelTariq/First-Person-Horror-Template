@@ -9,6 +9,7 @@ const DISABLE_COLLISION_GROUP = "disable_collision_while_grabbed"
 ## Join to exclude grabbed object from colliding with the player
 @export var collision_excluding_joint: Joint3D
 @export var hands: Array[Node3D]
+@export var pocket: Node3D
 
 var raycast: RayCast3D
 var _collider: Node3D = null
@@ -77,6 +78,18 @@ func equip_object(object: Node) -> bool:
 	return true
 
 
+func unequip_object(object: Node) -> bool:
+	#if _dropped_object_this_frame: return false
+	
+	if pocket: object.reparent(pocket)
+	object.position = Vector3.ZERO
+	
+	super.unequip_object(object)
+	_dropped_object_this_frame = true
+	_delayed_reset_flag()
+	return true
+
+
 func drop_object(object: Node) -> bool:
 	if _dropped_object_this_frame: return false
 	
@@ -102,6 +115,7 @@ func drop_object(object: Node) -> bool:
 	_dropped_object_this_frame = true
 	_delayed_reset_flag()
 	return true
+
 
 func _delayed_reset_flag() -> void:
 	await get_tree().create_timer(0.1).timeout

@@ -13,6 +13,7 @@ max_contacts_reported = 1
 angular_damp = 5.0
 script = ExtResource("1_fd5fy")
 change_distance_interaction = NodePath("InteractionContainer/WhileGrabbed/Change Distance")
+press_to_grab = true
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("2_q88yg"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[ExtResource("3_u3te7")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":ExtResource("3_u3te7"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":null,"_triggered_last_frame":false,"metadata/_custom_type_script":"uid://5tinbhq6p45k")
 ]),"metadata/_custom_type_script":"uid://ck3cei0hvspym")
 

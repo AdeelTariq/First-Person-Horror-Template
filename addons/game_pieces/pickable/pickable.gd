@@ -25,7 +25,7 @@ var _current_colliders := {}
 
 func _ready() -> void:
 	contact_monitor = true
-	max_contacts_reported = 1
+	max_contacts_reported = 3
 
 
 func _physics_process(_delta: float) -> void:
@@ -85,6 +85,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 
 func _collision_started(collider: Node3D, position: Vector3, normal: Vector3, impulse: Vector3):
+	if collider == null: return
 	ImpactMgr.spawn(self, position, normal, impulse)
 	ImpactMgr.spawn(collider, position, normal, impulse)
 	Breakable.apply_damage_if_breakable(self, impulse.length(), normal)

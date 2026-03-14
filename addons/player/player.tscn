@@ -160,6 +160,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D" unique_id=564714309 groups=["player"]]
+floor_max_angle = 0.9599311
 script = ExtResource("1_cyojo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=652406622]
@@ -220,6 +221,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.25, -0.6)
 [node name="LeftHand" type="Marker3D" parent="Head/Neck/Camera3D" unique_id=1913524996]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -0.25, -0.6)
+
+[node name="Pocket" type="Marker3D" parent="Head/Neck/Camera3D" unique_id=1341207307]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.5)
 
 [node name="LeanLeftRayCast3D" type="RayCast3D" parent="Head/Neck/Camera3D" unique_id=2005790691]
 unique_name_in_owner = true

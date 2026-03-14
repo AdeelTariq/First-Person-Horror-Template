@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqgi8181e124v"]
+
+[ext_resource type="Script" path="res://addons/scene_texture/editor/SceneTexturePreview.gd" id="1_m1d30"]
+[ext_resource type="Script" path="res://addons/scene_texture/editor/TextureView.gd" id="2_conow"]
+
+[node name="SceneTexturePreview" type="HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 128)
+offset_right = 309.0
+offset_bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_m1d30")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Bake"
+horizontal_alignment = 1
+
+[node name="Loading" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+stretch_mode = 2
+
+[node name="SceneTextureView" type="Button" parent="VBoxContainer"]
+z_index = 1
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Rebake."
+focus_mode = 0
+script = ExtResource("2_conow")
+
+[connection signal="pressed" from="VBoxContainer/SceneTextureView" to="." method="_update"]
