@@ -13,29 +13,32 @@ func play_safe(sound: NodePath, pitch : float = 1.0) -> void:
 	player.play()
 
 
-func play(sound: NodePath, pitch : float = 1.0) -> void:
+func play(sound: NodePath, pitch : float = 1.0, volume : float = 1.0) -> void:
 	var player: AudioStreamPlayer = get_node(sound).duplicate()
 	add_child(player)
 	player.pitch_scale = pitch
+	player.volume_linear = player.volume_linear * volume
 	player.play()
 	await player.finished
 	player.queue_free()
 
 
-func play2D(sound: NodePath, position: Vector2, pitch : float = 1.0) -> void:
+func play2D(sound: NodePath, position: Vector2, pitch : float = 1.0, volume : float = 1.0) -> void:
 	var player: AudioStreamPlayer2D = get_node(sound).duplicate()
 	add_child(player)
 	player.pitch_scale = pitch
+	player.volume_linear = player.volume_linear * volume
 	player.position = position
 	player.play()
 	await player.finished
 	player.queue_free()
 
 
-func play3D(sound: NodePath, position: Vector3, pitch : float = 1.0) -> void:
+func play3D(sound: NodePath, position: Vector3, pitch : float = 1.0, volume : float = 1.0) -> void:
 	var player: AudioStreamPlayer3D = get_node(sound).duplicate()
 	add_child(player)
 	player.pitch_scale = pitch
+	player.volume_linear = player.volume_linear * volume
 	player.position = position
 	player.play()
 	await player.finished

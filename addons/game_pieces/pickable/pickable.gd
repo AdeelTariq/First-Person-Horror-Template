@@ -67,7 +67,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	linear_velocity = velocity
 	
 	# Calculate angular velocity
-	var target_basis: Basis = reference_node.global_transform.basis * _initial_basis #Basis.looking_at(target_rotation, reference_node.global_basis.y)
+	var target_basis: Basis = reference_node.global_transform.basis * _initial_basis
 	# Get rotational difference as quaternion
 	var quaternion_current: Quaternion = global_transform.basis.get_rotation_quaternion()
 	var quaternion_target: Quaternion = target_basis.get_rotation_quaternion()

@@ -42,6 +42,12 @@ func _hide_exit_for_web() -> void:
 	if OS.has_feature("web"):
 		%ExitButton.hide()
 
+func _show_fix_for_web() -> void:
+	if OS.has_feature("web"):
+		%MouseFixButton.show()
+	else:
+		%MouseFixButton.hide()
+
 func _hide_options_if_unset() -> void:
 	if options_packed_scene == null:
 		%OptionsButton.hide()
@@ -52,6 +58,7 @@ func _hide_main_menu_if_unset() -> void:
 
 func _ready() -> void:
 	_hide_exit_for_web()
+	_show_fix_for_web()
 	_hide_options_if_unset()
 	_hide_main_menu_if_unset()
 
@@ -79,3 +86,13 @@ func _on_confirm_main_menu_confirmed() -> void:
 
 func _on_confirm_exit_confirmed() -> void:
 	get_tree().quit()
+
+
+func _on_mouse_fix_button_pressed() -> void:
+	var window : Window = get_window()
+	AppSettings.set_fullscreen_enabled(true, window)
+	await get_tree().create_timer(0.1).timeout
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_initial_mouse_mode = Input.MOUSE_MODE_CAPTURED
+	close()
+	

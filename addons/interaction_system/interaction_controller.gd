@@ -45,7 +45,6 @@ func on_new_object_available(node: Node) -> void:
 
 
 func _clear_prompts() -> void:
-	if _focused_interactions.is_empty(): return
 	clear_action_prompts.emit()
 	_focused_interactions = []
 	_focused_object_name = ""

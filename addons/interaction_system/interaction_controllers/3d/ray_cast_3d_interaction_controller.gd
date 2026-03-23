@@ -79,8 +79,6 @@ func equip_object(object: Node) -> bool:
 
 
 func unequip_object(object: Node) -> bool:
-	#if _dropped_object_this_frame: return false
-	
 	if pocket: object.reparent(pocket)
 	object.position = Vector3.ZERO
 	

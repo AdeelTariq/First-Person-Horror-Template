@@ -42,6 +42,12 @@ const LEAN_SPEED: float = 0.1
 @export var camera_lean_position: Vector3 = Vector3(1., -0.1, 0.)
 @export_group("Other")
 @export var lock_camera: bool = false
+@export var disable_controls: bool = false:
+	set(v):
+		disable_controls = v
+		if disable_controls:
+			camera_animation_player.stop()
+			foot_steps_animation_player.speed_scale = 0.0
 
 @export_category("Info")
 @export_custom(PROPERTY_HINT_MULTILINE_TEXT, "", PROPERTY_USAGE_READ_ONLY | PROPERTY_USAGE_EDITOR)
@@ -98,6 +104,7 @@ func _ready() -> void:
 
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
+	if disable_controls: return
 	handle_effects(delta)
 	handle_falling(delta)
 	handle_jump()
