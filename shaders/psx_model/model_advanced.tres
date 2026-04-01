@@ -28,6 +28,8 @@ varying vec3 uv1_power_normal;
 uniform vec3 uv1_scale = vec3(1.0);
 uniform vec3 uv1_offset;
 
+uniform bool equipped = false;
+uniform float fov_override : hint_range(1.0, 179.0, 0.1) = 70.;
 
 group_uniforms ProximityFade;
 uniform bool proximity_fade = false;
@@ -45,7 +47,8 @@ uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
 uniform sampler2D depth_texture : hint_depth_texture, repeat_disable, filter_nearest;
-
+group_uniforms Unshaded;
+uniform float unshaded_amount : hint_range(0.0, 1.0);
 
 vec4 snap_to_position(vec4 base_position)
 {
@@ -61,6 +64,16 @@ vec4 snap_to_position(vec4 base_position)
 }
 
 void vertex() {
+	if (equipped) {
+		Z_CLIP_SCALE = 0.01;
+
+		float flip_y = sign(PROJECTION_MATRIX[1][1]);
+		float aspect = PROJECTION_MATRIX[1][1] / PROJECTION_MATRIX[0][0];
+		float f = flip_y / tan(fov_override * PI / 360.0);
+		PROJECTION_MATRIX[0][0] = f / aspect;
+		PROJECTION_MATRIX[1][1] = f;
+	}
+	
 	vec3 normal = MODEL_NORMAL_MATRIX * NORMAL;
 
 	TANGENT = vec3(0.0, 0.0, -1.0) * abs(normal.x);
@@ -138,4 +151,28 @@ void fragment() {
 		proximity_view_pos.xyz /= proximity_view_pos.w;
 		ALPHA *= clamp(1.0 - smoothstep(proximity_view_pos.z + proximity_fade_distance, proximity_view_pos.z, VERTEX.z), 0.0, 1.0);
 	}
+	
+	EMISSION = vec3(unshaded_amount * 0.01);
+}
+//
+//void light() {
+    //float NdotL = max(dot(NORMAL, LIGHT), 0.0);
+//
+    //vec3 lit = ALBEDO * NdotL * LIGHT_COLOR * ATTENUATION;
+    //vec3 flat_color = ALBEDO;
+	//
+    //DIFFUSE_LIGHT = mix(lit, flat_color, unshaded_amount);
+//}
+
+void light()
+{
+	// Calculate some vectors.
+	vec3 lightColor = LIGHT_COLOR / PI;
+	
+	float NdotL = max(dot(NORMAL, LIGHT), 0.0);
+	vec3 flat_color = ALBEDO;
+	vec3 lit = clamp(dot(NORMAL, LIGHT), 0.0, 1.0) * ATTENUATION * lightColor;
+	
+	// Diffuse light (Lambert).
+	DIFFUSE_LIGHT += mix(lit, vec3(1.0 + unshaded_amount), unshaded_amount);
 }"

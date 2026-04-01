@@ -33,7 +33,7 @@ func _parse_begin(object):
 				else:
 					return "default"
 		)
-		if other_surfaces.count(other_surfaces[0]) == objects.size():
+		if not other_surfaces.is_empty() and other_surfaces.count(other_surfaces[0]) == objects.size():
 			value = other_surfaces[0]
 
 	var scene = load(mgr_path)

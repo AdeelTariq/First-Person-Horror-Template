@@ -6,11 +6,17 @@ func play_single(sound: NodePath, pitch : float = 1.0) -> void:
 	player.play()
 
 
-func play_safe(sound: NodePath, pitch : float = 1.0) -> void:
+func play_safe(sound: NodePath, pitch : float = 1.0, volume : float = 1.0) -> void:
 	var player: AudioStreamPlayer = get_node(sound)
 	if player.playing: return
+	var original_volume: float = player.volume_linear
+	var original_pitch_scale: float = player.pitch_scale
+	player.volume_linear = player.volume_linear * volume
 	player.pitch_scale = pitch
 	player.play()
+	await player.finished
+	player.volume_linear = original_volume
+	player.pitch_scale = original_pitch_scale
 
 
 func play(sound: NodePath, pitch : float = 1.0, volume : float = 1.0) -> void:
