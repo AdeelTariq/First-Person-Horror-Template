@@ -33,6 +33,7 @@ const LEAN_SPEED: float = 0.1
 @export var toggle_sprint: bool = true
 @export_group("Crouching")
 @export var toggle_crouch: bool = true
+@export var auto_crouch: bool = true
 @export var full_height: float = 1.
 @export var crouch_height: float = .5
 ## Time it takes to crouch or stand back up
@@ -105,6 +106,7 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
 	if disable_controls: return
+	handle_auto_crouch()
 	handle_effects(delta)
 	handle_falling(delta)
 	handle_jump()
@@ -119,6 +121,11 @@ func _physics_process(delta) -> void:
 	handle_switch_hands()
 	handle_lean(delta)
 	move_and_slide()
+
+
+func handle_auto_crouch() -> void:
+	if is_on_floor() and not crouching and ceiling.is_colliding() and auto_crouch:
+		set_crouch(true)
 
 
 func handle_effects(delta) -> void:
