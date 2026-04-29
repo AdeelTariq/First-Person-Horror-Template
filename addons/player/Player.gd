@@ -112,7 +112,7 @@ func _physics_process(delta) -> void:
 	handle_jump()
 	handle_crouch()
 	set_movement_speed()
-	look_around()
+	look_around(delta)
 	handle_auto_walk_toggle()
 	handle_movement(delta)
 	handle_head_bob(delta)
@@ -204,12 +204,14 @@ func set_movement_speed() -> void:
 	footsteps.volume_linear = speed / walk_speed
 
 
-func look_around() -> void:
+func look_around(_delta: float) -> void:
 	if lock_camera: return
 	var sensitivity: float = PlayerConfig.get_config("InputSettings", "MouseSensitivity", 1.0) * mouse_sensitivity
-	head.rotate_y(look_control.value_axis_2d().x * sensitivity)
-	neck.rotate_x(look_control.value_axis_2d().y * sensitivity)
-	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-75), deg_to_rad(60))
+	var mouse_value: Vector2 = look_control.value_axis_2d()
+	
+	head.rotate_y(mouse_value.x * sensitivity)
+	neck.rotate_x(mouse_value.y * sensitivity)
+	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-80), deg_to_rad(75))
 
 
 func handle_auto_walk_toggle() -> void:

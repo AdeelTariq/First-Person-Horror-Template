@@ -86,7 +86,6 @@ render_target_update_mode = 4
 
 [node name="Sun" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1132221272]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 29.462063, 0)
-visible = false
 metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1733432788]

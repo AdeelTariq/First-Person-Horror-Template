@@ -9,7 +9,7 @@ height = 1.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dverj"]
 radius = 0.25
-height = 0.75
+height = 0.5
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_dverj"]
 length = 0.5
@@ -162,7 +162,6 @@ _data = {
 [node name="Player" type="CharacterBody3D" unique_id=564714309 groups=["player"]]
 floor_max_angle = 0.9599311
 script = ExtResource("1_cyojo")
-auto_crouch = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=652406622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -177,7 +176,7 @@ shape = SubResource("CapsuleShape3D_wydro")
 [node name="Ceiling" type="ShapeCast3D" parent="." unique_id=881510198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 shape = SubResource("CapsuleShape3D_dverj")
-target_position = Vector3(0, 0.5, 0)
+target_position = Vector3(0, 0.3, 0)
 max_results = 1
 debug_shape_custom_color = Color(0.87734646, 2.9119105e-06, 1.92523e-07, 1)
 

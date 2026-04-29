@@ -3,10 +3,12 @@ class_name Breakable extends Node
 
 static var Meta: String = "breakable"
 
+@export var key: String
 @export var max_health: int = 3
 @export var pieces_despawn_time: int = 30
 @export var pieces: PackedScene
 @export var drops: Array[PackedScene] = []
+@export var pieces_force: float = 0.1
 
 var health: int
 
@@ -37,7 +39,7 @@ func apply_damage(impact_force: float, normal: Vector3) -> void:
 		get_parent().get_parent().add_child(instance)
 		instance.global_position = get_parent().global_position
 		instance.global_rotation = get_parent().global_rotation
-		_apply_impulse(instance.global_position, instance, impact_force + 1. * randf(), normal)
+		_apply_impulse(instance.global_position, instance, impact_force + pieces_force * randf(), normal)
 		for drop: PackedScene in drops:
 			var object: Node3D = drop.instantiate()
 			get_parent().get_parent().add_child(object)
