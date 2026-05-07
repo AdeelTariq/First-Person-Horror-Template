@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SurfaceType" format=3 uid="uid://0dnq1mqsx7qy"]
+
+[ext_resource type="Script" uid="uid://dotbsqjb1xp6k" path="res://addons/hl_impacts/scripts/surface_Type.gd" id="5_onwh5"]
+
+[resource]
+script = ExtResource("5_onwh5")
+metadata/_custom_type_script = "uid://dotbsqjb1xp6k"

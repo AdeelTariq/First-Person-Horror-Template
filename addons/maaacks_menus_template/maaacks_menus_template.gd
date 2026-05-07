@@ -304,7 +304,6 @@ func _remove_tool_options() -> void:
 func _enter_tree() -> void:
 	add_autoload_singleton("AppConfig", get_plugin_path() + "base/scenes/autoloads/app_config.tscn")
 	add_autoload_singleton("SceneLoader", get_plugin_path() + "base/scenes/autoloads/scene_loader.tscn")
-	add_autoload_singleton("ProjectMusicController", get_plugin_path() + "base/scenes/autoloads/project_music_controller.tscn")
 	add_autoload_singleton("ProjectUISoundController", get_plugin_path() + "base/scenes/autoloads/project_ui_sound_controller.tscn")
 	_install_audio_busses()
 	_add_tool_options()
@@ -316,7 +315,6 @@ func _enter_tree() -> void:
 func _exit_tree() -> void:
 	remove_autoload_singleton("AppConfig")
 	remove_autoload_singleton("SceneLoader")
-	remove_autoload_singleton("ProjectMusicController")
 	remove_autoload_singleton("ProjectUISoundController")
 	_remove_tool_options()
 	instance = null

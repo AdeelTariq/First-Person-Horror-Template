@@ -12,9 +12,27 @@ static var Meta: String = "breakable"
 
 var health: int
 
+var _pieces: Node3D
+var _drops: Array[Node3D] = []
+
 func _ready() -> void:
 	health = max_health
 	get_parent().set_meta(Meta, self)
+	_spawn_pieces_and_drops()
+
+
+func _spawn_pieces_and_drops() -> void:
+	_pieces = pieces.instantiate()
+	get_parent().get_parent().call_deferred("add_child", _pieces)
+	_pieces.hide()
+	_pieces.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	for drop: PackedScene in drops:
+		var object: Node3D = drop.instantiate()
+		get_parent().get_parent().call_deferred("add_child", object)
+		object.hide()
+		object.process_mode = Node.PROCESS_MODE_DISABLED
+		_drops.append(object)
 
 
 func apply_damage(impact_force: float, normal: Vector3) -> void:
@@ -35,15 +53,16 @@ func apply_damage(impact_force: float, normal: Vector3) -> void:
 				Vector3.ZERO, # we don't care about decal or forces
 				Vector3.ONE * ImpactManager.HIT_IMPACT_FORCE
 			)
-		var instance: Node3D = pieces.instantiate()
-		get_parent().get_parent().add_child(instance)
-		instance.global_position = get_parent().global_position
-		instance.global_rotation = get_parent().global_rotation
-		_apply_impulse(instance.global_position, instance, impact_force + pieces_force * randf(), normal)
-		for drop: PackedScene in drops:
-			var object: Node3D = drop.instantiate()
-			get_parent().get_parent().add_child(object)
-			_drop_object(object)
+		
+		_pieces.show()
+		_pieces.process_mode = Node.PROCESS_MODE_INHERIT
+		_pieces.global_position = get_parent().global_position
+		_pieces.global_rotation = get_parent().global_rotation
+		_apply_impulse(_pieces.global_position, _pieces, impact_force * pieces_force * randf(), normal)
+		for drop: Node3D in _drops:
+			drop.show()
+			drop.process_mode = Node.PROCESS_MODE_INHERIT
+			_drop_object(drop)
 		get_parent().queue_free()
 
 

@@ -40,7 +40,7 @@ func _render_next() -> void:
 	_render.render_target_update_mode = SubViewport.UPDATE_ONCE
 	add_child(_render)
 	_render.render_finished.connect(_on_render_finished.bind(_render, task))
-		
+	
 	_render.render(task.texture)
 
 

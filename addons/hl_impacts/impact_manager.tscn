@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://c0b27umpqcr7s" path="res://addons/hl_impacts/surfaces/concrete.tres" id="4_i0w70"]
 [ext_resource type="Resource" uid="uid://c3vxu2bi1ssx" path="res://addons/hl_impacts/surfaces/metal.tres" id="5_i0w70"]
 [ext_resource type="Resource" uid="uid://dy6sn1boo8xp1" path="res://addons/hl_impacts/surfaces/glass.tres" id="6_gjrc5"]
+[ext_resource type="Resource" uid="uid://0dnq1mqsx7qy" path="res://addons/hl_impacts/surfaces/none.tres" id="7_xsw38"]
 
 [node name="ImpactManager" type="Node" unique_id=1048984139]
 script = ExtResource("1_gp5yx")
@@ -14,5 +15,6 @@ surfaces = Dictionary[String, ExtResource("2_m54ku")]({
 "default": ExtResource("4_i0w70"),
 "glass": ExtResource("6_gjrc5"),
 "metal": ExtResource("5_i0w70"),
+"none": ExtResource("7_xsw38"),
 "wood": ExtResource("2_ptnwa")
 })
