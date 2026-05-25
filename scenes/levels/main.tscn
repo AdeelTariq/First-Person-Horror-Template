@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="1_b3c2k"]
 [ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="2_8wpnj"]
 [ext_resource type="Environment" uid="uid://dr0jllowrdeg1" path="res://resources/environment.tres" id="3_bsn8t"]
+[ext_resource type="Script" uid="uid://bxhyjunwxmjvl" path="res://scripts/apply_setting.gd" id="3_dj21o"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="4_4eqn3"]
+[ext_resource type="Script" uid="uid://8gw4ue7j1x0n" path="res://scripts/world_environment.gd" id="5_6ui35"]
+[ext_resource type="Material" uid="uid://c8mqdl3jkaemn" path="res://resources/materials/retro_effect_material.tres" id="7_2xkjh"]
+[ext_resource type="Material" uid="uid://bvc7bp8d1jal5" path="res://resources/materials/psx_effect_material.tres" id="9_dj21o"]
 [ext_resource type="PackedScene" uid="uid://cg45nrous4phy" path="res://scenes/pieces/pickable.tscn" id="12_ymwe4"]
 [ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="13_jhctf"]
-[ext_resource type="Shader" uid="uid://b2jbjl5waune8" path="res://shaders/retro/retro.gdshader" id="18_lfswk"]
 [ext_resource type="Script" uid="uid://b2d7r0uj56lbg" path="res://scripts/match_back_buffer_copy_to_screen.gd" id="19_5ji1e"]
-[ext_resource type="Shader" uid="uid://cee527dfy7dpo" path="res://shaders/psx_post_process/post_process.gdshader" id="20_3yq8l"]
 [ext_resource type="Shader" uid="uid://ckeoq8wwo66jj" path="res://shaders/tv_static_border/tv_static_border.gdshader" id="21_oqlyk"]
 [ext_resource type="Script" uid="uid://dbv6ey8p6fq33" path="res://scenes/hud.gd" id="22_01o0d"]
 [ext_resource type="Script" uid="uid://bkpgat47amr4l" path="res://addons/fps_counter/fps_counter.gd" id="23_rxdmg"]
@@ -22,27 +24,6 @@ albedo_texture = ExtResource("13_jhctf")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qgoyv"]
 points = PackedVector3Array(-0.06260148, -0.2663933, -0.24024686, 0.011391564, 0.2380352, 0.24944204, 0.0848621, 0.27959216, 0.23210225, 0.11552247, -0.40178484, 0.1602234, 0.2036852, 0.3254891, -0.12174913, -0.24141228, 0.29744264, 0.04110926, -0.18142185, -0.34113356, 0.14483915, 0.23452342, -0.32726675, -0.0331359, -0.063723475, 0.42136097, -0.16905558, -0.19670239, -0.34194493, -0.12234867, 0.21911418, 0.31163558, 0.10041885, 0.0420738, 0.48872638, 0.05739727, -0.034101244, -0.4882299, -0.06463532, 0.09974278, -0.29478467, -0.22445785, -0.0927739, 0.2977592, -0.22676277, -0.1366803, 0.2961318, 0.20387545, -0.0034682432, -0.23841153, 0.24983013, 0.18791044, -0.2943068, 0.15847757, 0.055792414, 0.2815455, -0.24060236, -0.20864561, 0.2639582, -0.13526182, -0.24227779, -0.2984917, -0.033255555, -0.13987412, 0.45428273, 0.026668143, -0.12509164, -0.44033265, 0.10265427, 0.1318245, -0.45138898, -0.06369768, 0.18671456, -0.26317215, -0.1641312, 0.14668888, 0.43577814, -0.07860067, 0.2498313, 0.23832074, -0.0034442788, 0.026553063, 0.43750578, 0.1623532, -0.07727637, -0.2954455, 0.23295411, -0.19385616, -0.2491256, 0.15784955, -0.04863674, -0.39115503, -0.19908188, -0.15033956, -0.29399702, -0.19445038)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vkq25"]
-shader = ExtResource("18_lfswk")
-shader_parameter/shake = 0.015
-shader_parameter/noiseQuality = 250.0
-shader_parameter/noiseIntensity = 0.0
-shader_parameter/offsetIntensity = 0.0
-shader_parameter/colorOffsetIntensity = 0.2
-shader_parameter/pixelSize = 1024.0
-shader_parameter/grainIntensity = 0.0
-shader_parameter/use_overlay = true
-shader_parameter/use_lens_distortion = false
-shader_parameter/overlay_color = Color(1, 1, 1, 10)
-shader_parameter/lens_distortion_strength = 0.05
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lrji"]
-shader = ExtResource("20_3yq8l")
-shader_parameter/enabled = true
-shader_parameter/dithering = true
-shader_parameter/colors = 32
-shader_parameter/dither_size = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rssyh"]
 shader = ExtResource("21_oqlyk")
@@ -75,6 +56,11 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 stretch_shrink = 4
+script = ExtResource("3_dj21o")
+setting_section = "VideoSettings"
+setting_key = "Pixelization"
+setting_default = 2
+property_to_effect = "stretch_shrink"
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1681253594]
 handle_input_locally = false
@@ -86,13 +72,25 @@ render_target_update_mode = 4
 
 [node name="Sun" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1132221272]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 29.462063, 0)
+visible = false
+script = ExtResource("3_dj21o")
+setting_section = "VideoSettings"
+setting_key = "Shadows"
+setting_default = true
+property_to_effect = "shadow_enabled"
 metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1733432788]
 environment = ExtResource("3_bsn8t")
+script = ExtResource("5_6ui35")
 
 [node name="Player" parent="SubViewportContainer/SubViewport" unique_id=183312483 instance=ExtResource("4_4eqn3")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 6.0721636, 3.9256291, -3.0230842)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Player" unique_id=658560692]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 2, 0)
+light_color = Color(0.96143204, 0.9513015, 0.9179655, 1)
+light_energy = 0.3
 
 [node name="Level" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=367103557]
 
@@ -128,26 +126,36 @@ shape = SubResource("ConvexPolygonShape3D_qgoyv")
 
 [node name="RetroEffect" type="ColorRect" parent="." unique_id=1929754428]
 visible = false
-material = SubResource("ShaderMaterial_vkq25")
+material = ExtResource("7_2xkjh")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("3_dj21o")
+setting_section = "VideoSettings"
+setting_key = "RetroEffects"
+setting_default = true
+property_to_effect = "visible"
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1256331432]
 rect = Rect2(0, 0, 1152, 648)
 script = ExtResource("19_5ji1e")
 
 [node name="PSXEffect" type="ColorRect" parent="BackBufferCopy" unique_id=1613882343]
-material = SubResource("ShaderMaterial_7lrji")
+material = ExtResource("9_dj21o")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("3_dj21o")
+setting_section = "VideoSettings"
+setting_key = "RetroEffects"
+setting_default = true
+property_to_effect = "visible"
 
 [node name="StaticEffect" type="ColorRect" parent="." unique_id=2082952662]
 material = SubResource("ShaderMaterial_rssyh")

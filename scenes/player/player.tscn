@@ -27,7 +27,6 @@ visible = true
 [node name="look" type="Node" parent="InputMapControls" index="0" unique_id=21092594]
 unique_name_in_owner = true
 script = ExtResource("3_75vfm")
-viewport_scale = 2.0
 metadata/_custom_type_script = "uid://byf0ij6s7416m"
 
 [node name="move" type="Node" parent="InputMapControls" index="1" unique_id=905762887]

@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4krdau4xb4up"]
+[gd_scene format=3 uid="uid://b4krdau4xb4up"]
 
 [ext_resource type="PackedScene" uid="uid://b2numvphf2kau" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/video/video_options_menu.tscn" id="1_uc77b"]
 [ext_resource type="Script" uid="uid://cvx2dn4o2j0by" path="res://scenes/menus/options_menu/video/video_options_menu.gd" id="2_6e0vx"]
 [ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/list_option_control.tscn" id="3_3bal4"]
+[ext_resource type="PackedScene" uid="uid://cl416gdb1fgwr" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/slider_option_control.tscn" id="4_6rdlo"]
+[ext_resource type="PackedScene" uid="uid://bsxh6v7j0257h" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/option_control/toggle_option_control.tscn" id="5_86wx4"]
 
-[node name="Video" instance=ExtResource("1_uc77b")]
+[node name="Video" unique_id=2016012842 instance=ExtResource("1_uc77b")]
 script = ExtResource("2_6e0vx")
 
-[node name="AntiAliasingControl" parent="VBoxContainer" index="3" instance=ExtResource("3_3bal4")]
+[node name="AntiAliasingControl" parent="VBoxContainer" index="3" unique_id=1563538039 instance=ExtResource("3_3bal4")]
 layout_mode = 2
 lock_titles = true
 option_values = [0, 1, 2, 3]
@@ -19,7 +21,7 @@ section = "VideoSettings"
 property_type = 2
 default_value = 0
 
-[node name="CameraShakeControl" parent="VBoxContainer" index="4" instance=ExtResource("3_3bal4")]
+[node name="CameraShakeControl" parent="VBoxContainer" index="4" unique_id=125995240 instance=ExtResource("3_3bal4")]
 visible = false
 layout_mode = 2
 lock_titles = true
@@ -31,3 +33,85 @@ key = "CameraShake"
 section = "VideoSettings"
 property_type = 3
 default_value = 1.0
+
+[node name="BrightnessControl" parent="VBoxContainer" index="5" unique_id=1087682038 instance=ExtResource("4_6rdlo")]
+layout_mode = 2
+option_name = "Brightness"
+option_section = 3
+key = "Brightness"
+section = "VideoSettings"
+
+[node name="OptionLabel" parent="VBoxContainer/BrightnessControl" index="0"]
+text = "Brightness :"
+
+[node name="HSlider" parent="VBoxContainer/BrightnessControl" index="1"]
+max_value = 4.0
+step = 0.01
+value = 1.58
+tick_count = 8
+
+[node name="Label" type="Label" parent="VBoxContainer" index="6" unique_id=588805624]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "
+Changing the following options may improve performance at the cost of visuals."
+autowrap_mode = 2
+
+[node name="VolumetricFogControl" parent="VBoxContainer" index="7" unique_id=2095299199 instance=ExtResource("5_86wx4")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Volumetric Fog"
+option_section = 3
+key = "VolumetricFog"
+section = "VideoSettings"
+default_value = true
+
+[node name="RetroEffectsControl" parent="VBoxContainer" index="8" unique_id=930697684 instance=ExtResource("5_86wx4")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Retro Effects"
+option_section = 3
+key = "RetroEffects"
+section = "VideoSettings"
+default_value = true
+
+[node name="PixelizationControl" parent="VBoxContainer" index="9" unique_id=2004474623 instance=ExtResource("4_6rdlo")]
+layout_mode = 2
+option_name = "Pixelization"
+option_section = 3
+key = "Pixelization"
+section = "VideoSettings"
+property_type = 2
+default_value = 2.0
+
+[node name="OptionLabel" parent="VBoxContainer/PixelizationControl" index="0"]
+text = "Pixelization :"
+
+[node name="HSlider" parent="VBoxContainer/PixelizationControl" index="1"]
+min_value = 1.0
+max_value = 8.0
+step = 1.0
+value = 2.0
+tick_count = 7
+
+[node name="ShadowsControl" parent="VBoxContainer" index="10" unique_id=835064600 instance=ExtResource("5_86wx4")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Shadows"
+option_section = 3
+key = "Shadows"
+section = "VideoSettings"
+default_value = true
+
+[node name="BloomControl" parent="VBoxContainer" index="11" unique_id=1458245466 instance=ExtResource("5_86wx4")]
+unique_name_in_owner = true
+layout_mode = 2
+option_name = "Bloom"
+option_section = 3
+key = "Bloom"
+section = "VideoSettings"
+default_value = true
+
+[editable path="VBoxContainer/BrightnessControl"]
+[editable path="VBoxContainer/PixelizationControl"]

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bm5c0xin0omtu"]
+
+[ext_resource type="Script" path="res://scenes/menus/main_menu/brightness_control.gd" id="1_lr7sn"]
+[ext_resource type="Environment" uid="uid://dr0jllowrdeg1" path="res://resources/environment.tres" id="2_4qgii"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_672y5"]
+
+[node name="BrightnessControl" type="CenterContainer" unique_id=345440071]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lr7sn")
+world_env = ExtResource("2_4qgii")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1594625800]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=389123469]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Adjust Brightness"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=1348514555]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_672y5")
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer" unique_id=81739514]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 4.0
+step = 0.01
+value = 2.0
+tick_count = 8
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=195101569]
+layout_mode = 2
+text = "The environment should be fairly dark."
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=784082516]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_672y5")
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1303762115]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Done"

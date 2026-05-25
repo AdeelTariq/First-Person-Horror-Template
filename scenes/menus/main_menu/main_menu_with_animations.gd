@@ -2,6 +2,9 @@ extends MainMenu
 
 var animation_state_machine : AnimationNodeStateMachinePlayback
 
+func start_intro() -> void:
+	animation_state_machine.travel("Intro")
+
 func intro_done() -> void:
 	animation_state_machine.travel("OpenMainMenu")
 

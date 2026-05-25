@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c8mqdl3jkaemn"]
+
+[ext_resource type="Shader" uid="uid://b2jbjl5waune8" path="res://shaders/retro/retro.gdshader" id="1_iqw2o"]
+
+[resource]
+shader = ExtResource("1_iqw2o")
+shader_parameter/shake = 0.0050000002375
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.0
+shader_parameter/offsetIntensity = 0.0
+shader_parameter/colorOffsetIntensity = 0.050000002375
+shader_parameter/pixelSize = 1024.0
+shader_parameter/grainIntensity = 0.0
+shader_parameter/use_overlay = true
+shader_parameter/use_lens_distortion = false
+shader_parameter/overlay_color = Color(1, 1, 1, 10)
+shader_parameter/lens_distortion_strength = 0.05

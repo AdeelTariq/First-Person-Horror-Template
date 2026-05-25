@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://crmlnhcgs2n4i"]
+[gd_scene format=3 uid="uid://crmlnhcgs2n4i"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_menus_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_y5f7d"]
 [ext_resource type="Script" uid="uid://cj51lmejk1e3a" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_uonjw"]
 [ext_resource type="PackedScene" uid="uid://dm216huy7h8di" path="res://scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_gci14"]
 [ext_resource type="PackedScene" uid="uid://drlt2laf5svis" path="res://scenes/menus/credits/scrollable_credits.tscn" id="4_j64yt"]
+[ext_resource type="Script" uid="uid://bjtsomxmm28y7" path="res://scenes/pieces/event_tracker/event_tracker.gd" id="5_2k5l7"]
 [ext_resource type="AudioStream" uid="uid://xi34lcov82j0" path="res://assets/sounds/haunting.ogg" id="5_sr523"]
+[ext_resource type="PackedScene" uid="uid://bm5c0xin0omtu" path="res://scenes/menus/main_menu/brightness_control.tscn" id="6_ixa71"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -334,7 +336,6 @@ advance_condition = &"intro_done"
 [sub_resource type="AnimationNodeStateMachineTransition" id="14"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j0orr"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_63dxc"]
 
@@ -350,23 +351,25 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
-[node name="MainMenu" instance=ExtResource("1_y5f7d")]
+[node name="MainMenu" unique_id=1187470170 instance=ExtResource("1_y5f7d")]
 script = ExtResource("2_uonjw")
-game_scene_path = "uid://6sfd8aoikbqa"
+game_scene_path = "uid://c13urlvq2l55t"
 options_packed_scene = ExtResource("3_gci14")
 credits_packed_scene = ExtResource("4_j64yt")
 
-[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_2kqig")
-}
+[node name="EventTracker" type="Node" parent="." index="0" unique_id=609129600]
+script = ExtResource("5_2k5l7")
+metadata/_custom_type_script = "uid://bjtsomxmm28y7"
 
-[node name="MenuAnimationTree" type="AnimationTree" parent="." index="2"]
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1796094748]
+libraries/ = SubResource("AnimationLibrary_2kqig")
+
+[node name="MenuAnimationTree" type="AnimationTree" parent="." index="3" unique_id=1855247748]
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
-[node name="BackgroundMusicPlayer" parent="." index="3"]
+[node name="BackgroundMusicPlayer" parent="." index="4"]
 stream = ExtResource("5_sr523")
 
 [node name="VersionContainer" parent="VersionMargin" index="0"]
@@ -393,10 +396,14 @@ modulate = Color(1, 1, 1, 0)
 [node name="MenuButtonsBoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" index="0"]
 lock = true
 
-[node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1"]
+[node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1" unique_id=1966088934]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Continue"
 
+[node name="BrightnessControl" parent="." index="11" unique_id=345440071 instance=ExtResource("6_ixa71")]
+layout_mode = 1
+
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
+[connection signal="done" from="BrightnessControl" to="." method="start_intro"]
