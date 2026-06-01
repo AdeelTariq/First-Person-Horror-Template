@@ -118,3 +118,8 @@ func drop_object(object: Node) -> bool:
 func _delayed_reset_flag() -> void:
 	await get_tree().create_timer(0.1).timeout
 	_dropped_object_this_frame = false
+
+
+func refresh_prompts(interaction_container: InteractionContainer, picked_object: bool = false) -> void:
+	if InteractionContainer.from(_collider) != interaction_container: return
+	_prepare_prompts_for_display(interaction_container, picked_object)

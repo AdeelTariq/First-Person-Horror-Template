@@ -1,4 +1,4 @@
-extends Node
+class_name SoundFxManager extends Node
 
 func play_single(sound: NodePath, pitch : float = 1.0) -> void:
 	var player: AudioStreamPlayer = get_node(sound)

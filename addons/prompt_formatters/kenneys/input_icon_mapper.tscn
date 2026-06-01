@@ -1,4 +1,4 @@
-[gd_scene load_steps=427 format=3 uid="uid://done0t0ojxyp1"]
+[gd_scene format=3 uid="uid://done0t0ojxyp1"]
 
 [ext_resource type="Script" uid="uid://cqigj1uumknrp" path="res://addons/prompt_formatters/kenneys/input_icon_mapper.gd" id="1_6bffk"]
 [ext_resource type="Texture2D" uid="uid://cnqnhml75fdr5" path="res://assets/kenney_input-prompts/Xbox Series/Vector/xbox_button_color_a.svg" id="2_3pnvt"]
@@ -427,7 +427,7 @@
 [ext_resource type="Texture2D" uid="uid://n1io70x0voxg" path="res://assets/kenney_input-prompts/PlayStation Series/Vector/playstation_button_square.svg" id="425_rp03w"]
 [ext_resource type="Texture2D" uid="uid://cht0lajb2f162" path="res://assets/kenney_input-prompts/PlayStation Series/Vector/playstation_button_triangle.svg" id="426_cu2nj"]
 
-[node name="InputIconMapper" type="Node"]
+[node name="InputIconMapper" type="Node" unique_id=665001700]
 script = ExtResource("1_6bffk")
 prioritized_strings = Array[String](["color"])
 replace_strings = {

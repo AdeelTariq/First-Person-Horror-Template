@@ -71,6 +71,10 @@ func is_enabled() -> bool:
 	return _enabled_context_id > -1
 
 
+func is_enabled_with(context: int) -> bool:
+	return _enabled_context_id == context
+
+
 func get_display_name() -> String:
 	if _enabled_context_id < 0 and override_disabled_display_name:
 		return disabled_display_name
@@ -106,5 +110,6 @@ static func detach(node: Node) -> void:
 
 
 static func from(node: Node) -> InteractionContainer:
+	if node == null: return null
 	assert(node.get_meta("interaction_container") is InteractionContainer)
 	return node.get_meta("interaction_container")
