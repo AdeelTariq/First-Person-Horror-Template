@@ -13,9 +13,10 @@ maximum_lines = 50
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=974946405]
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 
 [node name="StateChart" type="MarginContainer" parent="TabContainer" unique_id=1320960483]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -30,7 +31,6 @@ scroll_horizontal_enabled = false
 scroll_vertical_enabled = false
 
 [node name="History" type="MarginContainer" parent="TabContainer" unique_id=793875432]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5

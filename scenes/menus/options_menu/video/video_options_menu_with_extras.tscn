@@ -92,7 +92,6 @@ text = "Pixelization :"
 min_value = 1.0
 max_value = 8.0
 step = 1.0
-value = 2.0
 tick_count = 7
 
 [node name="ShadowsControl" parent="VBoxContainer" index="10" unique_id=835064600 instance=ExtResource("5_86wx4")]

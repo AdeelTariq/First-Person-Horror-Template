@@ -16,8 +16,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="First Person Horror Template"
 config/tags=PackedStringArray("starterkit")
-run/main_scene="res://scenes/menus/opening/opening_with_logo.tscn"
-config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="uid://evr0833nvqcb"
+config/features=PackedStringArray("4.7", "Forward Plus")
+run/max_fps=60
+run/low_processor_mode=true
 config/icon="res://icon.svg"
 
 [autoload]
@@ -47,7 +49,6 @@ gdscript/warnings/unsafe_call_argument=1
 [display]
 
 window/size/mode=3
-window/vsync/vsync_mode=2
 
 [editor]
 
@@ -192,7 +193,11 @@ copy_path="res://scenes/menus/"
 
 [rendering]
 
+scaling_3d/mode=5
+scaling_3d/mode.ios=5
+scaling_3d/mode.macos=5
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+occlusion_culling/use_occlusion_culling=true
 
 [sound_fx_manager]
 

@@ -5,3 +5,21 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_hchwc")
+shader_parameter/affine_mapping = false
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(480, 270)
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/triplanar = false
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/equipped = false
+shader_parameter/fov_override = 70.0
+shader_parameter/proximity_fade = false
+shader_parameter/proximity_fade_distance = 1.0
+shader_parameter/overlay_texture = false
+shader_parameter/triplanar_2 = false
+shader_parameter/uv2_blend_sharpness = 1.0
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/unshaded_amount = 0.0

@@ -16,6 +16,8 @@ dest_files=["res://.godot/imported/wall_doorway.gltf-1daac821b5b4f6074e1800ada9e
 nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -24,7 +26,7 @@ nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
-meshes/light_baking=1
+meshes/light_baking=2
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
@@ -37,6 +39,37 @@ import_script/path=""
 materials/extract=1
 materials/extract_format=0
 materials/extract_path="res://models"
-_subresources={}
+_subresources={
+"materials": {
+"texture": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://models/texture.tres",
+"use_external/path": "res://models/texture.tres"
+}
+},
+"meshes": {
+"wall_doorway_wall_doorway": {
+"generate/lightmap_uv": 1,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+},
+"wall_doorway_wall_doorway_door": {
+"generate/lightmap_uv": 1,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+}
+}
+}
+apply_material/enabled=true
+apply_material/material_path="res://resources/materials/default_shader_material.tres"
 gltf/naming_version=2
 gltf/embedded_image_handling=1
+gltf/texture_map_mode=0

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="4_4eqn3"]
 [ext_resource type="Script" uid="uid://8gw4ue7j1x0n" path="res://scripts/world_environment.gd" id="5_6ui35"]
 [ext_resource type="Material" uid="uid://c8mqdl3jkaemn" path="res://resources/materials/retro_effect_material.tres" id="7_2xkjh"]
+[ext_resource type="PackedScene" uid="uid://bhew4y56gitln" path="res://assets/models/kaykit-dungeon-remastered/cabinet.glb" id="7_y56qp"]
 [ext_resource type="Material" uid="uid://bvc7bp8d1jal5" path="res://resources/materials/psx_effect_material.tres" id="9_dj21o"]
 [ext_resource type="PackedScene" uid="uid://cg45nrous4phy" path="res://scenes/pieces/pickable.tscn" id="12_ymwe4"]
 [ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="13_jhctf"]
@@ -15,9 +16,11 @@
 [ext_resource type="Script" uid="uid://dbv6ey8p6fq33" path="res://scenes/hud.gd" id="22_01o0d"]
 [ext_resource type="Script" uid="uid://bkpgat47amr4l" path="res://addons/fps_counter/fps_counter.gd" id="23_rxdmg"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_sv52t"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5drv3"]
 radius = 0.25
 height = 1.0
+radial_segments = 4
+rings = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7exfm"]
 albedo_texture = ExtResource("13_jhctf")
@@ -70,16 +73,6 @@ physics_object_picking = true
 size = Vector2i(288, 162)
 render_target_update_mode = 4
 
-[node name="Sun" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1132221272]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 29.462063, 0)
-visible = false
-script = ExtResource("3_dj21o")
-setting_section = "VideoSettings"
-setting_key = "Shadows"
-setting_default = true
-property_to_effect = "shadow_enabled"
-metadata/_edit_lock_ = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1733432788]
 environment = ExtResource("3_bsn8t")
 script = ExtResource("5_6ui35")
@@ -93,6 +86,15 @@ light_color = Color(0.96143204, 0.9513015, 0.9179655, 1)
 light_energy = 0.3
 
 [node name="Level" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=367103557]
+
+[node name="Sun" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Level" unique_id=1132221272]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 29.462063, 0)
+script = ExtResource("3_dj21o")
+setting_section = "VideoSettings"
+setting_key = "Shadows"
+setting_default = true
+property_to_effect = "shadow_enabled"
+metadata/_edit_lock_ = true
 
 [node name="Ground" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Level" unique_id=1444788698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8243523, 0)
@@ -110,6 +112,13 @@ operation = 2
 polygon = PackedVector2Array(0, 0, -0.1393776, 1.833358, 1.023024, 2.0194263, 1, 0)
 depth = 1.33
 
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Level/Ground" unique_id=1381062980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15988922, 1.1523858, 0)
+size = Vector3(1.3197784, 1, 1)
+
+[node name="cabinet" parent="SubViewportContainer/SubViewport/Level/Ground" unique_id=515141164 instance=ExtResource("7_y56qp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7525344, 0.5000001, -0.18546677)
+
 [node name="Pickable" parent="SubViewportContainer/SubViewport/Level" unique_id=1980793841 instance=ExtResource("12_ymwe4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, -3)
 metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction_container.gd"),"default_context_id":0,"display_name":"Little Bean","override_disabled_display_name":false,"disabled_display_name":"","_enabled_context_id":0,"_interactions":Array[Resource("res://addons/interaction_system/interaction.gd")]([Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/interaction_system/interaction.gd"),"hide_while_grabbed":true,"override_display_name":false,"display_name":"Grab","control":Object(Node,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://addons/game_controls/vanilla/input_map_game_control.gd"),"type":0,"override_action_name":false,"_action":&"","action":&"primary_action","negative_x":&"","positive_x":&"","negative_y":&"","positive_y":&"","_triggered":false,"metadata/_custom_type_script":"uid://bxe74cq2uqemi")
@@ -118,11 +127,13 @@ metadata/interaction_container = Object(Node,"unique_name_in_owner":false,"proce
 
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Level/Pickable" unique_id=925973754]
-mesh = SubResource("CapsuleMesh_sv52t")
+mesh = SubResource("CapsuleMesh_5drv3")
 surface_material_override/0 = SubResource("StandardMaterial3D_7exfm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Level/Pickable" unique_id=163409669]
 shape = SubResource("ConvexPolygonShape3D_qgoyv")
+
+[node name="LightmapGI" type="LightmapGI" parent="SubViewportContainer/SubViewport/Level" unique_id=2026949801]
 
 [node name="RetroEffect" type="ColorRect" parent="." unique_id=1929754428]
 visible = false
@@ -235,3 +246,5 @@ offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("23_rxdmg")
 metadata/_custom_type_script = "uid://bkpgat47amr4l"
+
+[editable path="SubViewportContainer/SubViewport/Level/Ground/cabinet"]
