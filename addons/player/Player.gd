@@ -205,7 +205,9 @@ func set_movement_speed() -> void:
 
 
 func look_around(_delta: float) -> void:
-	if lock_camera: return
+	if lock_camera: 
+		var _discard: Vector2 = look_control.value_axis_2d()
+		return
 	var sensitivity: float = PlayerConfig.get_config("InputSettings", "MouseSensitivity", 1.0) * mouse_sensitivity
 	var mouse_value: Vector2 = look_control.value_axis_2d()
 	
