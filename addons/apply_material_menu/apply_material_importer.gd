@@ -103,6 +103,8 @@ func _copy_standard_material(std: StandardMaterial3D, sm: ShaderMaterial) -> voi
 		var material_uniform = mapping[std_key]
 
 		sm.set_shader_parameter(material_uniform, value)
+	if std.get("normal_texture") != null:
+		sm.set_shader_parameter("use_normal", true)
 
 
 func _copy_material_parameters(from_material_mat: ShaderMaterial, to_material_mat: ShaderMaterial) -> void:

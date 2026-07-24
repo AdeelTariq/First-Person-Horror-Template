@@ -79,7 +79,7 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands, %auto_walk
 @onready var left_hand_pos: Vector3 = %LeftHand.transform.origin
 @onready var left_lean_ray: RayCast3D = %LeanLeftRayCast3D
 @onready var right_lean_ray: RayCast3D = %LeanRightRayCast3D
-
+@onready var default_footsteps_volume: float = footsteps.volume_linear
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -201,7 +201,7 @@ func set_movement_speed() -> void:
 		speed = crouch_speed
 	elif speed == crouch_speed:
 		speed = walk_speed
-	footsteps.volume_linear = speed / walk_speed
+	footsteps.volume_linear = default_footsteps_volume if speed <= walk_speed else default_footsteps_volume * 1.25
 
 
 func look_around(_delta: float) -> void:

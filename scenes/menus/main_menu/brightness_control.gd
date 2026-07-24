@@ -21,7 +21,7 @@ func _ready() -> void:
 	show()
 	h_slider.value = world_env.tonemap_exposure
 	button.pressed.connect(func() -> void: 
-		EventTracker.instance.send("brightness_set", {"value": str(h_slider.value)})
+		EventBus.send("brightness_set", {"value": str(h_slider.value)})
 		hide()
 		done.emit()
 	)

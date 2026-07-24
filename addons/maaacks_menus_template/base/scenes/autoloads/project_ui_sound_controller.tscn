@@ -6,6 +6,7 @@
 
 [node name="ProjectUISoundController" type="Node" unique_id=689681691]
 script = ExtResource("1_dmagn")
+audio_bus = &"UI"
 button_hovered = ExtResource("2_qg0v4")
 button_focused = ExtResource("2_qg0v4")
 button_pressed = ExtResource("3_wr46q")

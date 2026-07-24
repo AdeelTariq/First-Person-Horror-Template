@@ -31,6 +31,14 @@ var _total_loading_progress : float = 0.0 :
 		%ProgressBar.value = _total_loading_progress
 var _loading_start_time : int
 
+func _ready() -> void:
+	%ProgressBar.hide()
+	%ProgressLabel.hide()
+	await get_tree().create_timer(1.).timeout
+	%ProgressLabel.show()
+	await get_tree().create_timer(1.).timeout
+	%ProgressBar.show()
+
 func update_total_loading_progress() -> void:
 	_total_loading_progress = _scene_loading_progress
 

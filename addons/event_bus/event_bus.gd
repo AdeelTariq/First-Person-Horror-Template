@@ -1,12 +1,10 @@
-class_name EventTracker extends Node
+extends Node
 
-static var instance: EventTracker
-
-func _init() -> void:
-	instance = self
+signal event_sent(event: String, props: Dictionary[String, String])
 
 
 func send(event: String, props: Dictionary[String, String] = {}) -> void:
+	event_sent.emit(event, props)
 	if Talo.has_identity(): 
 		Talo.events.track(event, props)
 		Talo.events.flush()

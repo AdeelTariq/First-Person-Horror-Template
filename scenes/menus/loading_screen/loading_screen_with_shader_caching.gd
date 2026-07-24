@@ -88,4 +88,5 @@ func _load_material(path:String) -> void:
 	%SpatialShaderTypeCaches.add_child(material_shower)
 
 func _ready() -> void:
+	super._ready()
 	SceneLoader._background_loading = true

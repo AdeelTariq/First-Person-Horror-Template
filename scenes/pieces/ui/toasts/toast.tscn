@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ideyd0k57rx6"]
+
+[ext_resource type="Script" uid="uid://dxjdvo77vex7s" path="res://scenes/pieces/ui/toasts/toast.gd" id="1_104q4"]
+[ext_resource type="Texture2D" uid="uid://d3264hfhtb57d" path="res://icon.svg" id="2_fb3vj"]
+
+[sub_resource type="Gradient" id="Gradient_gexqn"]
+colors = PackedColorArray(0, 0, 0, 0.2509804, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kc8j3"]
+gradient = SubResource("Gradient_gexqn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e5eww"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 32.0
+content_margin_bottom = 8.0
+texture = SubResource("GradientTexture1D_kc8j3")
+
+[node name="Toast" type="PanelContainer" unique_id=1192564130]
+custom_minimum_size = Vector2(384, 0)
+size_flags_horizontal = 0
+offset_transform_enabled = true
+offset_transform_pivot_ratio = Vector2(0, 0.5)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_e5eww")
+script = ExtResource("1_104q4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1815575748]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="ToastIcon" type="TextureRect" parent="HBoxContainer" unique_id=1634127177]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_fb3vj")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=343436100]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="ToastLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=316446118]
+unique_name_in_owner = true
+layout_mode = 2
+text = "This is a toast"

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://gfqbb5nfwxhy"]
+
+[ext_resource type="Script" uid="uid://45uf0c4xlre5" path="res://scenes/pieces/ui/toasts/toast_controller.gd" id="1_iaugc"]
+[ext_resource type="PackedScene" uid="uid://ideyd0k57rx6" path="res://scenes/pieces/ui/toasts/toast.tscn" id="2_40xyq"]
+
+[node name="ToastController" type="VBoxContainer" unique_id=1433105186]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.25)
+script = ExtResource("1_iaugc")
+toast_scene = ExtResource("2_40xyq")
