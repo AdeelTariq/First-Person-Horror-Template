@@ -1,37 +1,37 @@
 keys,en,fr
-
+,,
 ___ MAIN MENU,,
-
+,,
 Title,Title,Titre
 Subtitle,Subtitle,Sous-titre
 Play,Play,Jouer
 Options,Options,Options
 Credits,Credits,Crédits
 Exit,Exit,Quitter
-
+,,
 ___ LOADING SCREEN,,
 Loading...,Loading...,Chargement...
-
+,,
 ___ DIALOGS IN GAME,,
-
+,,
 You lose.,You lose.,Vous avez perdu.
 You won!,You won!,Vous avez gagné !
 Thanks for playing!,Thanks for playing!,Merci d'avoir joué !
-
+,,
 Exit Game,Exit Game,Quitter le jeu
 Main Menu,Main Menu,Menu principal
 Restart,Restart,Recommencer
 Continue,Continue,Continuer
 Menu,Menu,Menu
-
+,,
 Please Confirm...,Please Confirm...,Veuillez confirmer...
 Go back to main menu?,Go back to main menu?,Retourner au menu principal ?
 Quit the game?,Quit the game?,Quitter le jeu ?
 Cancel,Cancel,Annuler
 OK,OK,OK
-
+,,
 ___ OPTIONS MENU,,
-
+,,
 Controls,Controls,Contrôles
 Mouse Sensitivity :,Mouse Sensitivity :,Sensibilité souris :
 Actions & Inputs,Actions & Inputs,Actions et contrôles
@@ -46,13 +46,13 @@ Already Assigned,Already Assigned,Déjà utilisé
 Remove Key for {action},Remove Key for {action},Supprimer le contrôle pour {action}
 Are you sure you want to remove {key} from {action}?,Are you sure you want to remove {key} from {action}?,Êtes-vous sûr de vouloir supprimer {key} pour {action} ?
 Reset,Reset,Réinitialiser
-
+,,
 Audio,Audio,Audio
 Master :,Master :,Principal :
 Music :,Music :,Musique :
 SFX :,SFX :,Effets :
 Mute :,Mute :,Silencieux :
-
+,,
 Video,Video,Vidéo
 Fullscreen :,Fullscreen :,Plein écran :
 Resolution :,Resolution :,Résolution :
@@ -64,9 +64,59 @@ Normal,Normal,Normale
 Reduced,Reduced,Réduite
 Minimal,Minimal,Minimum
 None,None,Aucune
-
+,,
 Game,Game,Jeu
 Reset Game :,Reset Game :,Réinitialiser le jeu :
 Do you want to reset your game data?,Do you want to reset your game data?,Voulez-vous réinitialiser votre partie ?
-
+,,
 Back,Back,Retour
+,,
+Adjust Brightness,Adjust Brightness,Régler la luminosité
+Brightness :,Brightness :,Luminosité :
+Done,Done,Terminé
+,,
+New Game,,Nouvelle partie
+Load Game,,Charger partie
+,,
+Primary,Primary,Primaire
+Secondary,Secondary,Secondaire
+Tertiary,Tertiary,Tertiaire
+Audio,Audio,Audio
+Video,Video,Vidéo
+Inputs,Inputs,Entrée
+Field Of View :,Field Of View :,Champ de vision :
+Head Bob :,Head Bob :,Mouvement de tête :
+Joypad Sensitivity :,Joypad Sensitivity :,Sensibilité de la manette :
+UI :,UI :,Interface :
+Volumetric Fog :,Volumetric Fog :,Brouillard volumétrique :
+Retro Effects :,Retro Effects :,Effets rétro :
+Downscaling :,Downscaling :,Réduction de résolution :
+Shadows :,Shadows,Ombres :
+Bloom :,Bloom :,Lueur :
+,,
+Are you sure you want to reset controls back to the defaults?,Are you sure you want to reset controls back to the defaults?,Voulez-vous vraiment rétablir les commandes par défaut?
+Restart the game?,Restart the game?,Redémarrer la partie?
+,,
+Resume,Resume,Reprendre
+Paused,Paused,En pause
+,,
+,,
+Move Forward,Move Forward,Avancer
+Move Left,Move Left,Aller à gauche
+Move Right,Move Right,Aller à droite
+Move Back,Move Back,Reculer
+Lean Right,Lean Right,Se pencher à droite
+Lean Left,Lean Left,Se pencher à gauche
+Jump,Jump,Sauter
+Sprint,Sprint,Courir
+Crouch,Crouch,S'accroupir
+Zoom,Zoom,Zoom
+Interact,Interact,Interagir
+Drop,Drop,Lâcher
+Primary Action,Primary Action,Action principale
+Secondary Action,Secondary Action,Action secondaire
+Scroll Up,Scroll Up,Défilement vers le haut
+Scroll Down,Scroll Down,Défilement vers le bas
+Rotate,Rotate,Faire pivoter
+Switch Hands,Switch Hands,Changer de main
+Auto Walk,Auto Walk,Marche automatique

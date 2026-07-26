@@ -42,10 +42,21 @@ expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=343436100]
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="ToastLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=316446118]
+[node name="ToastLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=2054713389]
 unique_name_in_owner = true
 layout_mode = 2
+bbcode_enabled = true
 text = "This is a toast"
+fit_content = true
+
+[node name="ToastSubText" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=1862249593]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.78431374)
+layout_mode = 2
+bbcode_enabled = true
+text = "This is a toast"
+fit_content = true

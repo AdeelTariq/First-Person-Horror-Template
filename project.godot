@@ -67,7 +67,8 @@ folder_colors={
 "res://resources/": "red",
 "res://scenes/": "pink",
 "res://scripts/": "gray",
-"res://shaders/": "purple"
+"res://shaders/": "purple",
+"res://translations/": "green"
 }
 
 [impact_manager]
@@ -174,7 +175,8 @@ auto_walk={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_menus_template/base/translations/menus_translations.fr.translation")
+locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.fr.translation")
+locale/test="fr"
 
 [layer_names]
 

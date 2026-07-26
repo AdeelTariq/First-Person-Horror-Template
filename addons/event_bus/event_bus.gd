@@ -1,9 +1,9 @@
 extends Node
 
-signal event_sent(event: String, props: Dictionary[String, String])
+signal event_sent(event: String, props: Dictionary)
 
 
-func send(event: String, props: Dictionary[String, String] = {}) -> void:
+func send(event: String, props: Dictionary = {}) -> void:
 	event_sent.emit(event, props)
 	if Talo.has_identity(): 
 		Talo.events.track(event, props)

@@ -11,34 +11,34 @@
 [ext_resource type="Script" uid="uid://dxkwudbrrwwe2" path="res://addons/proton_scatter/src/scatter_shape.gd" id="7_jofmq"]
 [ext_resource type="Script" uid="uid://13djdxbjt07f" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="8_gnbkw"]
 
-[sub_resource type="Resource" id="Resource_ywrnm"]
+[sub_resource type="Resource" id="Resource_0uoil"]
 script = ExtResource("3_0051t")
 amount = 75
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_2ntmg"]
+[sub_resource type="Resource" id="Resource_ywrnm"]
 script = ExtResource("4_5a045")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
 scale = Vector3(0.1, 0.1, 0.1)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_f8pn0"]
+[sub_resource type="Resource" id="Resource_2ntmg"]
 script = ExtResource("5_n2in0")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_1rcfh"]
+[sub_resource type="Resource" id="Resource_f8pn0"]
 script = ExtResource("5_gkw57")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_nih0i"]
+[sub_resource type="Resource" id="Resource_1rcfh"]
 script = ExtResource("2_lt5xy")
-stack = Array[ExtResource("3_0uoil")]([SubResource("Resource_ywrnm"), SubResource("Resource_2ntmg"), SubResource("Resource_f8pn0"), SubResource("Resource_1rcfh")])
+stack = Array[ExtResource("3_0uoil")]([SubResource("Resource_0uoil"), SubResource("Resource_ywrnm"), SubResource("Resource_2ntmg"), SubResource("Resource_f8pn0")])
 
 [sub_resource type="Resource" id="Resource_g8bsm"]
 script = ExtResource("8_gnbkw")
@@ -46,7 +46,7 @@ radius = 2.0
 
 [node name="ProtonScatter" type="Node3D" unique_id=1008892493]
 script = ExtResource("1_e0kty")
-modifier_stack = SubResource("Resource_nih0i")
+modifier_stack = SubResource("Resource_1rcfh")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

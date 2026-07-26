@@ -147,7 +147,7 @@ mouse_filter = 2
 script = ExtResource("3_dj21o")
 setting_section = "VideoSettings"
 setting_key = "RetroEffects"
-setting_default = true
+setting_default = false
 property_to_effect = "visible"
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1256331432]
@@ -165,7 +165,7 @@ mouse_filter = 2
 script = ExtResource("3_dj21o")
 setting_section = "VideoSettings"
 setting_key = "RetroEffects"
-setting_default = true
+setting_default = false
 property_to_effect = "visible"
 
 [node name="StaticEffect" type="ColorRect" parent="." unique_id=2082952662]

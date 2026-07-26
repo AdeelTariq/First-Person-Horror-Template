@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bm5c0xin0omtu"]
 
-[ext_resource type="Script" path="res://scenes/menus/main_menu/brightness_control.gd" id="1_lr7sn"]
+[ext_resource type="Script" uid="uid://pdapqenleg67" path="res://scenes/menus/main_menu/brightness_control.gd" id="1_lr7sn"]
 [ext_resource type="Environment" uid="uid://dr0jllowrdeg1" path="res://resources/environment.tres" id="2_4qgii"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_672y5"]
@@ -37,7 +37,7 @@ tick_count = 8
 
 [node name="Label2" type="Label" parent="VBoxContainer" unique_id=195101569]
 layout_mode = 2
-text = "The environment should be fairly dark."
+text = "PLACEHOLDER INSTRUCTION TEXT"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=784082516]
 layout_mode = 2

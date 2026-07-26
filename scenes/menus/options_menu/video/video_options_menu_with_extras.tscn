@@ -47,18 +47,9 @@ text = "Brightness :"
 [node name="HSlider" parent="VBoxContainer/BrightnessControl" index="1"]
 max_value = 4.0
 step = 0.01
-value = 1.58
 tick_count = 8
 
-[node name="Label" type="Label" parent="VBoxContainer" index="6" unique_id=588805624]
-custom_minimum_size = Vector2(512, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "
-Changing the following options may improve performance at the cost of visuals."
-autowrap_mode = 2
-
-[node name="VolumetricFogControl" parent="VBoxContainer" index="7" unique_id=2095299199 instance=ExtResource("5_86wx4")]
+[node name="VolumetricFogControl" parent="VBoxContainer" index="6" unique_id=2095299199 instance=ExtResource("5_86wx4")]
 unique_name_in_owner = true
 layout_mode = 2
 option_name = "Volumetric Fog"
@@ -67,7 +58,7 @@ key = "VolumetricFog"
 section = "VideoSettings"
 default_value = true
 
-[node name="RetroEffectsControl" parent="VBoxContainer" index="8" unique_id=930697684 instance=ExtResource("5_86wx4")]
+[node name="RetroEffectsControl" parent="VBoxContainer" index="7" unique_id=930697684 instance=ExtResource("5_86wx4")]
 unique_name_in_owner = true
 layout_mode = 2
 option_name = "Retro Effects"
@@ -76,9 +67,10 @@ key = "RetroEffects"
 section = "VideoSettings"
 default_value = true
 
-[node name="PixelizationControl" parent="VBoxContainer" index="9" unique_id=2004474623 instance=ExtResource("4_6rdlo")]
+[node name="PixelizationControl" parent="VBoxContainer" index="8" unique_id=2004474623 instance=ExtResource("4_6rdlo")]
 layout_mode = 2
-option_name = "Pixelization"
+lock_config_names = true
+option_name = "Downscaling"
 option_section = 3
 key = "Pixelization"
 section = "VideoSettings"
@@ -86,15 +78,15 @@ property_type = 2
 default_value = 2.0
 
 [node name="OptionLabel" parent="VBoxContainer/PixelizationControl" index="0"]
-text = "Pixelization :"
+text = "Downscaling :"
 
 [node name="HSlider" parent="VBoxContainer/PixelizationControl" index="1"]
 min_value = 1.0
 max_value = 8.0
 step = 1.0
-tick_count = 7
+tick_count = 8
 
-[node name="ShadowsControl" parent="VBoxContainer" index="10" unique_id=835064600 instance=ExtResource("5_86wx4")]
+[node name="ShadowsControl" parent="VBoxContainer" index="9" unique_id=835064600 instance=ExtResource("5_86wx4")]
 unique_name_in_owner = true
 layout_mode = 2
 option_name = "Shadows"
@@ -103,7 +95,7 @@ key = "Shadows"
 section = "VideoSettings"
 default_value = true
 
-[node name="BloomControl" parent="VBoxContainer" index="11" unique_id=1458245466 instance=ExtResource("5_86wx4")]
+[node name="BloomControl" parent="VBoxContainer" index="10" unique_id=1458245466 instance=ExtResource("5_86wx4")]
 unique_name_in_owner = true
 layout_mode = 2
 option_name = "Bloom"
