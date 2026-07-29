@@ -34,6 +34,7 @@ func _input(event : InputEvent) -> void:
 func _ready() -> void:
 	super._ready()
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
+	start_intro()
 
 func _on_continue_game_button_pressed() -> void:
 	load_game_scene()

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://sikc02ddepyt"]
+[gd_scene format=3 uid="uid://sikc02ddepyt"]
 
 [ext_resource type="Script" uid="uid://dtco0s8byckx6" path="res://addons/maaacks_menus_template/base/scenes/opening/opening.gd" id="1_fcjph"]
 
-[node name="Opening" type="Control"]
+[node name="Opening" type="Control" unique_id=771248237]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,12 +12,31 @@ grow_vertical = 2
 script = ExtResource("1_fcjph")
 next_scene = "res://addons/maaacks_menus_template/base/scenes/menus/main_menu/main_menu.tscn"
 
-[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=665051482]
 process_mode = 3
 autoplay = true
 bus = &"Music"
 
-[node name="ImagesContainer" type="MarginContainer" parent="."]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1522980365]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(853.333, 480)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -426.6665
+offset_top = -240.0
+offset_right = 426.6665
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+autoplay = true
+expand = true
+bus = &"UI"
+
+[node name="ImagesContainer" type="MarginContainer" parent="." unique_id=1597060496]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(512, 512)
 layout_mode = 1

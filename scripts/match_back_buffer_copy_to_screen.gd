@@ -5,5 +5,4 @@ extends BackBufferCopy
 func _ready() -> void:
 	position = Vector2.ZERO
 	scale = Vector2.ONE
-	print(get_viewport().get_visible_rect())
 	rect = get_viewport().get_visible_rect()

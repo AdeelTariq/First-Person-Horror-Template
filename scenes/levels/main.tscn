@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_menus_template/base/scripts/pause_menu_controller.gd" id="1_b3c2k"]
 [ext_resource type="PackedScene" uid="uid://cndau4qyl56kx" path="res://scenes/menus/overlaid_menus/pause_menu.tscn" id="2_8wpnj"]
 [ext_resource type="Environment" uid="uid://dr0jllowrdeg1" path="res://resources/environment.tres" id="3_bsn8t"]
-[ext_resource type="Script" uid="uid://bxhyjunwxmjvl" path="res://scripts/apply_setting.gd" id="3_dj21o"]
+[ext_resource type="Script" uid="uid://bxhyjunwxmjvl" path="res://addons/maaacks_menus_template/base/scripts/apply_setting.gd" id="3_dj21o"]
+[ext_resource type="Shader" uid="uid://cspnp5w0rbh2m" path="res://shaders/gamma/gamma.gdshader" id="3_sv52t"]
 [ext_resource type="PackedScene" uid="uid://bia32vkq1a5i" path="res://scenes/player/player.tscn" id="4_4eqn3"]
-[ext_resource type="Script" uid="uid://8gw4ue7j1x0n" path="res://scripts/world_environment.gd" id="5_6ui35"]
+[ext_resource type="Script" uid="uid://dwj7q8a1bqs4k" path="res://addons/maaacks_menus_template/base/scripts/apply_setting_item.gd" id="5_7exfm"]
 [ext_resource type="Material" uid="uid://c8mqdl3jkaemn" path="res://resources/materials/retro_effect_material.tres" id="7_2xkjh"]
 [ext_resource type="PackedScene" uid="uid://bhew4y56gitln" path="res://assets/models/kaykit-dungeon-remastered/cabinet.glb" id="7_y56qp"]
 [ext_resource type="Material" uid="uid://bvc7bp8d1jal5" path="res://resources/materials/psx_effect_material.tres" id="9_dj21o"]
@@ -15,6 +16,26 @@
 [ext_resource type="Shader" uid="uid://ckeoq8wwo66jj" path="res://shaders/tv_static_border/tv_static_border.gdshader" id="21_oqlyk"]
 [ext_resource type="Script" uid="uid://dbv6ey8p6fq33" path="res://scenes/hud.gd" id="22_01o0d"]
 [ext_resource type="Script" uid="uid://bkpgat47amr4l" path="res://addons/fps_counter/fps_counter.gd" id="23_rxdmg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7exfm"]
+shader = ExtResource("3_sv52t")
+shader_parameter/gamma = 1.0000000149012
+
+[sub_resource type="Resource" id="Resource_sv52t"]
+script = ExtResource("5_7exfm")
+setting_section = "VideoSettings"
+setting_key = "Brightness"
+setting_default = 1.0
+property_to_effect = "material:shader_parameter/gamma"
+metadata/_custom_type_script = "uid://dwj7q8a1bqs4k"
+
+[sub_resource type="Resource" id="Resource_7exfm"]
+script = ExtResource("5_7exfm")
+setting_section = "VideoSettings"
+setting_key = "Bloom"
+setting_default = true
+property_to_effect = "environment:glow_enabled"
+metadata/_custom_type_script = "uid://dwj7q8a1bqs4k"
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5drv3"]
 radius = 0.25
@@ -52,6 +73,7 @@ pause_menu_packed = ExtResource("2_8wpnj")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=205394416]
 texture_filter = 1
+material = SubResource("ShaderMaterial_7exfm")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -64,6 +86,7 @@ setting_section = "VideoSettings"
 setting_key = "Pixelization"
 setting_default = 2
 property_to_effect = "stretch_shrink"
+other_settings = Array[ExtResource("5_7exfm")]([SubResource("Resource_sv52t")])
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1681253594]
 handle_input_locally = false
@@ -75,7 +98,12 @@ render_target_update_mode = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1733432788]
 environment = ExtResource("3_bsn8t")
-script = ExtResource("5_6ui35")
+script = ExtResource("3_dj21o")
+setting_section = "VideoSettings"
+setting_key = "VolumetricFog"
+setting_default = true
+property_to_effect = "environment:volumetric_fog_enabled"
+other_settings = Array[ExtResource("5_7exfm")]([SubResource("Resource_7exfm")])
 
 [node name="Player" parent="SubViewportContainer/SubViewport" unique_id=183312483 instance=ExtResource("4_4eqn3")]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 6.0721636, 3.9256291, -3.0230842)

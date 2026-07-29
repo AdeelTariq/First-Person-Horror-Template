@@ -11,6 +11,7 @@ extends Control
 @export var end_delay : float = 0.5
 @export var show_loading_screen : bool = false
 
+
 var tween : Tween
 var next_image_index : int = 0
 
@@ -77,6 +78,11 @@ func _hide_previous_image() -> void:
 		current_image.modulate.a = 0.0
 
 func _show_next_image(animated : bool = true) -> void:
+	if %VideoStreamPlayer.is_playing():
+		%VideoStreamPlayer.stop()
+		%VideoStreamPlayer.hide()
+		_transition_in()
+		return
 	_hide_previous_image()
 	if next_image_index >= %ImagesContainer.get_child_count():
 		if animated:
@@ -97,4 +103,6 @@ func _show_next_image(animated : bool = true) -> void:
 func _ready() -> void:
 	SceneLoader.load_scene(next_scene, true)
 	_add_textures_to_container(images)
+	await %VideoStreamPlayer.finished
+	%VideoStreamPlayer.hide()
 	_transition_in()

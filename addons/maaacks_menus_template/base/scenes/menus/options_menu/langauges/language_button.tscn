@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ba7ao2mvtvkun"]
+
+[node name="LanguageButton" type="Button" unique_id=2053333955]
+custom_minimum_size = Vector2(0, 40)
+text = "English"

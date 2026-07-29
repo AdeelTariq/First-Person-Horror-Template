@@ -1,5 +1,7 @@
 keys,en,fr
 ,,
+LANGUAGE_NAME,English,Français
+,,
 ___ MAIN MENU,,
 ,,
 Title,Title,Titre
@@ -74,6 +76,10 @@ Back,Back,Retour
 Adjust Brightness,Adjust Brightness,Régler la luminosité
 Brightness :,Brightness :,Luminosité :
 Done,Done,Terminé
+Not Visible,Not Visible,Invisible
+Barely Visible,Barely Visible,À peine visible
+Medium Gray,Medium Gray,Gris moyen
+ADJUST_BRIGTHTNESS_COPY,"Adjust brightness until left logo appears pure black and invisible, middle logo is very dark, right logo is medium gray and all segments are distinct on the bottom bar.\nLeave at default if your screen is already calibrated.","Ajustez la luminosité jusqu'à ce que le logo de gauche soit entièrement noir et invisible, que le logo du milieu soit très sombre, et que le logo de droite soit gris moyen. Tous les segments de la barre inférieure doivent être clairement distinguables.\nLaissez la valeur par défaut si votre écran est déjà calibré."
 ,,
 New Game,,Nouvelle partie
 Load Game,,Charger partie

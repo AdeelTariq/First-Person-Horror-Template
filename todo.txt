@@ -1,4 +1,1 @@
-Add additional options and settings
 Can npcs do the same things as player?
-Make a dependency map
-Create demo games

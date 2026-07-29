@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cjgk3r0u4qh3b"]
+
+[ext_resource type="PackedScene" uid="uid://pp8bn5m00wcn" path="res://addons/maaacks_menus_template/base/scenes/first_time_setup/first_time_setup.tscn" id="1_bjlpo"]
+[ext_resource type="PackedScene" uid="uid://cy2kh30yqtos0" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/langauges/language_menu.tscn" id="2_f0hp3"]
+[ext_resource type="PackedScene" uid="uid://cp5gkt4dmed7g" path="res://scenes/menus/options_menu/audio/audio_options_menu.tscn" id="3_efopo"]
+[ext_resource type="PackedScene" uid="uid://bm5c0xin0omtu" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/brightness/brightness_control.tscn" id="4_ft4pr"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_menus_template/base/scenes/music_players/background_music_player.tscn" id="4_wcswp"]
+[ext_resource type="Environment" uid="uid://dr0jllowrdeg1" path="res://resources/environment.tres" id="5_xtmcw"]
+
+[node name="FirstTimeSetup" unique_id=773306480 node_paths=PackedStringArray("bg_music_player") instance=ExtResource("1_bjlpo")]
+next_scene = "res://scenes/menus/opening/opening_with_logo.tscn"
+bg_music_player = NodePath("Audio/BackgroundMusicPlayer")
+
+[node name="Language" parent="." index="0" unique_id=1175755460 instance=ExtResource("2_f0hp3")]
+visible = false
+layout_mode = 1
+
+[node name="Audio" parent="." index="1" unique_id=906967402 instance=ExtResource("3_efopo")]
+visible = false
+layout_mode = 1
+
+[node name="AudioInputOptionControl" parent="Audio/VBoxContainer" index="2"]
+visible = false
+
+[node name="Button" type="Button" parent="Audio/VBoxContainer" index="3" unique_id=183066394]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Done"
+
+[node name="BackgroundMusicPlayer" parent="Audio" index="1" unique_id=42604143 instance=ExtResource("4_wcswp")]
+autoplay = false
+
+[node name="BrightnessControl" parent="." index="2" unique_id=345440071 instance=ExtResource("4_ft4pr")]
+visible = false
+layout_mode = 1
+world_env = ExtResource("5_xtmcw")
+
+[connection signal="language_selected" from="Language" to="." method="next"]
+[connection signal="visibility_changed" from="Audio" to="." method="audio_control_visibility_changed" flags=18]
+[connection signal="pressed" from="Audio/VBoxContainer/Button" to="." method="next"]
+[connection signal="done" from="BrightnessControl" to="." method="next"]
+
+[editable path="Audio"]
