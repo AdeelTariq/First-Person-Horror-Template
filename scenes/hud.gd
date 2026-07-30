@@ -27,11 +27,10 @@ func _something_interactable(object_name: String, actions: Array[Interaction], a
 		cross_hair.hide()
 		interact_prompt.text = ""
 		return
-	
 	interact_prompt.text = "[b]%s[/b]: %s" % [
-		object_name,
+		tr(object_name),
 		", ".join(actions.map(func(a: Interaction) -> String:
 		@warning_ignore("redundant_await")
-		return "%s to %s" % [await _formatter.format_async(a.control), a.get_display_name()]
+		return tr("{control} to {action}").format({control = await _formatter.format_async(a.control), action = tr(a.get_display_name())})
 		))
 	]

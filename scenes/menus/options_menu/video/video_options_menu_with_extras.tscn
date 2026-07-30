@@ -44,10 +44,10 @@ section = "VideoSettings"
 [node name="OptionLabel" parent="VBoxContainer/BrightnessControl" index="0"]
 text = "Brightness :"
 
-[node name="HSlider" parent="VBoxContainer/BrightnessControl" index="1"]
-max_value = 4.0
-step = 0.01
-tick_count = 8
+[node name="HSlider" parent="VBoxContainer/BrightnessControl" index="1" unique_id=2028861706]
+size_flags_vertical = 0
+max_value = 2.0
+tick_count = 21
 
 [node name="VolumetricFogControl" parent="VBoxContainer" index="6" unique_id=2095299199 instance=ExtResource("5_86wx4")]
 unique_name_in_owner = true
@@ -80,10 +80,11 @@ default_value = 2.0
 [node name="OptionLabel" parent="VBoxContainer/PixelizationControl" index="0"]
 text = "Downscaling :"
 
-[node name="HSlider" parent="VBoxContainer/PixelizationControl" index="1"]
+[node name="HSlider" parent="VBoxContainer/PixelizationControl" index="1" unique_id=2028861706]
 min_value = 1.0
 max_value = 8.0
 step = 1.0
+value = 2.0
 tick_count = 8
 
 [node name="ShadowsControl" parent="VBoxContainer" index="9" unique_id=835064600 instance=ExtResource("5_86wx4")]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ifqf18adblgs"
+
+[deps]
+
+files=["res://addons/maaacks_menus_template/base/translations/common_translations.en.translation", "res://addons/maaacks_menus_template/base/translations/common_translations.fr.translation"]
+
+source_file="res://addons/maaacks_menus_template/base/translations/common_translations.csv"
+dest_files=["res://addons/maaacks_menus_template/base/translations/common_translations.en.translation", "res://addons/maaacks_menus_template/base/translations/common_translations.fr.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

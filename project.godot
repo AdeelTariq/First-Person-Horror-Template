@@ -182,7 +182,7 @@ auto_walk={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.fr.translation")
+locale/translations=PackedStringArray("res://addons/maaacks_menus_template/base/translations/common_translations.en.translation", "res://addons/maaacks_menus_template/base/translations/common_translations.fr.translation", "res://translations/translations.en.translation", "res://translations/translations.fr.translation")
 
 [layer_names]
 

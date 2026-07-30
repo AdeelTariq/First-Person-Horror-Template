@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d0t8s304kbxoj" path="res://scenes/menus/options_menu/input/input_extras_menu.tscn" id="4_lxfp0"]
 [ext_resource type="PackedScene" uid="uid://cp5gkt4dmed7g" path="res://scenes/menus/options_menu/audio/audio_options_menu.tscn" id="5_tdiod"]
 [ext_resource type="PackedScene" uid="uid://b4krdau4xb4up" path="res://scenes/menus/options_menu/video/video_options_menu_with_extras.tscn" id="6_q2qff"]
+[ext_resource type="PackedScene" uid="uid://cy2kh30yqtos0" path="res://addons/maaacks_menus_template/base/scenes/menus/options_menu/langauges/language_menu.tscn" id="7_w1dvr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqpxk"]
 content_margin_left = 0.0
@@ -44,3 +45,8 @@ metadata/_tab_index = 2
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
+
+[node name="Language" parent="TabContainer" index="5" unique_id=1175755460 instance=ExtResource("7_w1dvr")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4

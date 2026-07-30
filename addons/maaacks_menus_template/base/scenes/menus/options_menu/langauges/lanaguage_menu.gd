@@ -18,6 +18,7 @@ func _add_language_buttons() -> void:
 	#var locales: Array = ["zh", "ur", "en", "fr", "es"]
 	var locales: Array = TranslationServer.get_loaded_locales()
 	var default_locale: String = PlayerConfig.get_config("LOCALE", "language", OS.get_locale())
+	TranslationServer.set_locale(default_locale)
 	locales.sort_custom(func(l1: String, l2: String) -> bool: return default_locale.contains(l1))
 	for locale in locales:
 		var translation = TranslationServer.get_translation_object(locale)

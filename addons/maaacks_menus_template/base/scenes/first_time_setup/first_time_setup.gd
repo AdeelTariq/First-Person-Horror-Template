@@ -6,7 +6,7 @@ class_name FirstTimeSetup extends Control
 
 func _ready() -> void:
 	if PlayerConfig.has_section("LaunchSetup"):
-		SceneLoader.load_scene(next_scene)
+		get_tree().call_deferred("change_scene_to_file", next_scene)
 		return
 	else:
 		SceneLoader.load_scene(next_scene, true)
