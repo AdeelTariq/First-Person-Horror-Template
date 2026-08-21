@@ -75,6 +75,8 @@ Optional: %jump, %sprint, %crouch, %lean, %zoom, %switch_hands, %auto_walk
 @onready var foot_steps_animation_player: AnimationPlayer = %FootStepsAnimationPlayer
 @onready var camera_animation_player: AnimationPlayer = %CameraAnimationPlayer
 @onready var ceiling: ShapeCast3D = $Ceiling
+@onready var right_hand: Node3D = %RightHand
+@onready var left_hand: Node3D = %LeftHand
 @onready var right_hand_pos: Vector3 = %RightHand.transform.origin
 @onready var left_hand_pos: Vector3 = %LeftHand.transform.origin
 @onready var left_lean_ray: RayCast3D = %LeanLeftRayCast3D
@@ -167,6 +169,7 @@ func handle_crouch() -> void:
 
 
 func toggle_crouch_state() -> void:
+	if not get_node_or_null("%crouch"): return
 	if not %crouch.is_first_triggered(): return
 	set_crouch(not crouching)
 
@@ -213,7 +216,7 @@ func look_around(_delta: float) -> void:
 	
 	head.rotate_y(mouse_value.x * sensitivity)
 	neck.rotate_x(mouse_value.y * sensitivity)
-	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-80), deg_to_rad(75))
+	neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-90), deg_to_rad(80))
 
 
 func handle_auto_walk_toggle() -> void:

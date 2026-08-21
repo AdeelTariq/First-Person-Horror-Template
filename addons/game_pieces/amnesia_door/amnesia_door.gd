@@ -1,5 +1,5 @@
 @tool
-class_name AmnesiaDrawer extends Node3D
+class_name AmnesiaDoor extends Node3D
 
 @export_range(1., 10., 0.1) var speed: float = 5.
 @export var release_distance: float = 4.

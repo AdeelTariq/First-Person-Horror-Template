@@ -1,4 +1,4 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
+# Copyright © 2023-2026 Cory Petkovsek, Roope Palmroos, and Contributors.
 # Editor Plugin for Terrain3D
 @tool
 extends EditorPlugin
@@ -8,6 +8,7 @@ extends EditorPlugin
 const UI: Script = preload("res://addons/terrain_3d/src/ui.gd")
 const RegionGizmo: Script = preload("res://addons/terrain_3d/src/region_gizmo.gd")
 const ASSET_DOCK: String = "res://addons/terrain_3d/src/asset_dock.tscn"
+const ASSET_DOCK_45: String = "res://addons/terrain_3d/src/asset_dock_45.tscn"
 
 var modifier_ctrl: bool
 var modifier_alt: bool
@@ -21,6 +22,7 @@ var terrain: Terrain3D
 var _last_terrain: Terrain3D
 var nav_region: NavigationRegion3D
 
+var debug: int = 0 # Set in _edit()
 var editor: Terrain3DEditor
 var editor_settings: EditorSettings
 var ui: Node # Terrain3DUI see Godot #75388
@@ -51,7 +53,11 @@ func _enter_tree() -> void:
 
 	scene_changed.connect(_on_scene_changed)
 
-	asset_dock = load(ASSET_DOCK).instantiate()
+	# Load Godot 4.6+ asset dock or pre-4.6
+	if Engine.get_version_info().hex >= 0x040600:
+		asset_dock = load(ASSET_DOCK).instantiate()
+	else:
+		asset_dock = load(ASSET_DOCK_45).instantiate()
 	asset_dock.initialize(self)
 
 
@@ -113,6 +119,7 @@ func _edit(p_object: Object) -> void:
 		_last_terrain = terrain
 		terrain.set_plugin(self)
 		terrain.set_editor(editor)
+		debug = terrain.debug_level		
 		editor.set_terrain(terrain)
 		region_gizmo.set_node_3d(terrain)
 		terrain.add_gizmo(region_gizmo)
@@ -327,14 +334,16 @@ func _read_input(p_event: InputEvent = null) -> AfterGUIInput:
 # Returns true if hotkey matches and operation triggered
 func consume_hotkey(keycode: int) -> bool:
 	match keycode:
-		KEY_1:
+		KEY_1, KEY_KP_1:
 			terrain.material.set_show_region_grid(!terrain.material.get_show_region_grid())
-		KEY_2:
-			terrain.material.set_show_instancer_grid(!terrain.material.get_show_instancer_grid())
-		KEY_3:
-			terrain.material.set_show_vertex_grid(!terrain.material.get_show_vertex_grid())
-		KEY_4:
+		KEY_2, KEY_KP_2:
+			terrain.label_distance = 4096.0 if is_zero_approx(terrain.label_distance) else 0.0 
+		KEY_3, KEY_KP_3:
 			terrain.material.set_show_contours(!terrain.material.get_show_contours())
+		KEY_4, KEY_KP_4:
+			terrain.material.set_show_instancer_grid(!terrain.material.get_show_instancer_grid())
+		KEY_5, KEY_KP_5:
+			terrain.material.set_show_vertex_grid(!terrain.material.get_show_vertex_grid())
 		KEY_E:
 			ui.toolbar.get_button("AddRegion").set_pressed(true)
 		KEY_R:
@@ -392,10 +401,17 @@ func _on_scene_changed(scene_root: Node) -> void:
 		node.editor_setup(self)
 
 	asset_dock.update_assets()
-	await get_tree().create_timer(2).timeout
-	asset_dock.update_thumbnails()
 
-		
+
+func get_terrain() -> Terrain3D:
+	if is_terrain_valid():
+		return terrain
+	elif is_instance_valid(_last_terrain) and is_terrain_valid(_last_terrain):
+		return _last_terrain
+	else:
+		return null
+
+
 func is_terrain_valid(p_terrain: Terrain3D = null) -> bool:
 	var t: Terrain3D
 	if p_terrain:

@@ -1,12 +1,14 @@
 extends Node
 
 func play_single(sound: NodePath, pitch : float = 1.0) -> void:
+	if not get_node(sound): return
 	var player: AudioStreamPlayer = get_node(sound)
 	player.pitch_scale = pitch
 	player.play()
 
 
 func play_safe(sound: NodePath, pitch : float = 1.0, volume : float = 1.0) -> void:
+	if not get_node(sound): return
 	var player: AudioStreamPlayer = get_node(sound)
 	if player.playing: return
 	var original_volume: float = player.volume_linear
@@ -20,6 +22,7 @@ func play_safe(sound: NodePath, pitch : float = 1.0, volume : float = 1.0) -> vo
 
 
 func play(sound: NodePath, pitch : float = 1.0, volume : float = 1.0) -> void:
+	if not get_node(sound): return
 	var player: AudioStreamPlayer = get_node(sound).duplicate()
 	add_child(player)
 	player.pitch_scale = pitch
@@ -30,6 +33,7 @@ func play(sound: NodePath, pitch : float = 1.0, volume : float = 1.0) -> void:
 
 
 func play2D(sound: NodePath, position: Vector2, pitch : float = 1.0, volume : float = 1.0) -> void:
+	if not get_node(sound): return
 	var player: AudioStreamPlayer2D = get_node(sound).duplicate()
 	add_child(player)
 	player.pitch_scale = pitch
@@ -41,6 +45,7 @@ func play2D(sound: NodePath, position: Vector2, pitch : float = 1.0, volume : fl
 
 
 func play3D(sound: NodePath, position: Vector3, pitch : float = 1.0, volume : float = 1.0) -> void:
+	if not get_node(sound): return
 	var player: AudioStreamPlayer3D = get_node(sound).duplicate()
 	add_child(player)
 	player.pitch_scale = pitch
@@ -52,6 +57,7 @@ func play3D(sound: NodePath, position: Vector3, pitch : float = 1.0, volume : fl
 
 
 func fade_in(sound: NodePath, duration: float, to_volume: int = 0) -> void:
+	if not get_node(sound): return
 	var player: AudioStreamPlayer = get_node(sound)
 	player.play()
 	player.volume_db = -80
@@ -61,11 +67,13 @@ func fade_in(sound: NodePath, duration: float, to_volume: int = 0) -> void:
 
 
 func fade_out(sound: NodePath, duration: float) -> void:
+	if not get_node(sound): return
 	var tween: Tween = create_tween()
 	@warning_ignore("return_value_discarded")
 	tween.tween_property(get_node(sound), "volume_db", -80, duration)
 
 
 func stop_playing(sound: NodePath) -> void:
+	if not get_node(sound): return
 	var player: AudioStreamPlayer = get_node(sound)
 	if player.playing: player.stop()

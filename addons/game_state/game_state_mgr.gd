@@ -2,11 +2,38 @@ extends Node
 
 const DEFAULT_SAVE_PATH : String = "user://game_state.json"
 const FLAGS_PREFIX: StringName = "flag_"
+const DOOR_KEY_PREFIX: StringName = "door_key_"
 
 var _data: Dictionary
 
 func _ready() -> void:
 	_data = _load_file(DEFAULT_SAVE_PATH)
+
+
+func saved_notes() -> Array[StringName]:
+	var def: Array[StringName] = []
+	return _data.get(&"notes", def)
+
+
+func saved_notes_count() -> int:
+	return saved_notes().size()
+
+
+func save_note(key: StringName) -> void:
+	var notes: Array = saved_notes()
+	notes.append(key)
+	_data[&"notes"] = notes
+
+
+func add_door_key(key: StringName) -> void:
+	var door_key: StringName = DOOR_KEY_PREFIX + key
+	_data[door_key] = 1
+
+
+func has_door_key(key: StringName) -> bool:
+	var door_key: StringName = DOOR_KEY_PREFIX + key
+	var door_key_value = _data.get(door_key, 0)
+	return door_key_value > 0
 
 
 func set_flag(flag: StringName) -> void:
