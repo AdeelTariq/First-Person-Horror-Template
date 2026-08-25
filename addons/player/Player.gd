@@ -105,23 +105,28 @@ func _ready() -> void:
 	footsteps.stream = footsteps_sound
 
 
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint(): return
+	if disable_controls: return
+	handle_crouch()
+	set_movement_speed()
+	handle_auto_walk_toggle()
+	handle_head_bob(delta)
+	handle_fov_change(delta)
+	handle_zoom(delta)
+	handle_switch_hands()
+	handle_lean(delta)
+	look_around(delta)
+
+
 func _physics_process(delta) -> void:
 	if Engine.is_editor_hint(): return
 	if disable_controls: return
 	handle_auto_crouch()
 	handle_effects(delta)
 	handle_falling(delta)
-	handle_jump()
-	handle_crouch()
-	set_movement_speed()
-	look_around(delta)
-	handle_auto_walk_toggle()
 	handle_movement(delta)
-	handle_head_bob(delta)
-	handle_fov_change(delta)
-	handle_zoom(delta)
-	handle_switch_hands()
-	handle_lean(delta)
+	handle_jump()
 	move_and_slide()
 
 
