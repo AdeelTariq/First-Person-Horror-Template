@@ -198,6 +198,7 @@ shape = SubResource("SeparationRayShape3D_dverj")
 
 [node name="Head" type="Node3D" parent="." unique_id=756133568]
 unique_name_in_owner = true
+physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="Neck" type="Node3D" parent="Head" unique_id=1362544940]
