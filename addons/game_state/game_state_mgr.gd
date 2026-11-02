@@ -40,6 +40,8 @@ func set_flag(flag: StringName) -> void:
 	var flag_key: StringName = FLAGS_PREFIX + flag
 	var flag_value = _data.get(flag_key, 0)
 	_data[flag_key] = flag_value + 1
+	if flag_value == 0 and Engine.get_main_loop().root.get_node_or_null(^"EventBus"):
+		EventBus.send("flag_set", {"flag": String(flag)})
 
 
 func has_flag(flag: StringName) -> bool:
@@ -84,7 +86,7 @@ func _load_file(path: String) -> Dictionary:
 	return parsed if typeof(parsed) == TYPE_DICTIONARY else {}
 
 
-func clear_progress(path: String) -> void:
-	if not FileAccess.file_exists(path):
-		return
-	DirAccess.remove_absolute(path)
+func clear_progress(path: String = DEFAULT_SAVE_PATH) -> void:
+	_data = {}
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
