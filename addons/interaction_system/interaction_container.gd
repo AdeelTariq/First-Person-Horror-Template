@@ -109,7 +109,7 @@ static func detach(node: Node) -> void:
 	return node.remove_meta("interaction_container")
 
 
-static func from(node: Node) -> InteractionContainer:
+static func from(node: Object) -> InteractionContainer:
 	if node == null: return null
 	assert(node.get_meta("interaction_container") is InteractionContainer)
 	return node.get_meta("interaction_container")

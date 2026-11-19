@@ -121,5 +121,6 @@ func _delayed_reset_flag() -> void:
 
 
 func refresh_prompts(interaction_container: InteractionContainer, picked_object: bool = false) -> void:
+	if _collider == null: return
 	if InteractionContainer.from(_collider) != interaction_container: return
 	_prepare_prompts_for_display(interaction_container, picked_object)

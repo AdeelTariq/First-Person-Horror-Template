@@ -195,7 +195,7 @@ func set_movement_speed() -> void:
 		speed = walk_speed
 		return
 	var sprint_pressed: bool = get_node_or_null("%sprint") != null and %sprint.is_triggered() and not disable_sprint
-	var sprint_first_triggered: bool = get_node_or_null("%sprint") != null and %sprint.is_first_triggered()
+	var sprint_first_triggered: bool = get_node_or_null("%sprint") != null and %sprint.is_first_triggered() and not disable_sprint
 	if toggle_sprint:
 		if sprint_first_triggered:
 			speed = sprint_speed if speed == walk_speed else walk_speed

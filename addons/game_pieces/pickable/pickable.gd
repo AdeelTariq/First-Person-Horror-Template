@@ -1,5 +1,10 @@
 class_name Pickable extends RigidBody3D
 
+
+@export var display_name: String:
+	set(value):
+		display_name = value
+		InteractionContainer.from(self).display_name = value
 @export var pull_force: float = 15
 @export var throw_power: float = 10
 @export var interaction_context_when_grabbed: int = 1
@@ -9,6 +14,8 @@ class_name Pickable extends RigidBody3D
 @export var press_to_grab: bool = false
 ## Automatically go into rotate mode on grab
 @export var auto_start_rotate: bool = false
+@export var fade_object_when_grabbed: bool = true
+@export var hidden_interactions: Array[Interaction] = []
 
 var _interaction_controller: InteractionController = null
 var _is_grabbed: bool:
@@ -24,6 +31,9 @@ var _grab_button_released: bool = false
 var _current_colliders := {}
 
 func _ready() -> void:
+	InteractionContainer.from(self).display_name = display_name
+	for interaction: Interaction in hidden_interactions:
+		interaction.hide_while_grabbed = true
 	contact_monitor = true
 	max_contacts_reported = 3
 
@@ -178,6 +188,7 @@ func _on_throw(controller: InteractionController) -> void:
 
 
 func set_transparency(object: Node, value: float) -> void:
+	if not fade_object_when_grabbed: return
 	for child in object.get_children(true):
 		if child is not MeshInstance3D: 
 			set_transparency(child, value)
